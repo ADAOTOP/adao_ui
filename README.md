@@ -1,5 +1,2 @@
-# 🙈 ADao Frontend
-
-This project contains the main features of the ADao application.
-
-If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
+# ADao Official Website
+follow us at https://twitter.com/ADAO_Official
