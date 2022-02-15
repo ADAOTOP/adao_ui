@@ -2481,8 +2481,10 @@
   resolved "https://registry.yarnpkg.com/@josephg/resolvable/-/resolvable-1.0.1.tgz#69bc4db754d79e1a2f17a650d3466e038d94a5eb"
   integrity sha512-CtzORUwWTTOTqfVtHaKRJ0I1kNQd1bpn3sUh8I3nJDVY+5/M/Oe1DnEWzPQvqq/xPIIkzzzIP7mfCoAjFRvDhg==
 
-"@kaco/adao_ui@../kaco/kaco-toolkit/packages/adao-uikit":
-  version "0.0.1"
+"@kaco/adao_ui@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@kaco/adao_ui/-/adao_ui-0.0.2.tgz#5b5ce9ca1372100dd3384e367dac4d8c6a22b0d8"
+  integrity sha512-rVjt3FnlKlBD0GSXjtA6KfqWT/tCajD7yu3/y1Z9dzBWI2LO5cLYbZtIsnQ74b+fKO7fQZGJGu0IenxmOqmeSw==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
