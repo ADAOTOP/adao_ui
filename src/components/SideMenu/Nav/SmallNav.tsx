@@ -101,6 +101,7 @@ const SmallNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
         padding: 0,
         left: 0,
         borderRadius: 0,
+        transform: 'translate3d(0, 72px, 0px)',
       },
       placement: 'bottom-start',
       hideArrow: true,
@@ -152,7 +153,7 @@ const NavLink = styled(Link)<{ active: 't' | 'f' }>`
   text-align: left;
   width: 100%;
   display: block;
-  padding-left: 8px;
+  padding-left: 18px;
   svg {
     width: 36px;
     fill: ${({ theme, active }) => (active === 't' ? theme.colors.text : theme.colors.textSubtle)};
@@ -171,7 +172,7 @@ const NavLinkP = styled.div`
   width: 80px;
   text-align: left;
   display: block;
-  padding-left: 8px;
+  padding-left: 18px;
   &:hover {
     color: ${({ theme }) => theme.colors.text};
   }
