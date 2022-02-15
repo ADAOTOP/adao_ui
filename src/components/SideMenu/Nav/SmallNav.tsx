@@ -133,6 +133,7 @@ const NavWrap = styled.div`
   padding-right: 0;
   padding-top: 30px;
   height: 100vh;
+  width: 100vw;
   overflow-y: auto;
   background-color: rgba(6, 6, 8, 0.9);
   &::-webkit-scrollbar {
@@ -153,7 +154,7 @@ const NavLink = styled(Link)<{ active: 't' | 'f' }>`
   text-align: left;
   width: 100%;
   display: block;
-  padding-left: 18px;
+  padding-left: 20px;
   svg {
     width: 36px;
     fill: ${({ theme, active }) => (active === 't' ? theme.colors.text : theme.colors.textSubtle)};
@@ -172,7 +173,7 @@ const NavLinkP = styled.div`
   width: 80px;
   text-align: left;
   display: block;
-  padding-left: 18px;
+  padding-left: 20px;
   &:hover {
     color: ${({ theme }) => theme.colors.text};
   }

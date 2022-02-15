@@ -7,7 +7,9 @@ declare module 'styled-components' {
 }
 
 const GlobalStyle = createGlobalStyle`
-
+&::-webkit-scrollbar {
+  display: none;
+}
 `;
 
 export default GlobalStyle;
