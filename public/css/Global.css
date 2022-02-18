@@ -225,8 +225,13 @@ p {
   display: inline-block;
   padding: 20px 16px;
 }
+.footer ul li a {
+  display: block;
+}
 .footer ul li img {
+  display: block;
   width: 26px;
+  height: 26px;
   transition: all 0.3s ease;
 }
 .footer ul li:hover img {
