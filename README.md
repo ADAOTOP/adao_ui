@@ -1,2 +1,2 @@
-# ADao Official Website
+# ADAO Official Website
 follow us at https://twitter.com/ADAO_Official
