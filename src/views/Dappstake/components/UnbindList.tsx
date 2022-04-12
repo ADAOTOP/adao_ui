@@ -30,7 +30,6 @@ const TextAmount = styled(Text)`
 `;
 const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol }) => {
   const lastBlockNumber = useBlockNumber();
-  console.log(withdraw);
   return (
     <UnbindListStyled>
       <HeadingStyled>Unbinding Rules</HeadingStyled>
@@ -61,7 +60,8 @@ const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol }) => {
                       ) : null}
                       {v.status === 1 && v.unbonding > lastBlockNumber ? (
                         <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} />
-                      ) : null}
+                      ) : //
+                      null}
                       {/* {v.status === 2 ? <Countdown nextEventTime={v.time} /> : null} */}
                     </StatusWrap>
                   </li>

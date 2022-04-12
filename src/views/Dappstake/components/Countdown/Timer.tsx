@@ -26,16 +26,16 @@ const Wrapper: React.FC<TimerProps> = ({ minutes, hours, days, seconds }) => {
   return (
     <FlexStyled>
       <StyledTimerText mb="-4px" scale="xl" mr="4px">
-        {days > 10 ? days : `0${days}`}:
+        {days >= 10 ? days : `0${days}`}:
       </StyledTimerText>
       <StyledTimerText mb="-4px" scale="xl" mr="4px">
-        {hours > 10 ? hours : `0${hours}`}:
+        {hours >= 10 ? hours : `0${hours}`}:
       </StyledTimerText>
       <StyledTimerText mb="-4px" scale="xl" mr="4px">
-        {minutes > 10 ? minutes : `0${minutes}`}:
+        {minutes >= 10 ? minutes : `0${minutes}`}:
       </StyledTimerText>
       <StyledTimerText mb="-4px" scale="xl" mr="4px">
-        {seconds > 10 ? seconds : `0${seconds}`}
+        {seconds >= 10 ? seconds : `0${seconds}`}
       </StyledTimerText>
     </FlexStyled>
   );

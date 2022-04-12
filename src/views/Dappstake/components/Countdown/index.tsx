@@ -8,9 +8,8 @@ interface CountdownProps {
 }
 
 const Countdown: React.FC<CountdownProps> = ({ nextEventTime }) => {
-  const secondsRemaining = useNextEventCountdown(nextEventTime);
+  const secondsRemaining = useNextEventCountdown(15000000000);
   const { days, hours, minutes, seconds } = getTimePeriods(secondsRemaining);
-
   return (
     <>
       {secondsRemaining ? (

@@ -103,21 +103,21 @@ const Unbind = () => {
           list={[
             {
               address: '',
-              amount: 1222,
+              amount: 432.12,
               era: 99999,
               unbonding: 99999,
               status: 0, // 0: Withdrawed 1: Withdraw  2: count down
             },
             {
               address: '',
-              amount: 12,
+              amount: 9.3,
               era: 99999,
               unbonding: 9999999,
               status: 1, // 0: Withdrawed 1: Withdraw  2: count down
             },
             {
               address: '',
-              amount: 1222.33,
+              amount: 2323.33,
               era: 999, //1642241278349
               unbonding: 9999,
               status: 1, // 0: Withdrawed 1: Withdraw  2: count down

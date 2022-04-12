@@ -15,7 +15,7 @@ const Treasury = () => {
         <h3>$989,120.18</h3>
       </div>
       <div className="a_bg">
-        <Link to="/dappstake/stake">Participate in pledge</Link>
+        <Link to="/dappstake/stake">Stake To Earn</Link>
       </div>
     </TreasuryStyled>
   );
