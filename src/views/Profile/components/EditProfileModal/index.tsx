@@ -1,5 +1,5 @@
 import React from 'react';
-import { InjectedModalProps, Modal } from '@kaco/adao_ui';
+import { InjectedModalProps, Modal } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import useEditProfile, { Views } from './reducer';
 import StartView from './StartView';

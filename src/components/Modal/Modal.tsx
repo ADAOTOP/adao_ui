@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Heading, CloseIcon, ArrowBackIcon, IconButton } from '@kaco/adao_ui';
+import { Flex, Heading, CloseIcon, ArrowBackIcon, IconButton } from '@my/ui';
 type Handler = () => void;
 interface InjectedProps {
   onDismiss?: Handler;

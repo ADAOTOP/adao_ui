@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text } from '@kaco/adao_ui';
+import { Text } from '@my/ui';
 import { Nft } from 'config/constants/types';
 
 interface CollectibleCardProps {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Heading } from '@kaco/adao_ui';
+import { Flex, Heading } from '@my/ui';
 import { Token } from 'config/constants/types';
 import { TokenPairImage } from 'components/TokenImage';
 

@@ -5,7 +5,7 @@ import { Address } from 'config/constants/types';
 import BigNumber from 'bignumber.js';
 // import { BASE_ADD_LIQUIDITY_URL } from 'config';
 // import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts';
-import { HelpIcon, Skeleton, useTooltip } from '@kaco/adao_ui';
+import { HelpIcon, Skeleton, useTooltip } from '@my/ui';
 
 export interface AprProps {
   apr: string;

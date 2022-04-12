@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, useMatchBreakpoints } from '@kaco/adao_ui';
+import { Text, useMatchBreakpoints } from '@my/ui';
 import { TableHeaderStyled } from './FarmTable/FarmTable';
 import styled from 'styled-components';
 const TextStyled = styled(Text)`

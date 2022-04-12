@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Token, TokenAmount } from '@kaco/sdkv2';
+import { Token, TokenAmount } from '@my/sdk';
 import { useTokenContract } from './useContract';
 import { useSingleCallResult } from '../state/multicall/hooks';
 

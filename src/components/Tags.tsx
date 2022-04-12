@@ -9,7 +9,7 @@ import {
   TimerIcon,
   BlockIcon,
   VoteIcon,
-} from '@kaco/adao_ui';
+} from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 const CoreTag: React.FC<TagProps> = (props) => {

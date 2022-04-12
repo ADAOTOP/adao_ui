@@ -1,6 +1,6 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { useTooltip, Button, LogoutIcon } from '@kaco/adao_ui';
+import { useTooltip, Button, LogoutIcon } from '@my/ui';
 import ConnectWalletButton from '../../ConnectWalletButton';
 import PolkadotAccounts from './WalletAccountInfo/PolkadotAccounts';
 import BscAccountInfo from './WalletAccountInfo/BscAccountInfo';

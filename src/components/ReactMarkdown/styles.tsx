@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Text } from '@kaco/adao_ui';
+import { Heading, Text } from '@my/ui';
 import { NormalComponents, SpecialComponents } from 'react-markdown/src/ast-to-react';
 import styled from 'styled-components';
 

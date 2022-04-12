@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@kaco/adao_ui';
+import { Flex, Text, Button, Heading, useModal, Skeleton } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import { Token } from 'config/constants/types';
 import { useTranslation } from 'contexts/Localization';

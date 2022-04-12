@@ -4,7 +4,7 @@ import { throttle } from 'lodash';
 import UserWidget from './UserWidget';
 import Logo from './Logo';
 import Nav from './Nav';
-import { Flex, useMatchBreakpoints } from '@kaco/adao_ui';
+import { Flex, useMatchBreakpoints } from '@my/ui';
 const Header: FC<{ className?: string; setCollapsed: (collapsed: boolean) => void; collapsed: boolean }> = ({
   className,
   collapsed,

@@ -10,7 +10,7 @@ import { PoolConfig } from 'config/constants/types';
 import { chainId } from 'config/constants/tokens';
 import pools from 'config/constants/pools';
 import { chainKey } from 'config';
-import { CHAINKEY } from '@kaco/sdkv2';
+import { CHAINKEY } from '@my/sdk';
 
 const base = BIG_TEN.pow(new BigNumber(18));
 

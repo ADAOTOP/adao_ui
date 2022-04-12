@@ -1,4 +1,4 @@
-import { ChainId } from '@kaco/sdkv2';
+import { ChainId } from '@my/sdk';
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   masterChef: {

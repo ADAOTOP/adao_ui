@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 // import BigNumber from 'bignumber.js';
-import { Text, useMatchBreakpoints } from '@kaco/adao_ui';
+import { Text, useMatchBreakpoints } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 // import { useCakeVault } from 'state/pools/hooks';
 import { Pool } from 'state/types';
@@ -32,7 +32,7 @@ const Container = styled.div`
     > .ratio {
       margin-top: 11px;
       font-size: 14px;
-      color: #9da6a6;
+      color: #91919e;
     }
   }
 `;

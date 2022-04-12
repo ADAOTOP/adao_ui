@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard';
-import { useMatchBreakpoints } from '@kaco/adao_ui';
+import { useMatchBreakpoints } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import useDelayedUnmount from 'hooks/useDelayedUnmount';
 import { useFarmUser } from 'state/farms/hooks';

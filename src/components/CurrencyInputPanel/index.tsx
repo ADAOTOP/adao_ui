@@ -1,6 +1,6 @@
 import React from 'react';
-import { Currency, Pair } from '@kaco/sdkv2';
-import { Button, useModal, Flex } from '@kaco/adao_ui';
+import { Currency, Pair } from '@my/sdk';
+import { Button, useModal, Flex } from '@my/ui';
 import styled from 'styled-components';
 import { useTranslation } from 'contexts/Localization';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
@@ -35,7 +35,7 @@ const InputPanel = styled.div<{ hideInput?: boolean; focused: boolean }>`
   /* border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')}; */
   /* background-color: ${({ theme }) => theme.colors.background}; */
   z-index: 1;
-  background: #272e32;
+  background: #1a1a22;
   box-shadow: 0px 5px 13px 2px rgba(9, 2, 18, 0.3);
   border-radius: 16px;
   padding: 8px 10px;
@@ -64,12 +64,12 @@ const InputPanel = styled.div<{ hideInput?: boolean; focused: boolean }>`
     }
     max-width: 136px;
     width: 100%;
-    background: #1f252a;
+    background: linear-gradient(0deg, #0d0d11, #3a3a4c);
     border-radius: 16px;
     > .label {
       font-size: 12px;
       margin-bottom: 8px;
-      color: #9da6a6;
+      color: #91919e;
     }
     > .open-currency-select-button {
       padding: 0px;
@@ -91,7 +91,7 @@ const InputPanel = styled.div<{ hideInput?: boolean; focused: boolean }>`
       height: 32px;
       text-align: right;
       font-size: 12px;
-      color: #9da6a6;
+      color: #91919e;
       margin-bottom: 4px;
       display: flex;
       align-items: center;

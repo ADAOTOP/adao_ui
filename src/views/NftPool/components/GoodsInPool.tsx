@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, FC, useEffect, useMemo, useRef, useState } from 'react';
-import { Grid } from '@kaco/adao_ui';
+import { Grid } from '@my/ui';
 import styled from 'styled-components';
 import NftItem from './Nft';
 import { NftPairConfig, NftItemConfig } from 'config/constants/nft';
@@ -275,7 +275,7 @@ export const GoodsInPool = styled(Pools_)`
       right: 50px;
     }
     h3 {
-      color: #9da6a6;
+      color: #91919e;
       font-size: 18px;
       padding-bottom: 10px;
       cursor: pointer;
@@ -315,7 +315,7 @@ export const GoodsInPool = styled(Pools_)`
       background-color: ${({ theme }) => theme.colors.secondary};
       min-width: 200px;
       list-style: none;
-      color: #9da6a6;
+      color: #91919e;
       border: 2px solid #238485;
       border-radius: 16px;
       line-height: 32px;
@@ -344,7 +344,7 @@ export const GoodsInPool = styled(Pools_)`
       background-color: rgba(18, 33, 36, 0.9);
       width: 100%;
       list-style: none;
-      color: #9da6a6;
+      color: #91919e;
       border: 2px solid #238485;
       border-radius: 16px;
       line-height: 32px;

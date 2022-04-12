@@ -1,4 +1,4 @@
-import { ChainId } from '@kaco/sdkv2';
+import { ChainId } from '@my/sdk';
 import { Nft, NftSource, NftType } from './types';
 
 export const IPFS_GATEWAY = 'https://cloudflare-ipfs.com';

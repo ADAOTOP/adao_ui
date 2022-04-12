@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Skeleton } from '@kaco/adao_ui';
+import { Text, Skeleton } from '@my/ui';
 // import { useTranslation } from 'contexts/Localization';
 import BigNumber from 'bignumber.js';
 

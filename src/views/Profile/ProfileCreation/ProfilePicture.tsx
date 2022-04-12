@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { AutoRenewIcon, Button, Card, CardBody, Heading, Skeleton, Text } from '@kaco/adao_ui';
+import { AutoRenewIcon, Button, Card, CardBody, Heading, Skeleton, Text } from '@my/ui';
 import { useWeb3React } from '@web3-react/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { getAddressByType } from 'utils/collectibles';

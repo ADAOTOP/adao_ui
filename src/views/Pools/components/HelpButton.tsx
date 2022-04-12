@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Button, HelpIcon, Link } from '@kaco/adao_ui';
+import { Text, Button, HelpIcon, Link } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 const ButtonText = styled(Text)`

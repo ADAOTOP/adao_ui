@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Link, Skeleton, Text, TimerIcon } from '@kaco/adao_ui';
+import { Flex, Link, Skeleton, Text, TimerIcon } from '@my/ui';
 import { getBscScanLink } from 'utils';
 import { Pool } from 'state/types';
 import { useBlock } from 'state/block/hooks';

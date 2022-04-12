@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Flex, useTooltip, Heading } from '@kaco/adao_ui';
+import { Text, Flex, useTooltip, Heading } from '@my/ui';
 import BscSvg from '../imgs/icon_bsc.svg';
 import SelectedSvg from '../imgs/icon_select.svg';
 import SdnSvg from '../imgs/icon_sd.png';
@@ -66,7 +66,7 @@ const SwitchChainTooltip = (
       px="19px"
       alignItems="center"
       justifyContent="space-between"
-      background="#272E32"
+      background="#1A1A22"
       borderRadius="16px"
       onClick={() => (window.location.href = 'https://www.ADao.finance/')}
     >
@@ -87,7 +87,7 @@ const SwitchChainTooltip = (
       px="19px"
       alignItems="center"
       justifyContent="space-between"
-      background="#272E32"
+      background="#1A1A22"
       borderRadius="16px"
       onClick={() => (window.location.href = 'https://shiden.ADao.finance/')}
     >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@kaco/adao_ui';
+import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import Balance from 'components/Balance';
 import ApyCalculatorModal from 'components/ApyCalculatorModal';

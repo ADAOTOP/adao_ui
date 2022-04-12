@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Heading } from '@kaco/adao_ui';
+import { Flex, Heading } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { useAchievements } from 'state/achievements/hooks';
 import AchievementCard from './AchievementCard';

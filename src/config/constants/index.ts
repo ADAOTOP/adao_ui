@@ -1,4 +1,4 @@
-import { JSBI, Percent, Token, ChainId } from '@kaco/sdkv2';
+import { JSBI, Percent, Token, ChainId } from '@my/sdk';
 import {
   BUSD,
   DAI,

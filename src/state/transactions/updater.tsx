@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Text, Flex, Link } from '@kaco/adao_ui';
+import { Text, Flex, Link } from '@my/ui';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { getBscScanLink } from 'utils';
 import useToast from 'hooks/useToast';

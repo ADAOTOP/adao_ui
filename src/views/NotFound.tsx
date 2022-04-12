@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@kaco/adao_ui';
+import { Button } from '@my/ui';
 import Page from 'components/Layout/Page';
 import { useTranslation } from 'contexts/Localization';
 // import LogoMainSvg from 'components/svg/logo-main.svg';

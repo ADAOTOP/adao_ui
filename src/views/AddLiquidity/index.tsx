@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { BigNumber } from '@ethersproject/bignumber';
 import { TransactionResponse } from '@ethersproject/providers';
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@kaco/sdkv2';
-import { Button, Text, Flex, CardBody, useModal, useMatchBreakpoints } from '@kaco/adao_ui';
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@my/sdk';
+import { Button, Text, Flex, CardBody, useModal, useMatchBreakpoints } from '@my/ui';
 import { RouteComponentProps } from 'react-router-dom';
 import { useIsTransactionUnsupported } from 'hooks/Trades';
 import { useTranslation } from 'contexts/Localization';
@@ -361,7 +361,7 @@ export default function AddLiquidity({
               showCommonBases
             />
             {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
-              <div style={{ border: '1px dashed #272E32', borderRadius: '16px' }}>
+              <div style={{ border: '1px dashed #1A1A22', borderRadius: '16px' }}>
                 <LightCard padding="0px">
                   <RowBetween padding="1rem">
                     <Text fontSize="12px">

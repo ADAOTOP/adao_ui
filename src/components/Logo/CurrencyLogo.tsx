@@ -1,5 +1,5 @@
-import { Currency, ETHER, Token } from '@kaco/sdkv2';
-import { BinanceIcon } from '@kaco/adao_ui';
+import { Currency, ETHER, Token } from '@my/sdk';
+import { BinanceIcon } from '@my/ui';
 import { BASE_URL } from 'config';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react';
-import { Button, Text, CheckmarkIcon, CogIcon, Input, LinkExternal, useTooltip } from '@kaco/adao_ui';
+import { Button, Text, CheckmarkIcon, CogIcon, Input, LinkExternal, useTooltip } from '@my/ui';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { useTheme } from 'styled-components';
 import { TokenList, Version } from '@uniswap/token-lists';
@@ -32,7 +32,7 @@ const Wrapper = styled(Column)`
 const RowWrapper = styled(Row)<{ active: boolean }>`
   background-color: ${({ active, theme }) => (active ? theme.colors.cardBackground : 'transparent')};
   border: solid 2px;
-  border-color: ${({ active, theme }) => (active ? '#238485' : '#272E32')};
+  border-color: ${({ active, theme }) => (active ? '#238485' : '#1A1A22')};
   transition: 200ms;
   align-items: center;
   padding: 1.2rem 1.2rem;
@@ -107,11 +107,11 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
           </Text>
         </Row>
         <RowFixed mt="4px">
-          <Text fontSize="12px" color=" #9DA6A6" mr="6px" textTransform="lowercase">
+          <Text fontSize="12px" color=" #91919E" mr="6px" textTransform="lowercase">
             {list.tokens.length} {t('Tokens')}
           </Text>
           <span ref={targetRef}>
-            <CogIcon color="#9DA6A6" width="12px" />
+            <CogIcon color="#91919E" width="12px" />
           </span>
         </RowFixed>
       </Column>

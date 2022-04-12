@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ChevronDownIcon } from '@kaco/adao_ui';
+import { ChevronDownIcon } from '@my/ui';
 
 interface DetailsProps {
   actionPanelToggled: boolean;

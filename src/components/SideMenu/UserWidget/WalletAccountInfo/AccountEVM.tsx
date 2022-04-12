@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import useAuth from 'hooks/useAuth';
-import { Flex, Heading, Text } from '@kaco/adao_ui';
+import { Flex, Heading, Text } from '@my/ui';
 import { useAccountInfo } from '../hooks/useAccountInfo';
 const AccountEVM: FC<{ className?: string }> = ({ className }) => {
   const { logout } = useAuth();

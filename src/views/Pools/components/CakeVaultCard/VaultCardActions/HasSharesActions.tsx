@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, IconButton, useModal, Skeleton } from '@kaco/adao_ui';
+import { Flex, Text, IconButton, useModal, Skeleton } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import { getBalanceNumber } from 'utils/formatBalance';
 import { Pool } from 'state/types';

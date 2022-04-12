@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
-import { Input, InputProps } from '@kaco/adao_ui';
+import { Input, InputProps } from '@my/ui';
 
 import 'react-datepicker/dist/react-datepicker.css';
 

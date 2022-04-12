@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Text,
-  Button,
-  Heading,
-  Flex,
-  AutoRenewIcon,
-  ButtonMenu,
-  ButtonMenuItem,
-  HelpIcon,
-  useTooltip,
-} from '@kaco/adao_ui';
+import { Text, Button, Heading, Flex, AutoRenewIcon, ButtonMenu, ButtonMenuItem, HelpIcon, useTooltip } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import useToast from 'hooks/useToast';
 import { Token } from 'config/constants/types';

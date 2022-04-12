@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, useWalletModal } from '@kaco/adao_ui';
+import { Button, useWalletModal } from '@my/ui';
 import useAuth from 'hooks/useAuth';
 import { useTranslation } from 'contexts/Localization';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Token, Currency } from '@kaco/sdkv2';
-import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@kaco/adao_ui';
+import { Token, Currency } from '@my/sdk';
+import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@my/ui';
 import { AutoColumn } from 'components/Layout/Column';
 import { useAddUserToken } from 'state/user/hooks';
 import { getBscScanLink } from 'utils';

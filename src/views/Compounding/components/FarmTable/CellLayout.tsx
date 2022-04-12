@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Label = styled.div`
   font-size: 12px;
   /* color: ${({ theme }) => theme.colors.textSubtle}; */
-  color: #9da6a6;
+  color: #91919e;
   text-align: left;
   margin-bottom: 5px;
 `;

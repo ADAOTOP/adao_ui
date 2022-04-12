@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex } from '@kaco/adao_ui';
+import { Flex } from '@my/ui';
 import WalletAccountInfo from './WalletAccount';
 const UserWidget = () => {
   return (

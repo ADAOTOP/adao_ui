@@ -1,6 +1,6 @@
 import React from 'react';
-import { Currency, currencyEquals, ETHER, Token, ChainId } from '@kaco/sdkv2';
-import { Text } from '@kaco/adao_ui';
+import { Currency, currencyEquals, ETHER, Token, ChainId } from '@my/sdk';
+import { Text } from '@my/ui';
 import styled from 'styled-components';
 import { useTranslation } from 'contexts/Localization';
 import { SUGGESTED_BASES } from '../../config/constants';

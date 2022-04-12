@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Flex, Text } from '@kaco/adao_ui';
+import { Flex, Text } from '@my/ui';
 import styled from 'styled-components';
 import HeaderBgSvg from '../img/header-bg.svg';
 import { formatFloat } from '../util/format';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress, ProgressProps } from '@kaco/adao_ui';
+import { Progress, ProgressProps } from '@my/ui';
 import { useBlock } from 'state/block/hooks';
 
 interface BlockProgressProps extends ProgressProps {

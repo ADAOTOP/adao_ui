@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgProps } from '@kaco/adao_ui';
+import { SvgProps } from '@my/ui';
 
 const IconMore: React.FC<SvgProps> = () => {
   return (

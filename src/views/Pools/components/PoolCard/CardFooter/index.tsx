@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BigNumber from 'bignumber.js';
 import styled from 'styled-components';
 import { useTranslation } from 'contexts/Localization';
-import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip } from '@kaco/adao_ui';
+import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip } from '@my/ui';
 import { Pool } from 'state/types';
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags';
 import ExpandedFooter from './ExpandedFooter';

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, CSSProperties } from 'styled-components';
-import { ArrowDropDownIcon, Text } from '@kaco/adao_ui';
+import { ArrowDropDownIcon, Text } from '@my/ui';
 
 const DropDownHeader = styled.div`
   width: 100%;
@@ -32,7 +32,7 @@ const DropDownListContainer = styled.div`
   }
 
   top: 64px;
-  background: #1f252a;
+  background: linear-gradient(0deg, #0d0d11, #3a3a4c);
   border: 2px solid #238485;
   box-shadow: 0px 8px 13px 3px rgba(9, 2, 18, 0.2);
   border-radius: 12px;
@@ -81,7 +81,7 @@ const ListItem = styled.li`
   list-style: none;
   > div {
     font-size: 14px;
-    color: #9da6a6;
+    color: #91919e;
   }
   padding: 12px 16px;
   &:hover {

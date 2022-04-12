@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@kaco/adao_ui';
+import { Button } from '@my/ui';
 
 interface PercentageButtonProps {
   onClick: () => void;

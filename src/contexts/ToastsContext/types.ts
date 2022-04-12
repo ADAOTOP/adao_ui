@@ -1,4 +1,4 @@
-import { Toast } from '@kaco/adao_ui';
+import { Toast } from '@my/ui';
 
 type ToastSignature = (title: Toast['title'], description?: Toast['description']) => void;
 

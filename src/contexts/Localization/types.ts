@@ -1,5 +1,5 @@
 import { ReactText } from 'react';
-import { Language } from '@kaco/adao_ui';
+import { Language } from '@my/ui';
 
 export type ContextData = {
   [key: string]: ReactText;

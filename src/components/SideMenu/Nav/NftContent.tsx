@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { Text } from '@kaco/adao_ui';
+import { Text } from '@my/ui';
 import { NFTPathConfig, IMenuDetail } from '../config';
 export const NftContentIn = () => {
   const { pathname } = useLocation();

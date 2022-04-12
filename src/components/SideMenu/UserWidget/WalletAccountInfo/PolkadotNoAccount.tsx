@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Button } from '@kaco/adao_ui';
+import { Button } from '@my/ui';
 const PolkadotNoAccount_TSX: FC<{ className?: string; connectWallet: () => void }> = ({ className, connectWallet }) => {
   return (
     <div className={className}>

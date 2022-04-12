@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Text, Flex, Button, BalanceInput, AutoRenewIcon, Link } from '@kaco/adao_ui';
+import { Text, Flex, Button, BalanceInput, AutoRenewIcon, Link } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import useToast from 'hooks/useToast';
 import BigNumber from 'bignumber.js';
@@ -169,7 +169,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
             // currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
             isWarning={hasReachedStakeLimit}
             decimals={stakingToken.decimals}
-            background="#272E32"
+            background="#1A1A22"
           />
         </Flex>
       </StyledBorder>

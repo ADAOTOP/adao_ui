@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Tag, Flex, Heading } from '@kaco/adao_ui';
+import { Tag, Flex, Heading } from '@my/ui';
 import { CommunityTag, CoreTag } from 'components/Tags';
 import { Token } from 'config/constants/types';
 import { TokenPairImage } from 'components/TokenImage';

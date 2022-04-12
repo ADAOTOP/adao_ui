@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react';
-import { Language } from '@kaco/adao_ui';
+import { Language } from '@my/ui';
 import { EN, languages } from 'config/localization/languages';
 import translations from 'config/localization/translations.json';
 import { ContextApi, ContextData, ProviderState } from './types';

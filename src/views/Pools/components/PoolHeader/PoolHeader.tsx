@@ -1,9 +1,9 @@
-import { Text, Flex } from '@kaco/adao_ui';
+import { Text, Flex } from '@my/ui';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useTranslation } from 'contexts/Localization';
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@my/ui';
 import LogoPng from './PoolHeader.svg';
 import Toggle from 'components/Menu/GlobalSettings/Toggle';
 import Search from 'components/Search';
@@ -56,7 +56,7 @@ const PoolHeader: React.FC<{
         <ButtonMenuItem
           as={Link}
           style={{
-            color: isExact ? theme.colors.btnTextColor : '#9DA6A6',
+            color: isExact ? theme.colors.btnTextColor : '#91919E',
             borderRadius: '32px',
             margin: 0,
             lineHeight: '32px',
@@ -74,7 +74,7 @@ const PoolHeader: React.FC<{
           <ButtonMenuItem
             id="finished-pools-button"
             style={{
-              color: isExact ? '#9DA6A6' : theme.colors.btnTextColor,
+              color: isExact ? '#91919E' : theme.colors.btnTextColor,
               borderRadius: '32px',
               margin: 0,
               lineHeight: '32px',

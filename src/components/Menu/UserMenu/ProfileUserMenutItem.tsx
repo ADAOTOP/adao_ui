@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Flex, Skeleton, UserMenuItem } from '@kaco/adao_ui';
+import { Flex, Skeleton, UserMenuItem } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 interface ProfileUserMenuItemProps {

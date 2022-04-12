@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Skeleton } from '@kaco/adao_ui';
+import { Skeleton } from '@my/ui';
 // import BigNumber from 'bignumber.js';
 import Balance from 'components/Balance';
 import { Pool } from 'state/types';

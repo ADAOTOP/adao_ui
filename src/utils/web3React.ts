@@ -1,7 +1,7 @@
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { BscConnector } from '@binance-chain/bsc-connector';
-import { ConnectorNames } from '@kaco/adao_ui';
+import { ConnectorNames } from '@my/ui';
 import { ethers } from 'ethers';
 import getNodeUrl from './getRpcUrl';
 import { chainId } from 'config/constants/tokens';

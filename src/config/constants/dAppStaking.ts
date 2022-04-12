@@ -1,4 +1,4 @@
-import { ChainId } from '@kaco/sdkv2';
+import { ChainId } from '@my/sdk';
 
 export const dAppStakingcontract = {
   [ChainId.BSC_TESTNET]: '0x756f158A2C02246Bf00bbdB051729804F2efd9c7',

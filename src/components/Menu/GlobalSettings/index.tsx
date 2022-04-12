@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, IconButton, useModal } from '@kaco/adao_ui';
+import { Flex, IconButton, useModal } from '@my/ui';
 import SettingsModal from './SettingsModal';
 import SettingSvg from '../../svg/setting.svg';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Box, Button, Flex, Text } from '@kaco/adao_ui';
+import { Box, Button, Flex, Text } from '@my/ui';
 import { AppDispatch } from 'state';
 import { useAllTransactions } from 'state/transactions/hooks';
 import { useTranslation } from 'contexts/Localization';

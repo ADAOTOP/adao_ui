@@ -1,7 +1,7 @@
 import { useTranslation } from 'contexts/Localization';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ChevronLeftIcon, Flex, Text, ButtonMenu, ButtonMenuItem } from '@kaco/adao_ui';
+import { ChevronLeftIcon, Flex, Text, ButtonMenu, ButtonMenuItem } from '@my/ui';
 
 interface MenuProps {
   activeIndex?: number;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { Text, Flex, Heading, useModal } from '@kaco/adao_ui';
+import { Text, Flex, Heading, useModal } from '@my/ui';
 import { MorePathConfig, IMenuDetail } from '../config';
 import imageNftBg from '../imgs/image_nft_bg.png';
 import IconKarsier from '../imgs/iconKarsier';

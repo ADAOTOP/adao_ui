@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components';
-import { CardHeader as UIKitCardHeader } from '@kaco/adao_ui';
+import { CardHeader as UIKitCardHeader } from '@my/ui';
 
 const getBackground = (theme: DefaultTheme) => {
   if (theme.isDark) {

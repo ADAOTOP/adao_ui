@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ExpandableLabel, Flex, FlexProps, Text } from '@kaco/adao_ui';
+import { ExpandableLabel, Flex, FlexProps, Text } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 interface FoldableTextProps extends FlexProps {

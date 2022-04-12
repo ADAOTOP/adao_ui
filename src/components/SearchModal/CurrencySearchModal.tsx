@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Currency, Token } from '@kaco/sdkv2';
+import { Currency, Token } from '@my/sdk';
 import {
   ModalContainer,
   ModalHeader,
@@ -10,7 +10,7 @@ import {
   InjectedModalProps,
   Heading,
   Button,
-} from '@kaco/adao_ui';
+} from '@my/ui';
 import styled from 'styled-components';
 import usePrevious from 'hooks/usePreviousValue';
 import { TokenList } from '@uniswap/token-lists';
@@ -33,7 +33,7 @@ const StyledModalContainer = styled(ModalContainer)`
   border-width: 0;
 
   > .header {
-    background: #272e32;
+    background: #1a1a22;
   }
 `;
 
@@ -43,7 +43,7 @@ const StyledModalBody = styled(ModalBody)`
   .list-token-manage-button {
     width: 200px;
     height: 36px;
-    background: #272e32;
+    background: #1a1a22;
     border-radius: 12px;
     color: ${({ theme }) => theme.colors.primary};
   }

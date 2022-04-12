@@ -1,7 +1,8 @@
+import { CHAINKEY } from '@my/sdk';
 import IconMarkets from './imgs/iconMarkets';
 import IconMyWallet from './imgs/iconMyWallet';
 
-export const chainKey = 'BSC';
+export const chainKey: CHAINKEY = CHAINKEY.SDN;
 
 export interface IMenu {
   text: string;
@@ -48,5 +49,9 @@ export const menuItemsDefault = [
   {
     text: 'Home',
     link: '/',
+  },
+  {
+    text: 'Staking',
+    link: '/dappstake/stake',
   },
 ];

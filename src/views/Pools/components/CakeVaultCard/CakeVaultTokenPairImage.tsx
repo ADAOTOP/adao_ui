@@ -1,5 +1,5 @@
 import React from 'react';
-import { TokenPairImage, ImageProps } from '@kaco/adao_ui';
+import { TokenPairImage, ImageProps } from '@my/ui';
 import { Coinversation, chainId } from 'config/constants/tokens';
 import { getAddress } from 'utils/addressHelpers';
 

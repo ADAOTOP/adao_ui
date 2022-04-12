@@ -1,24 +1,23 @@
 import React, { lazy } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
-import { ResetCSS } from '@kaco/adao_ui';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { ResetCSS } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import useEagerConnect from 'hooks/useEagerConnect';
 import { usePollBlockNumber } from 'state/block/hooks';
-import { DatePickerPortal } from 'components/DatePicker';
 import GlobalStyle from './style/Global';
 import SuspenseWithChunkError from './components/SuspenseWithChunkError';
 import { ToastListener } from './contexts/ToastsContext';
 import PageLoader from './components/Loader/PageLoader';
-import EasterEgg from './components/EasterEgg';
 import history from './routerHistory';
-// Views included in the main bundle
-
 import { PriceProvider } from 'contexts/PriceProvider';
 import SideMenu from './components/SideMenu';
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'));
+const DappstakeStake = lazy(() => import('./views/Dappstake/Stake'));
+const DappstakeUnbind = lazy(() => import('./views/Dappstake/Unbind'));
+
 const NotFound = lazy(() => import('./views/NotFound'));
 
 // This config is required for number formatting
@@ -44,15 +43,25 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/dappstake/stake">
+              <DappstakeStake />
+            </Route>
+            {/*  <Route path="/dappstake/unstake">
+                <DappstakeUnstake />
+              </Route> */}
+            <Route path="/dappstake/unbind">
+              <DappstakeUnbind />
+            </Route>
+            <Route path="/dappstake">
+              <Redirect to="/dappstake/stake" />
+            </Route>
 
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>
       </SideMenu>
-      <EasterEgg iterations={2} />
       <ToastListener />
-      <DatePickerPortal />
     </Router>
   );
 };

@@ -6,7 +6,7 @@ import { BIG_TEN, BIG_ZERO } from 'utils/bigNumber';
 import multicall from 'utils/multicall';
 import { Farm, SerializedBigNumber } from '../types';
 import { chainKey } from 'config';
-import { CHAINKEY } from '@kaco/sdkv2';
+import { CHAINKEY } from '@my/sdk';
 
 export type PublicFarmData = {
   tokenAmountMc: SerializedBigNumber;

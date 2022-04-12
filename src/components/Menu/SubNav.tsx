@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { ButtonMenu, ButtonMenuItem } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 const StyledNav = styled.nav`
@@ -28,10 +28,10 @@ const Nav = () => {
   return (
     <StyledNav>
       <ButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
-        <ButtonMenuItem width="112px" id="swap-nav-link" to="/swap" as={Link}>
+        <ButtonMenuItem height="36px" width="124px" id="swap-nav-link" to="/swap" as={Link}>
           {t('Trade')}
         </ButtonMenuItem>
-        <ButtonMenuItem width="112px" id="pool-nav-link" to="/pool" as={Link}>
+        <ButtonMenuItem height="36px" width="124px" id="pool-nav-link" to="/pool" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
       </ButtonMenu>

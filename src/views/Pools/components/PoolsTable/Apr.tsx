@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, useModal, CalculateIcon, FlexProps, Button } from '@kaco/adao_ui';
+import { Flex, useModal, CalculateIcon, FlexProps, Button } from '@my/ui';
 import ApyCalculatorModal from 'components/ApyCalculatorModal';
 import Balance from 'components/Balance';
 import { Pool } from 'state/types';

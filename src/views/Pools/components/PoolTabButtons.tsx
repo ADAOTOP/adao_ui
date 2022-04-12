@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import ToggleView, { ViewMode } from './ToggleView/ToggleView';
 

@@ -1,6 +1,6 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo } from 'react';
-import { Token } from '@kaco/sdkv2';
-import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from '@kaco/adao_ui';
+import { Token } from '@my/sdk';
+import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from '@my/ui';
 import styled, { useTheme } from 'styled-components';
 import Row, { RowBetween, RowFixed } from 'components/Layout/Row';
 import { useToken } from 'hooks/Tokens';
@@ -127,7 +127,7 @@ export default function ManageTokens({
         </AutoColumn>
         {tokenList}
         <Footer>
-          <Text fontSize="16px" bold color="#9DA6A6">
+          <Text fontSize="16px" bold color="#91919E">
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('Custom Token') : t('Custom Tokens')}
           </Text>
           {userAddedTokens.length > 0 && (

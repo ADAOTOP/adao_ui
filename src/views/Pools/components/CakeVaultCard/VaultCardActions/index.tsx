@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Text, Box } from '@kaco/adao_ui';
+import { Flex, Text, Box } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { Pool } from 'state/types';
 import { BIG_ZERO } from 'utils/bigNumber';

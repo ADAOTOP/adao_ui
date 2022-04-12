@@ -39,7 +39,7 @@ export const ActionTitles = styled.div`
       margin-right: 6px;
     }
     > span:last-child {
-      color: #9da6a6;
+      color: #91919e;
     }
   }
   > .balance {

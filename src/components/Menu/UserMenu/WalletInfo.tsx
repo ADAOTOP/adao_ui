@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@kaco/adao_ui';
+import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@my/ui';
 import { useWeb3React } from '@web3-react/core';
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance';
 import { getCakeAddress } from 'utils/addressHelpers';

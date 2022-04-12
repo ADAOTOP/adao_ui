@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import React from 'react';
-import { CardBody, Flex, Text, CardRibbon } from '@kaco/adao_ui';
+import { CardBody, Flex, Text, CardRibbon } from '@my/ui';
 import ConnectWalletButton from 'components/ConnectWalletButton';
 import { useTranslation } from 'contexts/Localization';
 import { BIG_ZERO } from 'utils/bigNumber';

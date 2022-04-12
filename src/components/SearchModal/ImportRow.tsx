@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import { Token } from '@kaco/sdkv2';
-import { Button, Text, CheckmarkCircleIcon } from '@kaco/adao_ui';
+import { Token } from '@my/sdk';
+import { Button, Text, CheckmarkCircleIcon } from '@my/ui';
 import { AutoRow, RowFixed } from 'components/Layout/Row';
 import { AutoColumn } from 'components/Layout/Column';
 import CurrencyLogo from 'components/Logo/CurrencyLogo';
@@ -76,7 +76,7 @@ export default function ImportRow({
         </AutoRow>
         {list && list.logoURI && (
           <RowFixed>
-            <Text small mr="4px" color="#9DA6A6" fontSize="12px">
+            <Text small mr="4px" color="#91919E" fontSize="12px">
               {t('via')} {list.name}
             </Text>
             <ListLogo logoURI={list.logoURI} size="12px" />

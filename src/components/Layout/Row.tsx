@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box } from '@kaco/adao_ui';
+import { Box } from '@my/ui';
 
 const Row = styled(Box)<{
   width?: string;

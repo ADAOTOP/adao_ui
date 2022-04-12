@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, Heading, useModal, PresentWonIcon } from '@kaco/adao_ui';
+import { Button, Flex, Heading, useModal, PresentWonIcon } from '@my/ui';
 import { useProfile } from 'state/profile/hooks';
 import { useTranslation } from 'contexts/Localization';
 import ClaimNftAndCakeModal, { useCanClaim } from './ClaimGiftModal';

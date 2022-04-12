@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardHeader, Heading, Text, Flex } from '@kaco/adao_ui';
+import { CardHeader, Heading, Text, Flex } from '@my/ui';
 import styled from 'styled-components';
 import { useTranslation } from 'contexts/Localization';
 import { Token } from 'config/constants/types';

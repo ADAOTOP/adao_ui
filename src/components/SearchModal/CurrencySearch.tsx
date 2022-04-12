@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react';
-import { Currency, ETHER, Token } from '@kaco/sdkv2';
-import { Text, Input, Box } from '@kaco/adao_ui';
+import { Currency, ETHER, Token } from '@my/sdk';
+import { Text, Input, Box } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { FixedSizeList } from 'react-window';
 import { useAudioModeManager } from 'state/user/hooks';
@@ -21,11 +21,11 @@ import { chainId } from 'config/constants/tokens';
 
 const Wrapper = styled.div`
   #token-search-input {
-    background: #1f252a;
+    background: linear-gradient(0deg, #0d0d11, #3a3a4c);
     border: 1px solid ${({ theme }) => theme.colors.cardBackground};
     border-radius: 12px;
     font-size: 12px;
-    color: #9da6a6;
+    color: #91919e;
     outline: none;
     box-shadow: none;
   }

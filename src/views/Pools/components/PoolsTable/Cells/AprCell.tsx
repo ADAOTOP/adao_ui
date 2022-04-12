@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMatchBreakpoints } from '@kaco/adao_ui';
+import { useMatchBreakpoints } from '@my/ui';
 import { Pool } from 'state/types';
 import { useTranslation } from 'contexts/Localization';
 import Apr from '../Apr';

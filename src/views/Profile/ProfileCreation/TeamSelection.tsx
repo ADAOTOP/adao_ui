@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Card, CardBody, CommunityIcon, Flex, Heading, Text } from '@kaco/adao_ui';
+import { Card, CardBody, CommunityIcon, Flex, Heading, Text } from '@my/ui';
 import shuffle from 'lodash/shuffle';
 import { useTeams } from 'state/teams/hooks';
 import { useTranslation } from 'contexts/Localization';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ChevronDownIcon, useMatchBreakpoints } from '@kaco/adao_ui';
+import { ChevronDownIcon, useMatchBreakpoints } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 interface DetailsProps {

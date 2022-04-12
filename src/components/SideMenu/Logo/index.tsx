@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 const Logo: FC<{ collapsed: boolean }> = ({ collapsed }) => {
   return (
-    <LogoStyle>
+    <LogoStyle href="/">
       <img src={collapsed ? '/images/logo.webp' : '/images/logo.webp'} alt="logo png" />
     </LogoStyle>
   );
 };
-const LogoStyle = styled.div`
+const LogoStyle = styled.a`
+  display: block;
   height: 34px;
   margin-right: 0;
   ${({ theme }) => theme.mediaQueries.md} {

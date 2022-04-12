@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { useTooltip } from '@kaco/adao_ui';
+import { useTooltip } from '@my/ui';
 import { IMenu } from '../config';
 import CollapseSvg from '../imgs/collapse';
 import IconClose from '../imgs/iconClose';
 import IconMenu from '../imgs/iconMenu';
-import { NftContentIn } from './NftContent';
 const SmallNavTooltip: FC<{ _menuItems: IMenu[]; setTooltipVisible: React.Dispatch<React.SetStateAction<boolean>> }> =
   ({ _menuItems, setTooltipVisible }) => {
     const { pathname } = useLocation();
@@ -16,7 +15,7 @@ const SmallNavTooltip: FC<{ _menuItems: IMenu[]; setTooltipVisible: React.Dispat
       trigger: 'hover',
       tootipStyle: {
         padding: '0 14px',
-        backgroundImage: 'linear-gradient(270deg, #FC00FF 0%, #7D49FF 100%)',
+        backgroundImage: 'linear-gradient(90deg, #303FFF, #C947D9)',
         borderRadius: '12px',
         color: '#fff',
         fontSize: '10px',
@@ -40,6 +39,10 @@ const SmallNavTooltip: FC<{ _menuItems: IMenu[]; setTooltipVisible: React.Dispat
                     ? pathname === item.link
                     : ['/add', '/remove', '/liquidity'].find((p) => pathname.startsWith(p))
                     ? item.link === '/swap'
+                    : ['/dappstake/unbind', '/dappstake/stake', '/dappstake/unstake'].find((p) =>
+                        pathname.startsWith(p),
+                      )
+                    ? item.link === '/dappstake/stake'
                     : ['/nft/pools', '/nft/wallet/mint', '/nft/wallet/burn'].find((p) => pathname.startsWith(p))
                     ? item.link === '/nft/pools/'
                     : pathname.startsWith(item.link)
@@ -68,13 +71,10 @@ const SmallNavTooltip: FC<{ _menuItems: IMenu[]; setTooltipVisible: React.Dispat
               {item.text}
               {item.children?.length && <CollapseSvg />}
             </NavLink>
-            {((item.children?.length && !item.collapsed) || pathname.startsWith('/nft')) && (
-              <div className="sub-menu">{item.text === 'NFT' ? <NftContentIn /> : null}</div>
-            )}
           </div>
         ))}
         <NavLinkP ref={BorrowTargetRef}>
-          Staking
+          Rewards
           {BorrowTooltip}
         </NavLinkP>
       </NavWrap>
@@ -161,6 +161,18 @@ const NavLink = styled(Link)<{ active: 't' | 'f' }>`
     transform: ${({ active }) => (active === 't' ? 'none' : 'scaleY(-1)')};
   }
 `;
+
+const MenuBtn = styled.div`
+  position: fixed;
+  // top: (72-40)/2;
+  top: 19px;
+  right: 16px;
+  cursor: pointer;
+  & > svg {
+    width: 40px;
+    fill: ${({ theme }) => theme.colors.text};
+  }
+`;
 const NavLinkP = styled.div`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
@@ -176,17 +188,6 @@ const NavLinkP = styled.div`
   padding-left: 20px;
   &:hover {
     color: ${({ theme }) => theme.colors.text};
-  }
-`;
-const MenuBtn = styled.div`
-  position: fixed;
-  // top: (72-40)/2;
-  top: 19px;
-  right: 16px;
-  cursor: pointer;
-  & > svg {
-    width: 40px;
-    fill: ${({ theme }) => theme.colors.text};
   }
 `;
 export default SmallNav;

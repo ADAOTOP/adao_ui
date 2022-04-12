@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import BigNumber from 'bignumber.js';
 import { useWeb3React } from '@web3-react/core';
-import { Flex, Text } from '@kaco/adao_ui';
+import { Flex, Text } from '@my/ui';
 import orderBy from 'lodash/orderBy';
 import partition from 'lodash/partition';
 import usePersistState from 'hooks/usePersistState';
@@ -179,7 +179,7 @@ const Pools: React.FC = () => {
             placeholder="Search Pool"
           />
           {showFinishedPools && (
-            <Text fontSize="14px" color="#9DA6A6" pb="32px">
+            <Text fontSize="14px" color="#91919E" pb="32px">
               These pools are no longer distributing rewards. Please unstake your tokens.
             </Text>
           )}

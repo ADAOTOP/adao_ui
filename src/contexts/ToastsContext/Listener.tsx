@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastContainer } from '@kaco/adao_ui';
+import { ToastContainer } from '@my/ui';
 import useToast from 'hooks/useToast';
 
 const ToastListener = () => {

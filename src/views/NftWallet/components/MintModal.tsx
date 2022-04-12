@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { Text, Flex, Button, Modal, InjectedModalProps } from '@kaco/adao_ui';
+import { Text, Flex, Button, Modal, InjectedModalProps } from '@my/ui';
 import { ModalActions } from 'components/Modal';
 import { useTranslation } from 'contexts/Localization';
 import MintSvg from '../img/mint.svg';
@@ -8,7 +8,7 @@ import { NFT } from 'views/NftPool/components/GoodsInPool';
 import { NftPair } from 'views/NftPools/hooks/useNftPools';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { BLOCK_INTERVAL, NFT_PAIRS, NFT_TYPE } from 'config/constants/nft';
-import { ButtonMenu, ButtonMenuItem } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem } from '@my/ui';
 import { useContract } from 'hooks/useContract';
 import Erc721 from 'config/abi/erc-721.json';
 import Erc1155 from 'config/abi/ERC1155.json';
@@ -115,7 +115,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
           <Flex
             style={{
               padding: '13px 14px',
-              background: '#272E32',
+              background: '#1A1A22',
               borderRadius: '20px',
               alignItems: 'center',
             }}
@@ -152,7 +152,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
           <Flex
             style={{
               padding: '13px 14px',
-              background: '#272E32',
+              background: '#1A1A22',
               borderRadius: '20px',
               position: 'relative',
               top: '-20px',
@@ -176,7 +176,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
               </Text>
             </Flex>
           </Flex>
-          <Text textAlign="center" color="#9DA6A6" fontSize="12px" bold>
+          <Text textAlign="center" color="#91919E" fontSize="12px" bold>
             Fee {FEE}%
           </Text>
         </div>
@@ -185,7 +185,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
           <div
             style={{
               padding: '13px 14px',
-              background: '#272E32',
+              background: '#1A1A22',
               borderRadius: '20px',
               alignItems: 'center',
             }}
@@ -193,7 +193,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
             <Flex
               style={{
                 padding: '13px 14px',
-                background: '#272E32',
+                background: '#1A1A22',
                 borderRadius: '20px',
                 alignItems: 'center',
               }}
@@ -225,7 +225,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
                 {nft.name}#{nft.id}
               </Text>
             </Flex>
-            <Text color="#9DA6A6" fontSize="12px" mb="12px" mt="26px" pl="10px">
+            <Text color="#91919E" fontSize="12px" mb="12px" mt="26px" pl="10px">
               Choose lock time
             </Text>
             <Flex padding="10px 20px" alignItems="center" background="#1F252A" borderRadius="12px">
@@ -262,7 +262,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
           <Flex
             style={{
               padding: '13px 14px',
-              background: '#272E32',
+              background: '#1A1A22',
               borderRadius: '20px',
               position: 'relative',
               top: '-20px',
@@ -286,7 +286,7 @@ const MintModal: React.FC<Props> = ({ onDismiss, nft = {}, pair }) => {
               </Text>
             </Flex>
           </Flex>
-          <Text textAlign="center" color="#9DA6A6" fontSize="12px" bold px="36px">
+          <Text textAlign="center" color="#91919E" fontSize="12px" bold px="36px">
             Fee: {FEE}% + {FEE_DAYLIY}% * LockDays
             {/* The default is {FEE}% handling fee, add 1 day to increase {FEE_DAYLIY}% handling fee */}
           </Text>

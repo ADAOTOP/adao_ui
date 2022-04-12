@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, useModal } from '@kaco/adao_ui';
+import { Button, useModal } from '@my/ui';
 import TransactionsModal from './TransactionsModal';
 import HistorySvg from '../../svg/history.svg';
 

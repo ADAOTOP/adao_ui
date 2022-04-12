@@ -91,7 +91,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_ksdn",
+        "name": "_ibASTR",
         "type": "uint256"
       },
       {
@@ -383,7 +383,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct KSDNUnbond.WithdrawRecord[]",
+        "internalType": "struct ibASTRUnbond.WithdrawRecord[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -687,7 +687,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "ksdnAmount",
+        "name": "ibASTRAmount",
         "type": "uint256"
       }
     ],

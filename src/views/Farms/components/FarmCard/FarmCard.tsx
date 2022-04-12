@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BigNumber from 'bignumber.js';
 import styled from 'styled-components';
-import { Card, Flex, Text, Skeleton } from '@kaco/adao_ui';
+import { Card, Flex, Text, Skeleton } from '@my/ui';
 import { Farm } from 'state/types';
 import { getBscScanLink } from 'utils';
 import { useTranslation } from 'contexts/Localization';

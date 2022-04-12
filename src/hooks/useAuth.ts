@@ -9,7 +9,7 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector';
-import { ConnectorNames, connectorLocalStorageKey } from '@kaco/adao_ui';
+import { ConnectorNames, connectorLocalStorageKey } from '@my/ui';
 import { connectorsByName } from 'utils/web3React';
 import { setupNetwork } from 'utils/wallet';
 import useToast from 'hooks/useToast';

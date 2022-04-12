@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Flex, Modal, InjectedModalProps } from '@kaco/adao_ui';
+import { Text, Flex, Modal, InjectedModalProps } from '@my/ui';
 import { useExpertModeManager, useUserSingleHopOnly } from 'state/user/hooks';
 import { useTranslation } from 'contexts/Localization';
 import { useSwapActionHandlers } from 'state/swap/hooks';
@@ -53,7 +53,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         <TransactionSettings />
         <Flex
           justifyContent="space-between"
-          style={{ paddingTop: '25px', marginTop: '19px', borderTop: '2px solid #272E32' }}
+          style={{ paddingTop: '25px', marginTop: '19px', borderTop: '2px solid #1A1A22' }}
         >
           <Flex justifyContent="space-between" alignItems="center">
             <Toggle checked={expertMode} onChange={handleExpertModeToggle} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useLocation, Link, useRouteMatch } from 'react-router-dom';
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 interface FarmTabButtonsProps {

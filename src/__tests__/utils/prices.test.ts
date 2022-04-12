@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@kaco/sdkv2';
+import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@my/sdk';
 import { computeTradePriceBreakdown } from 'utils/prices';
 
 describe('prices', () => {

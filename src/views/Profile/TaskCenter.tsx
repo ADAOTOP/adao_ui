@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardHeader, Flex, Heading, Text } from '@kaco/adao_ui';
+import { Card, CardBody, CardHeader, Flex, Heading, Text } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import AchievementsList from './components/AchievementsList';
 import ClaimPointsCallout from './components/ClaimPointsCallout ';

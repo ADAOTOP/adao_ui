@@ -1,11 +1,10 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { useMatchBreakpoints } from '@kaco/adao_ui';
+import { useMatchBreakpoints } from '@my/ui';
 import Header from './Header';
-import Animation from './Animation';
 const Wrapper = styled.div<{ collapsed: boolean }>`
-  // background: #1f252a;
+  // background: linear-gradient(0deg, #0D0D11, #3A3A4C);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -39,7 +38,6 @@ const SideMenu: FC<{ className?: string }> = ({ className, children }) => {
 
   return (
     <Wrapper className={className} collapsed={collapsed}>
-      <Animation />
       <Header setCollapsed={setCollapsed} collapsed={collapsed} />
       <BodyContainer collapsed={collapsed}>
         <div className="content">

@@ -34,7 +34,7 @@ const PolkadotAccount = styled(PolkadotAccount_TSX)`
   .text {
     font-size: 14px;
     font-weight: 500;
-    color: #9da6a6;
+    color: #91919e;
     margin-bottom: 12px;
     margin-top: 20px;
     padding: 0 30px;

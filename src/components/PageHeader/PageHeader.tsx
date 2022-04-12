@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box } from '@kaco/adao_ui';
+import { Box } from '@my/ui';
 import Container from '../Layout/Container';
 
 const Outer = styled(Box)<{ background?: string }>`

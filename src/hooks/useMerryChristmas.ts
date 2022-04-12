@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParticleBurst } from '@kaco/adao_ui';
+import { useParticleBurst } from '@my/ui';
 import { useLocation } from 'react-router-dom';
 
 const disableWhenNotChristmas = () => {

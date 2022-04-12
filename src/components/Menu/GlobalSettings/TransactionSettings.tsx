@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Button, Input, Flex, Box } from '@kaco/adao_ui';
+import { Text, Button, Input, Flex, Box } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks';
 import QuestionHelper from '../../QuestionHelper';
@@ -149,7 +149,7 @@ const SlippageTabs = () => {
             style={{
               padding: '0px 16px',
               background: theme.colors.cardBackground,
-              border: '1px solid #272E32',
+              border: '1px solid #1A1A22',
               borderRadius: '12px',
             }}
           >
@@ -198,7 +198,7 @@ const SlippageTabs = () => {
       <Box
         style={{
           background: theme.colors.cardBackground,
-          border: '1px solid #272E32',
+          border: '1px solid #1A1A22',
           padding: '0px 16px',
           width: '50%',
           borderRadius: '12px',

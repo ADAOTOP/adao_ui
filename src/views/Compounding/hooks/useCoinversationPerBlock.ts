@@ -9,7 +9,7 @@ import masterChef from 'config/abi/masterchef.json';
 
 import { useEffect, useState } from 'react';
 import { chainKey } from 'config';
-import { CHAINKEY } from '@kaco/sdkv2';
+import { CHAINKEY } from '@my/sdk';
 
 const base = BIG_TEN.pow(new RealBigNumber(18));
 

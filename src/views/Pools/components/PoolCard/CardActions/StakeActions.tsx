@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, Button, IconButton, useModal, Skeleton, useTooltip } from '@kaco/adao_ui';
+import { Flex, Text, Button, IconButton, useModal, Skeleton, useTooltip } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import { useTranslation } from 'contexts/Localization';
 import { getBalanceNumber } from 'utils/formatBalance';

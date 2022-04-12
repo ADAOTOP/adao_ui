@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connectorLocalStorageKey, ConnectorNames } from '@kaco/adao_ui';
+import { connectorLocalStorageKey, ConnectorNames } from '@my/ui';
 import useAuth from 'hooks/useAuth';
 
 const _binanceChainListener = async () =>

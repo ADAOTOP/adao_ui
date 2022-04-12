@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpIcon } from '@kaco/adao_ui';
+import { HelpIcon } from '@my/ui';
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {};
 

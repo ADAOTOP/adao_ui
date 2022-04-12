@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTooltip, Box, BoxProps } from '@kaco/adao_ui';
+import { useTooltip, Box, BoxProps } from '@my/ui';
 import styled from 'styled-components';
 import WarnSvg from './img/icon_warn.svg';
 

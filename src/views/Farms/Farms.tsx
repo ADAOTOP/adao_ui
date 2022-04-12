@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom';
 import BigNumber from 'bignumber.js';
 import { useWeb3React } from '@web3-react/core';
-import { RowType, Flex } from '@kaco/adao_ui';
+import { RowType, Flex } from '@my/ui';
 import FlexLayout from 'components/Layout/Flex';
 import Page from 'components/Layout/Page';
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks';

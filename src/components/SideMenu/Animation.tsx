@@ -75,18 +75,17 @@ const AnimationStyled = styled.div`
     .img_a {
       width: 49px;
       top: 220px;
-      right: 30%;
+      right: 20%;
     }
     .img_b {
       width: 29px;
       top: 260px;
-      right: 28%;
+      right: 18%;
     }
     .img_c {
       width: 28px;
       top: 430px;
       right: 7%;
-      right: 30%;
     }
     .img_d {
       width: 48px;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 // import { useFarmUser } from 'state/farms/hooks';
 // import { useTranslation } from 'contexts/Localization';
-// import { Text } from '@kaco/adao_ui';
+// import { Text } from '@my/ui';
 // import { getBalanceNumber } from 'utils/formatBalance';
 import { Token } from 'config/constants/types';
 import { TokenPairImage } from 'components/TokenImage';
@@ -32,7 +32,7 @@ const Container = styled.div`
     > .ratio {
       margin-top: 11px;
       font-size: 14px;
-      color: #9da6a6;
+      color: #91919e;
     }
   }
 `;

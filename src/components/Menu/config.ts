@@ -1,4 +1,4 @@
-import { MenuEntry } from '@kaco/adao_ui';
+import { MenuEntry } from '@my/ui';
 import { ContextApi } from 'contexts/Localization/types';
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ListViewIcon, CardViewIcon, IconButton } from '@kaco/adao_ui';
+import { ListViewIcon, CardViewIcon, IconButton } from '@my/ui';
 import { ViewMode } from '../types';
 
 interface ToggleViewProps {

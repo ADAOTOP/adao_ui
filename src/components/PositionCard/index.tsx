@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { JSBI, Pair, Percent } from '@kaco/sdkv2';
-import { Button, Text, Flex, CardProps } from '@kaco/adao_ui';
+import { JSBI, Pair, Percent } from '@my/sdk';
+import { Button, Text, Flex, CardProps } from '@my/ui';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'contexts/Localization';
@@ -140,7 +140,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   );
 }
 const Wrapper = styled.div`
-  background: #1f252a;
+  background: linear-gradient(0deg, #0d0d11, #3a3a4c);
   border-radius: 12px;
   margin-bottom: 12px;
 
@@ -148,7 +148,7 @@ const Wrapper = styled.div`
     padding: 0px 20px;
     height: 68px;
     align-items: center;
-    background-color: #272e32;
+    background-color: #1a1a22;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
@@ -225,7 +225,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           <FixedHeightRow>
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency0} />
-              <Text fontSize="12px" color="#9DA6A6" ml="14px">
+              <Text fontSize="12px" color="#91919E" ml="14px">
                 Pooled {currency0.symbol}
               </Text>
             </RowFixed>
@@ -243,7 +243,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           <FixedHeightRow>
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency1} />
-              <Text fontSize="12px" color="#9DA6A6" ml="14px">
+              <Text fontSize="12px" color="#91919E" ml="14px">
                 Pooled {currency1.symbol}
               </Text>
             </RowFixed>
@@ -259,7 +259,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
 
           <FixedHeightRow>
-            <Text fontSize="12px" color="#9DA6A6">
+            <Text fontSize="12px" color="#91919E">
               Share of pool
             </Text>
             <Text fontSize="12px" color="#F1842C">
@@ -274,7 +274,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
               <Button
                 style={{
                   height: '48px',
-                  background: '#272E32',
+                  background: '#1A1A22',
                   border: '2px solid #238485',
                   borderRadius: '12px',
                 }}

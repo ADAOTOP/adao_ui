@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TooltipText, useTooltip } from '@kaco/adao_ui';
+import { Text, TooltipText, useTooltip } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import Balance from 'components/Balance';
 

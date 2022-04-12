@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '@kaco/adao_ui';
+import { Card } from '@my/ui';
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;

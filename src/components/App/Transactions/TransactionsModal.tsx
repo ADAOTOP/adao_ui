@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useDispatch } from 'react-redux';
-import { Modal, ModalBody, Text, Button, Flex, InjectedModalProps } from '@kaco/adao_ui';
+import { Modal, ModalBody, Text, Button, Flex, InjectedModalProps } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks';
 import { TransactionDetails } from 'state/transactions/reducer';

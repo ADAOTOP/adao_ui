@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Heading, IconButton, Text, NotificationDot } from '@kaco/adao_ui';
+import { Flex, Heading, IconButton, Text, NotificationDot } from '@my/ui';
 import { Link } from 'react-router-dom';
 import { useExpertModeManager } from 'state/user/hooks';
 import GlobalSettings from 'components/Menu/GlobalSettings';

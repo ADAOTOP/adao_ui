@@ -1,4 +1,4 @@
-import { ChainId } from '@kaco/sdkv2';
+import { ChainId } from '@my/sdk';
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BSC_MAINNET]: 'https://bsc-dataseed1.defibit.io',

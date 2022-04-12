@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Input, InputProps, Flex, Link } from '@kaco/adao_ui';
+import { Text, Input, InputProps, Flex, Link } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { BigNumber } from 'bignumber.js';
 
@@ -20,7 +20,7 @@ const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  background: #272e32;
+  background: #1a1a22;
   color: ${({ theme }) => theme.colors.text};
   padding: 18px 30px;
   width: 100%;

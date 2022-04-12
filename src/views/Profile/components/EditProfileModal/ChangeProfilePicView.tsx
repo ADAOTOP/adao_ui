@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, InjectedModalProps, Skeleton, Text } from '@kaco/adao_ui';
+import { Button, InjectedModalProps, Skeleton, Text } from '@my/ui';
 import { useWeb3React } from '@web3-react/core';
 import { useAppDispatch } from 'state';
 import { useGetCollectibles } from 'state/collectibles/hooks';

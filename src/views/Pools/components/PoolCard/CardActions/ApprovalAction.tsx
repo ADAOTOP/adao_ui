@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, AutoRenewIcon, Skeleton } from '@kaco/adao_ui';
+import { Button, AutoRenewIcon, Skeleton } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { useERC20 } from 'hooks/useContract';
 import { getAddress } from 'utils/addressHelpers';

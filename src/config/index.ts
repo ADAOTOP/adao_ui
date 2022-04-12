@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js/bignumber';
 import { BIG_TEN } from 'utils/bigNumber';
-import { CHAINKEY, ChainId } from '@kaco/sdkv2';
+import { CHAINKEY, ChainId } from '@my/sdk';
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,

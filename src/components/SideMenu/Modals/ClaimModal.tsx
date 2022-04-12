@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Flex, Text, IconButton, CloseIcon } from '@kaco/adao_ui';
+import { Button, Flex, Text, IconButton, CloseIcon } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import Modal from 'components/Modal/Modal';
 import Claim_KAC_Token_PNG from './Claim_KAC_Token_PNG.png';
@@ -21,7 +21,7 @@ const HeaderStyled = styled(Flex)`
 // const BorderDiv = styled.div`
 //   padding: 15px 5%;
 //   background:  ${({ theme }) => theme.colors.cardBackground};
-//   border: 1px solid #272e32;
+//   border: 1px solid #1A1A22;
 //   border-radius: 12px;
 //   margin-bottom: 30px;
 // `;
@@ -43,7 +43,7 @@ const BgButton = styled(Button)`
   height: 48px;
   margin-bottom: 20px;
   &:disabled {
-    // background-color: #272e32;
+    // background-color: #1A1A22;
   }
 `;
 interface CollectModalProps {
@@ -117,7 +117,7 @@ const CollectModal: React.FC<CollectModalProps> = ({ onDismiss }) => {
         </IconButton>
       </Flex>
 
-      <Text padding="0 4%" mt="20px" mb="30px" bold fontSize="14px" lineHeight="24px" color="#9DA6A6">
+      <Text padding="0 4%" mt="20px" mb="30px" bold fontSize="14px" lineHeight="24px" color="#91919E">
         Get your rewards
       </Text>
       {/* <BorderDiv>
@@ -126,7 +126,7 @@ const CollectModal: React.FC<CollectModalProps> = ({ onDismiss }) => {
             {error}
           </Text>
         )}
-        <Text color="#9DA6A6;" fontSize="12px" mb="4px">
+        <Text color="#91919E;" fontSize="12px" mb="4px">
           Recipient
         </Text>
 

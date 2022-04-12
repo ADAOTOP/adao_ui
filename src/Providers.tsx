@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalProvider, dark } from '@kaco/adao_ui';
+import { ModalProvider, dark } from '@my/ui';
 import { Web3ReactProvider } from '@web3-react/core';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';

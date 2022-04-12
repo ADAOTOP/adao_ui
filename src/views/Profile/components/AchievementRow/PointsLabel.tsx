@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, FlexProps, PrizeIcon, Text } from '@kaco/adao_ui';
+import { Flex, FlexProps, PrizeIcon, Text } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 
 interface PointsLabelProps extends FlexProps {

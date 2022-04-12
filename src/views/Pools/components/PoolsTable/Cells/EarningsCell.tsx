@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Skeleton, Text, useTooltip, HelpIcon, Flex, useModal, useMatchBreakpoints } from '@kaco/adao_ui';
+import { Skeleton, Text, useTooltip, HelpIcon, Flex, useModal, useMatchBreakpoints } from '@my/ui';
 import { Pool } from 'state/types';
 import BigNumber from 'bignumber.js';
 import { PoolCategory } from 'config/constants/types';

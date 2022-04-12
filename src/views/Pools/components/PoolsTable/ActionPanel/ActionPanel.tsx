@@ -11,7 +11,7 @@ import {
   MetamaskIcon,
   Flex,
   Button,
-} from '@kaco/adao_ui';
+} from '@my/ui';
 import { BASE_BSC_SCAN_URL } from 'config';
 import { getBscScanLink } from 'utils';
 import { useBlock } from 'state/block/hooks';

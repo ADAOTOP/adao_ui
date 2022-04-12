@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
-import { Text, Flex } from '@kaco/adao_ui';
+import { Text, Flex } from '@my/ui';
 
 // import LogoSvg from '../svg/demo.svg';
 import { RowBetween } from '../../../components/Layout/Row';
@@ -89,7 +89,7 @@ const PoolName = styled(PoolName_)`
 const TitledItem_: FC<{ title: string; value: string | number }> = ({ title, value }) => {
   return (
     <div>
-      <Text color="#9DA6A6" fontSize="12px" mb={{ md: '12px', xs: '6px' }}>
+      <Text color="#91919E" fontSize="12px" mb={{ md: '12px', xs: '6px' }}>
         {title}
       </Text>
       <Text bold fontSize="14px" color="btnTextColor">

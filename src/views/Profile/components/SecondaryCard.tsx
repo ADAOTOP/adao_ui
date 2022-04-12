@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Text } from '@kaco/adao_ui';
+import { Text } from '@my/ui';
 
 const SecondaryCard = styled(Text)`
   border: 2px solid ${({ theme }) => theme.colors.tertiary};

@@ -1,51 +1,21 @@
-import React, { FC, useRef, useEffect } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { IMenu } from '../config';
-import { Flex, useTooltip } from '@kaco/adao_ui';
+import { Flex, useTooltip } from '@my/ui';
 import CollapseSvg from '../imgs/collapse';
-import NftContent from './NftContent';
-import MoreContent from './MoreContent';
 const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
   const { pathname } = useLocation();
   const {
-    targetRef: NftTargetRef,
-    tooltip: NftTooltip,
-    tooltipVisible: NftTooltipVisible,
-  } = useTooltip(NftContent, {
-    trigger: 'hover',
-    tootipStyle: { padding: '10px 20px 20px' },
-    placement: 'top-end',
-    hideArrow: false,
-    tooltipOffset: [20, 10],
-  });
-  const setMoreTooltipVisible = useRef<React.Dispatch<React.SetStateAction<boolean>>>();
-  const {
-    tooltip: MoreTooltip,
-    tooltipVisible: MoreTooltipVisible,
-    setTooltipVisible,
-  } = useTooltip(
-    <>
-      <MoreContent setTooltipVisible={setMoreTooltipVisible.current} />
-    </>,
-    {
-      trigger: 'hover',
-      tootipStyle: { padding: '0', minWidth: '620px' },
-      placement: 'top-end',
-      hideArrow: false,
-      tooltipOffset: [100, 10],
-    },
-  );
-  const {
-    targetRef: BorrowTargetRef,
-    tooltip: BorrowTooltip,
-    tooltipVisible: BorrowTooltipVisible,
+    targetRef: BorrowTargetRef1,
+    tooltip: BorrowTooltip1,
+    tooltipVisible: BorrowTooltipVisible1,
   } = useTooltip('Comming Soon', {
     placement: 'right-start',
     trigger: 'hover',
     tootipStyle: {
       padding: '0 14px',
-      backgroundImage: 'linear-gradient(270deg, #FC00FF 0%, #7D49FF 100%)',
+      backgroundImage: 'linear-gradient(90deg, #303FFF, #C947D9)',
       borderRadius: '12px',
       color: '#fff',
       fontSize: '10px',
@@ -55,20 +25,35 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
     },
     hideArrow: true,
   });
-  useEffect(() => {
-    setMoreTooltipVisible.current = setTooltipVisible;
-  }, [setTooltipVisible]);
+  const {
+    targetRef: BorrowTargetRef2,
+    tooltip: BorrowTooltip2,
+    tooltipVisible: BorrowTooltipVisible2,
+  } = useTooltip('Comming Soon', {
+    placement: 'right-start',
+    trigger: 'hover',
+    tootipStyle: {
+      padding: '0 14px',
+      backgroundImage: 'linear-gradient(90deg, #303FFF, #C947D9)',
+      borderRadius: '12px',
+      color: '#fff',
+      fontSize: '10px',
+      lineHeight: '24px',
+      border: 'none',
+      fontWeight: 'bold',
+    },
+    hideArrow: true,
+  });
+
   return (
     <>
-      {NftTooltipVisible && NftTooltip}
-      {MoreTooltipVisible && MoreTooltip}
-      {BorrowTooltipVisible && BorrowTooltip}
+      {BorrowTooltipVisible1 && BorrowTooltip1}
+      {BorrowTooltipVisible2 && BorrowTooltip2}
       <NavWrap>
         {menuItems.map((item: IMenu, index) => (
           <NavLink
             to={item.link}
             key={index}
-            ref={item.text === 'NFT' ? NftTargetRef : undefined}
             onClick={() => {
               if (item.link.indexOf('https://') > -1) {
                 window.open(item.link);
@@ -81,6 +66,8 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
                   ? pathname === item.link
                   : ['/add', '/remove', '/liquidity'].find((p) => pathname.startsWith(p))
                   ? item.link === '/swap'
+                  : ['/dappstake/unbind', '/dappstake/stake', '/dappstake/unstake'].find((p) => pathname.startsWith(p))
+                  ? item.link === '/dappstake/stake'
                   : ['/nft/pools', '/nft/wallet/mint', '/nft/wallet/burn'].find((p) => pathname.startsWith(p))
                   ? item.link === '/nft/pools/'
                   : pathname.startsWith(item.link)
@@ -93,10 +80,8 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
             {item.children?.length && <CollapseSvg />}
           </NavLink>
         ))}
-        {/* <IconMoreStyle ref={MoreTargetRef}>
-          <IconMore />
-        </IconMoreStyle> */}
-        <NavLinkP ref={BorrowTargetRef}>Staking</NavLinkP>
+        <NavLinkP ref={BorrowTargetRef1}>Rewards</NavLinkP>
+        <NavLinkP ref={BorrowTargetRef2}>Proposal</NavLinkP>
       </NavWrap>
     </>
   );
@@ -118,10 +103,12 @@ const NavLink = styled(Link)<{ active: 't' | 'f' }>`
   align-items: center;
   font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
-  height: 40px;
+  height: 43px;
+  line-height: 43px;
   transition: all 0.3s ease;
   font-weight: 600;
   margin-right: 34px;
+  opacity: ${({ theme, active }) => (active === 't' ? 1 : '0.7')};
   svg {
     width: 20px;
     fill: ${({ theme, active }) => (active === 't' ? theme.colors.text : theme.colors.textSubtle)};
@@ -141,8 +128,9 @@ const NavLinkP = styled.div`
   font-weight: 600;
   margin-right: 34px;
   position: relative;
+  opacity: 0.7;
   &:hover {
-    opacity: 0.7;
+    opacity: 1;
   }
 `;
 export default BigNav;

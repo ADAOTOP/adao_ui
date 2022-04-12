@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { Currency, Token, ChainId } from '@kaco/sdkv2';
+import { Currency, Token, ChainId } from '@my/sdk';
 import styled from 'styled-components';
-import { Button, Text, ErrorIcon, Flex, Box, Link, Modal, InjectedModalProps, MetamaskIcon } from '@kaco/adao_ui';
+import { Button, Text, ErrorIcon, Flex, Box, Link, Modal, InjectedModalProps, MetamaskIcon } from '@my/ui';
 import { registerToken } from 'utils/wallet';
 import { useTranslation } from 'contexts/Localization';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
@@ -41,7 +41,7 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
             padding: '0px 30px',
             marginBottom: '75px',
             marginTop: '5px',
-            background: '#272E32',
+            background: '#1A1A22',
             borderRadius: '12px',
             justifyContent: 'center',
             alignItems: 'center',
@@ -100,7 +100,7 @@ function TransactionSubmittedContent({
           onClick={onDismiss}
           mt="20px"
           variant="text"
-          style={{ fontSize: '14px', width: '200px', background: '#272E32' }}
+          style={{ fontSize: '14px', width: '200px', background: '#1A1A22' }}
         >
           {t('Close')}
         </Button>

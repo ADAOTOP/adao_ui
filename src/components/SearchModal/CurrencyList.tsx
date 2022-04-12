@@ -1,6 +1,6 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react';
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@kaco/sdkv2';
-import { Text } from '@kaco/adao_ui';
+import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@my/sdk';
+import { Text } from '@my/ui';
 import styled from 'styled-components';
 import { FixedSizeList } from 'react-window';
 import { wrappedCurrency } from 'utils/wrappedCurrency';
@@ -65,7 +65,7 @@ const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
   .symbol-text {
     margin-top: 7px;
     font-size: 12px;
-    color: #9da6a6;
+    color: #91919e;
   }
 `;
 

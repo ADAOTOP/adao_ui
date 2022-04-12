@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { isTradeBetter } from 'utils/trades';
-import { Currency, CurrencyAmount, Pair, Token, Trade } from '@kaco/sdkv2';
+import { Currency, CurrencyAmount, Pair, Token, Trade } from '@my/sdk';
 import flatMap from 'lodash/flatMap';
 import { useMemo } from 'react';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';

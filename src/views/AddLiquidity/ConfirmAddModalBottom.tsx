@@ -1,6 +1,6 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@kaco/sdkv2';
+import { Currency, CurrencyAmount, Fraction, Percent } from '@my/sdk';
 import React from 'react';
-import { Button, Text } from '@kaco/adao_ui';
+import { Button, Text } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { RowBetween, RowFixed } from '../../components/Layout/Row';
 import { CurrencyLogo } from '../../components/Logo';
@@ -26,7 +26,7 @@ function ConfirmAddModalBottom({
     <div style={{ marginTop: '28px' }}>
       <div
         style={{
-          background: '#272E32',
+          background: '#1A1A22',
           border: '1px dashed #238485',
           borderRadius: '12px',
           padding: '24px 21px',

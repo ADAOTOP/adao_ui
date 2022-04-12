@@ -15,7 +15,7 @@ import {
   useModal,
   Skeleton,
   Checkbox,
-} from '@kaco/adao_ui';
+} from '@my/ui';
 import { parseISO, formatDistance } from 'date-fns';
 import { useWeb3React } from '@web3-react/core';
 import useToast from 'hooks/useToast';

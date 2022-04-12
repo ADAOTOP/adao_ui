@@ -1,6 +1,6 @@
 import React, { FC, useContext, useMemo } from 'react';
 import styled from 'styled-components';
-import { Button, Text } from '@kaco/adao_ui';
+import { Button, Text } from '@my/ui';
 import { NftContext } from '../providers/nft.provider';
 import LockSvg from '../img/lock.svg';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
@@ -104,7 +104,7 @@ export default styled(Nft)`
     text-align: left;
     width: 90%;
     background-color: ${({ theme }) => theme.colors.cardBackground};
-    color: #9da6a6;
+    color: #91919e;
     border: 2px solid #238485;
     border-radius: 16px;
     line-height: 28px;
@@ -131,7 +131,7 @@ export default styled(Nft)`
       font-size: 14px;
       display: inline-block;
       word-break: break-all;
-      color: #9da6a6;
+      color: #91919e;
       line-height: 20px;
       i {
         color: #fff;

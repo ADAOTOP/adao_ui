@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextProps } from '@kaco/adao_ui';
+import { Text, TextProps } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import { TranslatableText as AchievementTitleType } from 'state/types';
 

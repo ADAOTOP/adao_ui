@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { useTable, ColumnType } from '@kaco/adao_ui';
+import { useTable, ColumnType } from '@my/ui';
 
 import Row, { RowProps } from './Row';
 

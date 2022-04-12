@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { ButtonMenu, ButtonMenuItem } from '@kaco/adao_ui';
+import { ButtonMenu, ButtonMenuItem } from '@my/ui';
 import useTheme from 'hooks/useTheme';
 
 const StyledNav = styled.nav`
@@ -35,8 +35,8 @@ const Nav = () => {
               ? { color: theme.colors.primary, background: theme.colors.cardBackground }
               : { color: 'white' }
           }
-          width="112px"
-          height="44px"
+          width="124px"
+          height="36px"
           id="swap-nav-link"
           to="/nft/wallet/mint"
           as={Link}
@@ -49,8 +49,8 @@ const Nav = () => {
               ? { color: theme.colors.primary, background: theme.colors.cardBackground }
               : { color: 'white' }
           }
-          height="44px"
-          width="112px"
+          height="36px"
+          width="124px"
           id="pool-nav-link"
           to="/nft/wallet/burn"
           as={Link}

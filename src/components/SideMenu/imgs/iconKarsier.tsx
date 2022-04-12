@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgProps } from '@kaco/adao_ui';
+import { SvgProps } from '@my/ui';
 
 const IconKarsier: React.FC<SvgProps> = () => {
   return (
