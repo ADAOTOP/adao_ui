@@ -4,7 +4,7 @@ const PolkadotLearnMore_TSX: FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={className}>
       <a
-        href="https://coinversationofficial.medium.com/tutorial-signature-system-for-distributing-kac-reward-d4ec7c59c5c6"
+        href="https://Adaoofficial.medium.com/tutorial-signature-system-for-distributing-kac-reward-d4ec7c59c5c6"
         target="_blank"
         rel="noreferrer"
       >

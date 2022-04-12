@@ -2111,7 +2111,7 @@ export const main_tokens = {
     projectLink: 'https://www.binance.com/',
   },
   kaco: {
-    name: 'Coinversation Token',
+    name: 'Adao Token',
     symbol: 'KAC',
     address: {
       [ChainId.ASTR_MAINNET]: '0xb12c13e66ade1f72f71834f2fc5082db8c091358',
@@ -2161,7 +2161,7 @@ export const Base_Token: Token = new Token(
   DEFAULT_Token[chainId].symbol,
   DEFAULT_Token[chainId].name,
 );
-export const Coinversation: Token = new Token(
+export const Adao: Token = new Token(
   chainId,
   main_tokens.kaco.address[chainId],
   18,

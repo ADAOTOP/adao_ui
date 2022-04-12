@@ -4,7 +4,7 @@ import {
   DAI,
   USDT,
   BTCB,
-  Coinversation,
+  Adao,
   Base_Token,
   USDC,
   JPYC,
@@ -27,7 +27,7 @@ type ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ASTR_MAINNET]: [
     Base_Token,
-    Coinversation,
+    Adao,
     DOT[chainId],
     KSM[chainId],
     BUSD[chainId],
@@ -36,11 +36,11 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ETH[chainId],
     USDC[chainId],
   ],
-  [ChainId.ASTR_TESTNET]: [Base_Token, ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.ASTR_TESTNET]: [Base_Token, ETH[chainId], Adao, BUSD[chainId]],
 
   [ChainId.SDN_MAINNET]: [
     Base_Token,
-    Coinversation,
+    Adao,
     DOT[chainId],
     KSM[chainId],
     BUSD[chainId],
@@ -49,11 +49,11 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ETH[chainId],
     USDC[chainId],
   ],
-  [ChainId.SDN_TESTNET]: [Base_Token, ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.SDN_TESTNET]: [Base_Token, ETH[chainId], Adao, BUSD[chainId]],
 
   [ChainId.BSC_MAINNET]: [
     Base_Token,
-    Coinversation[ChainId.BSC_MAINNET],
+    Adao[ChainId.BSC_MAINNET],
     DOT[ChainId.BSC_MAINNET],
     KSM[ChainId.BSC_MAINNET],
     BUSD[ChainId.BSC_MAINNET],
@@ -64,7 +64,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ETH,
     USDC[chainId],
   ],
-  [ChainId.BSC_TESTNET]: [Base_Token, Coinversation[ChainId.BSC_TESTNET], BUSD[chainId]],
+  [ChainId.BSC_TESTNET]: [Base_Token, Adao[ChainId.BSC_TESTNET], BUSD[chainId]],
 };
 /**
  * Addittional bases for specific tokens
@@ -87,14 +87,14 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.ASTR_MAINNET]: [BUSD[ChainId.ASTR_MAINNET], Coinversation, BTCB[ChainId.ASTR_MAINNET]],
-  [ChainId.ASTR_TESTNET]: [ETH[chainId], Coinversation, BUSD[ChainId.ASTR_TESTNET]],
+  [ChainId.ASTR_MAINNET]: [BUSD[ChainId.ASTR_MAINNET], Adao, BTCB[ChainId.ASTR_MAINNET]],
+  [ChainId.ASTR_TESTNET]: [ETH[chainId], Adao, BUSD[ChainId.ASTR_TESTNET]],
 
-  [ChainId.SDN_MAINNET]: [BUSD[ChainId.SDN_MAINNET], Coinversation, BTCB[ChainId.SDN_MAINNET]],
-  [ChainId.SDN_TESTNET]: [ETH[chainId], Coinversation, BUSD[ChainId.SDN_TESTNET]],
+  [ChainId.SDN_MAINNET]: [BUSD[ChainId.SDN_MAINNET], Adao, BTCB[ChainId.SDN_MAINNET]],
+  [ChainId.SDN_TESTNET]: [ETH[chainId], Adao, BUSD[ChainId.SDN_TESTNET]],
 
-  [ChainId.BSC_MAINNET]: [BUSD[ChainId.BSC_MAINNET], Coinversation, BTCB[ChainId.BSC_MAINNET]],
-  [ChainId.BSC_TESTNET]: [ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.BSC_MAINNET]: [BUSD[ChainId.BSC_MAINNET], Adao, BTCB[ChainId.BSC_MAINNET]],
+  [ChainId.BSC_TESTNET]: [ETH[chainId], Adao, BUSD[chainId]],
 };
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
@@ -107,7 +107,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     // JPYC,
     USDC[chainId],
   ],
-  [ChainId.ASTR_TESTNET]: [ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.ASTR_TESTNET]: [ETH[chainId], Adao, BUSD[chainId]],
 
   [ChainId.SDN_MAINNET]: [
     ETH[chainId],
@@ -118,24 +118,24 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     JPYC,
     USDC[chainId],
   ],
-  [ChainId.SDN_TESTNET]: [ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.SDN_TESTNET]: [ETH[chainId], Adao, BUSD[chainId]],
 
   [ChainId.BSC_MAINNET]: [
     // WETH[chainId],
     // DAI,
     ALPACA[chainId],
     CAKE[chainId],
-    Coinversation,
+    Adao,
     DOT[chainId],
     BUSD[chainId],
     USDT,
   ],
-  [ChainId.BSC_TESTNET]: [ETH[chainId], Coinversation, BUSD[chainId]],
+  [ChainId.BSC_TESTNET]: [ETH[chainId], Adao, BUSD[chainId]],
 };
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.BSC_MAINNET]: [
-    [Coinversation, Base_Token],
+    [Adao, Base_Token],
     [BUSD[chainId], USDT],
     [DAI, USDT],
   ],

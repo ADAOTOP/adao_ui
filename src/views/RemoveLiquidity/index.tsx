@@ -116,7 +116,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ];
     const domain = {
-      name: 'Coinversation LPs',
+      name: 'Adao LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

@@ -1,7 +1,7 @@
 import { Currency, currencyEquals, JSBI, Price, WETH } from '@my/sdk';
 import { useMemo } from 'react';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
-import { BUSD, chainId, Coinversation } from '../config/constants/tokens';
+import { BUSD, chainId, Adao } from '../config/constants/tokens';
 import { PairState, usePairs } from './usePairs';
 import { wrappedCurrency } from '../utils/wrappedCurrency';
 import { ChainId } from '@my/sdk';
@@ -74,6 +74,6 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 export const useCakeBusdPrice = (): Price | undefined => {
   const { chainId } = useActiveWeb3React();
   const currentChaindId = chainId || ChainId.BSC_MAINNET;
-  const cakeBusdPrice = useBUSDPrice(Coinversation[currentChaindId]);
+  const cakeBusdPrice = useBUSDPrice(Adao[currentChaindId]);
   return cakeBusdPrice;
 };

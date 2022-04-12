@@ -21,27 +21,27 @@ export const NFTPathConfig: IMenuDetail[] = [
     text: 'Markets',
     img: IconMarkets,
     link: '/nft/pools',
-    detail: 'You can buy and sell your NFT at our ADao platform',
+    detail: 'You can buy and sell your NFT at our ADAO platform',
   },
   {
     text: 'My Wallet',
     img: IconMyWallet,
     link: '/nft/wallet',
-    detail: 'All of your NFT assets are in your ADao wallet',
+    detail: 'All of your NFT assets are in your ADAO wallet',
   },
 ];
 export const MorePathConfig: IMenuDetail[] = [
   {
     text: 'Audited By Certik',
     img: IconMarkets,
-    link: 'https://www.certik.com/projects/coinversation',
-    detail: 'The ADao platform has been officially audited by Certik',
+    link: 'https://www.certik.com/projects/ADAO',
+    detail: 'The ADAO platform has been officially audited by Certik',
   },
   {
     text: 'Receive NFT in Galaxy',
     img: IconMyWallet,
-    link: 'https://galaxy.eco/ADao',
-    detail: 'All ADao NFT works can be freely traded on the Galaxy platform at the same time',
+    link: 'https://galaxy.eco/ADAO',
+    detail: 'All ADAO NFT works can be freely traded on the Galaxy platform at the same time',
   },
 ];
 

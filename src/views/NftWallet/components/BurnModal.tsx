@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Text, Flex, Button, Modal, InjectedModalProps, Grid as CoinversationGrid } from '@my/ui';
+import { Text, Flex, Button, Modal, InjectedModalProps, Grid as AdaoGrid } from '@my/ui';
 import { useTranslation } from 'contexts/Localization';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { NftPair } from 'views/NftPools/hooks/useNftPools';
@@ -8,7 +8,7 @@ import { fetchNfts } from 'views/NftPool/util/fetchNft';
 import { NFT, NFT_POOLS } from 'views/NftPool/components/GoodsInPool';
 import { useContract } from 'hooks/useContract';
 import Nft100Abi from 'config/abi/NFT100Pair721.json';
-// import Select from 'components/CoinversationSelect/CoinversationSelect';
+// import Select from 'components/AdaoSelect/AdaoSelect';
 import PageLoader from 'components/Loader/PageLoader';
 import { LockInfo, useNftWithLockInfo } from 'views/NftPool/hooks/useNftWithLocks';
 import LockTime from 'views/NftPool/components/LockTime';
@@ -20,7 +20,7 @@ interface Props extends InjectedModalProps {
   pair: NftPair | undefined;
   balance: number;
 }
-const Grid = styled(CoinversationGrid)`
+const Grid = styled(AdaoGrid)`
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 381px;

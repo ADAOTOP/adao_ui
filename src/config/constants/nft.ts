@@ -1,7 +1,7 @@
 import { ChainId } from '@my/sdk';
 import PancakeNftAbi from '../abi/pancake-nft.json';
-import CoinversationNftAbi from '../abi/kaco-nft.json';
-import CoinversationLogo from '../../components/svg/KKac.svg';
+import AdaoNftAbi from '../abi/kaco-nft.json';
+import AdaoLogo from '../../components/svg/KKac.svg';
 import PancakeLogo from '../../components/svg/KCake.svg';
 import AlpacaLogo from '../../components/svg/KAlpaca.svg';
 import AlpiesLogo from '../../components/svg/KAlpies.svg';
@@ -41,8 +41,8 @@ export const NFT_PAIRS: NftPairConfig[] = [
     symbol: 'KKACO',
     pid: 0,
     type: NFT_TYPE.NFT1155,
-    nftAbi: CoinversationNftAbi,
-    logo: CoinversationLogo,
+    nftAbi: AdaoNftAbi,
+    logo: AdaoLogo,
     updateNFTID: '-',
     excludeNFT: [],
     pairs: 'KKAC-KAC LP',
@@ -67,7 +67,7 @@ export const NFT_PAIRS: NftPairConfig[] = [
     symbol: 'KALPACA',
     pid: 2,
     type: NFT_TYPE.NFT1155,
-    nftAbi: CoinversationNftAbi,
+    nftAbi: AdaoNftAbi,
     logo: AlpacaLogo,
     updateNFTID: '53872',
     excludeNFT: ['Alpaca Proficiency Exam (APE)', 'Welcome to the Herd!'],

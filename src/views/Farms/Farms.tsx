@@ -19,7 +19,7 @@ import Table from './components/FarmTable/FarmTable';
 import { RowProps } from './components/FarmTable/Row';
 import { DesktopColumnSchema, ViewMode } from './components/types';
 import { KACO_LP_PID } from 'config/constants/farms';
-import useKacPerBlock from './hooks/useCoinversationPerBlock';
+import useKacPerBlock from './hooks/useAdaoPerBlock';
 import { chainId } from 'config/constants/tokens';
 // const StyledImage = styled(Image)`
 //   margin-left: auto;
