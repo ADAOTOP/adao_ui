@@ -23,9 +23,9 @@ const WalletAccountInfo = () => {
     <>
       {tooltipVisible_P && tooltip_P}
       {account ? (
-        <Button variant="tertiary" scale="sm" width="140px" padding="0">
+        <Button variant="tertiary" scale="sm" width="160px" padding="0">
           {/* <img className="head_icon" src={karsierNft} alt="header_default" /> */}
-          {account ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}` : ''}
+          {account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : ''}
           <LogoutIcon onClick={logout} marginLeft="10px" />
           {/* add kaco header img */}
         </Button>

@@ -27,6 +27,7 @@ import {
   getMerkleAddress,
   getKarsierAddress,
   getDappStakingAddress,
+  getDappStakingMainAddress,
 } from 'utils/addressHelpers';
 
 // ABI
@@ -59,6 +60,7 @@ import farmAuctionAbi from 'config/abi/farmAuction.json';
 import merkleAbi from 'config/abi/merkleAbi.json';
 import KarsierAbi from 'config/abi/karsierAbi.json';
 import dAppStakingAbi from 'config/abi/dAppStakingAbi.json';
+import dAppStakingMainAbi from 'config/abi/dAppStakingMainAbi.json';
 
 import {
   ChainLinkOracleContract,
@@ -165,5 +167,10 @@ export const getKarsierContract = (signer?: ethers.Signer | ethers.providers.Pro
 
 export const getDappStakingContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   const _merkle = getContract(dAppStakingAbi, getDappStakingAddress(), signer) as IDappStakingInterface;
+  return _merkle;
+};
+
+export const getMainDappStakingContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  const _merkle = getContract(dAppStakingMainAbi, getDappStakingMainAddress(), signer) as IDappStakingInterface;
   return _merkle;
 };

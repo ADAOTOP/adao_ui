@@ -27,6 +27,7 @@ import {
   getFarmAuctionContract,
   getMerkleContract,
   getKarsierContract,
+  getMainDappStakingContract,
 } from 'utils/contractHelpers';
 import { getMulticallAddress } from 'utils/addressHelpers';
 
@@ -163,6 +164,10 @@ export const useSpecialBunnyPredictionContract = () => {
 export const useDAppStackingContract = () => {
   const { account, library } = useActiveWeb3React();
   return useMemo(() => getDappStakingContract(account ? library.getSigner() : library), [library, account]);
+};
+export const useDAppStackingMainContract = () => {
+  const { account, library } = useActiveWeb3React();
+  return useMemo(() => getMainDappStakingContract(account ? library.getSigner() : library), [library, account]);
 };
 
 export const useFarmAuctionContract = () => {

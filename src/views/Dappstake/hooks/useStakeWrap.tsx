@@ -1,8 +1,11 @@
 import { useMemo } from 'react';
-import { getFullDisplayBalance } from 'utils/formatBalance';
+import { getDecimalAmount, getFullDisplayBalance } from 'utils/formatBalance';
 import { useGetBnbBalance } from 'hooks/useTokenBalance';
-import { chainId, DEFAULT_Token } from 'config/constants/tokens';
+import { chainId, DEFAULT_Token, ibASTR } from 'config/constants/tokens';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
+import { useCurrencyBalance } from 'state/wallet/hooks';
+import BigNumber from 'bignumber.js';
+import { BIG_ZERO } from 'utils/bigNumber';
 
 const useStakeWrap = () => {
   const { balance } = useGetBnbBalance();
@@ -14,7 +17,12 @@ const useStakeWrap = () => {
     return getFullDisplayBalance(balance);
   }, [balance]);
   const { account } = useActiveWeb3React();
-
+  const ibASTRbalance = useCurrencyBalance(account, ibASTR[chainId]);
+  const fullIbASTRbalance = useMemo(() => {
+    if (ibASTRbalance) {
+      return new BigNumber(ibASTRbalance.toSignificant(18)).toFixed(8, BigNumber.ROUND_DOWN);
+    }
+  }, [ibASTRbalance]);
   return {
     balance,
     decimals,
@@ -23,6 +31,9 @@ const useStakeWrap = () => {
     fullBalance,
     pid,
     account,
+    ibASTRDecimals: ibASTR[chainId].decimals,
+    ibASTRbalance: ibASTRbalance ? getDecimalAmount(new BigNumber(ibASTRbalance.toExact())) : BIG_ZERO,
+    fullIbASTRbalance: fullIbASTRbalance,
   };
 };
 export default useStakeWrap;

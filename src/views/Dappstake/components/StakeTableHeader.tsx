@@ -54,11 +54,14 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool }) => {
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Total Supply</HeaderTitleH6>
-        <HeaderTitleH3>{pool.totalSupply} ASTR</HeaderTitleH3>
+        <HeaderTitleH3>
+          {pool.totalSupply}
+          &nbsp; ASTR
+        </HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Net value</HeaderTitleH6>
-        <HeaderTitleH3>1 ibASTR= {pool.ratio} ASTR</HeaderTitleH3>
+        <HeaderTitleH3>1 ibASTR= {(pool?.ratio ?? 0).toFixed(2)} ASTR</HeaderTitleH3>
       </HeaderLi>
     </Header>
   );

@@ -2,13 +2,21 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Button, Text } from '@my/ui';
 import NoList from './NoList';
-import Countdown from './Countdown';
+// import Countdown from './Countdown';
 import { IWithdrawRecordItem } from 'utils/types';
-import useBlockNumber from 'state/application/hooks';
+// import useBlockNumber from 'state/application/hooks';
+import { LoadingIconStyle } from 'components/svg/Loading';
+import { chainId } from 'config/constants/tokens';
+import { ChainId } from '@my/sdk';
+
+export const unbondingPeriod = chainId === ChainId.ASTR_TESTNET ? 2 : 10;
+
 interface Iprops {
   withdraw: any;
   list: IWithdrawRecordItem[];
+  pendingTxWithdraw: string;
   withdraw_symbol: string;
+  current_era: number;
 }
 const TextStyled = styled(Text)`
   font-size: 12px;
@@ -28,8 +36,8 @@ const TextAmount = styled(Text)`
   font-size: 14px;
   font-family: 'Gotham';
 `;
-const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol }) => {
-  const lastBlockNumber = useBlockNumber();
+const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol, pendingTxWithdraw, current_era }) => {
+  // const lastBlockNumber = useBlockNumber();
   return (
     <UnbindListStyled>
       <HeadingStyled>Unbinding Rules</HeadingStyled>
@@ -42,6 +50,8 @@ const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol }) => {
           ? list
               .sort((a, b) => Number(b.era.toString()) - Number(a.era.toString()))
               .map((v, index) => {
+                console.log(' v.unbonding', v.unbonding, v.era, unbondingPeriod, current_era);
+                const mainEra = v.era + unbondingPeriod - current_era;
                 return (
                   <li key={index}>
                     <TextAmount>
@@ -55,14 +65,19 @@ const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol }) => {
                           Withdrawed
                         </Text>
                       ) : null}
-                      {v.status === 1 && v.unbonding <= lastBlockNumber ? (
-                        <ButtonStyled onClick={withdraw}>Withdraw</ButtonStyled>
+                      {v.status === 1 && mainEra <= 0 ? (
+                        <ButtonStyled
+                          onClick={() => {
+                            withdraw(index);
+                          }}
+                          disabled={pendingTxWithdraw === `true${index}`}
+                        >
+                          Withdraw
+                          {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
+                        </ButtonStyled>
                       ) : null}
-                      {v.status === 1 && v.unbonding > lastBlockNumber ? (
-                        <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} />
-                      ) : //
-                      null}
-                      {/* {v.status === 2 ? <Countdown nextEventTime={v.time} /> : null} */}
+                      {v.status === 1 && mainEra > 0 ? <Text textAlign="right">{mainEra} Era</Text> : null}
+                      {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
                     </StatusWrap>
                   </li>
                 );

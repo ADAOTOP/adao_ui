@@ -10,26 +10,6 @@
         "internalType": "string",
         "name": "symbol",
         "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_fee",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_feeTo",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_lastClaimedEra",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_unbondingPeriod",
-        "type": "uint256"
       }
     ],
     "stateMutability": "nonpayable",
@@ -58,6 +38,19 @@
       }
     ],
     "name": "Approval",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "era",
+        "type": "uint256"
+      }
+    ],
+    "name": "ClaimFailed",
     "type": "event"
   },
   {
@@ -131,6 +124,19 @@
   },
   {
     "inputs": [],
+    "name": "CONTRACT_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "DAPPS_STAKING",
     "outputs": [
       {
@@ -144,7 +150,7 @@
   },
   {
     "inputs": [],
-    "name": "FEE_PRECISION",
+    "name": "MAX_TRANSFERS",
     "outputs": [
       {
         "internalType": "uint256",
@@ -157,12 +163,25 @@
   },
   {
     "inputs": [],
-    "name": "KACO_ADDRESS",
+    "name": "MINIMUM_REMAINING",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MINIMUM_WITHDRAW",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -301,7 +320,7 @@
   {
     "inputs": [
       {
-        "internalType": "address",
+        "internalType": "address payable",
         "name": "account",
         "type": "address"
       }
@@ -326,11 +345,24 @@
   },
   {
     "inputs": [],
-    "name": "fee",
+    "name": "getBalance",
+    "outputs": [
+      {
+        "internalType": "uint128",
+        "name": "_balance",
+        "type": "uint128"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRecordsLength",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "_length",
         "type": "uint256"
       }
     ],
@@ -339,12 +371,12 @@
   },
   {
     "inputs": [],
-    "name": "feeTo",
+    "name": "getStaked",
     "outputs": [
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_NStakedAmount",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -369,11 +401,11 @@
         "components": [
           {
             "internalType": "uint256",
-            "name": "blockNum",
+            "name": "era",
             "type": "uint256"
           },
           {
-            "internalType": "address",
+            "internalType": "address payable",
             "name": "account",
             "type": "address"
           },
@@ -383,7 +415,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct ibASTRUnbond.WithdrawRecord[]",
+        "internalType": "struct EvmDappsStaking.WithdrawRecord[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -456,19 +488,6 @@
   },
   {
     "inputs": [],
-    "name": "prevUnstakeSDN",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "ratio",
     "outputs": [
       {
@@ -492,11 +511,11 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "blockNum",
+        "name": "era",
         "type": "uint256"
       },
       {
-        "internalType": "address",
+        "internalType": "address payable",
         "name": "account",
         "type": "address"
       },
@@ -532,17 +551,17 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "_fee",
-        "type": "uint256"
+        "internalType": "address payable",
+        "name": "_contract",
+        "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_feeTo",
-        "type": "address"
+        "internalType": "bool",
+        "name": "isTrue",
+        "type": "bool"
       }
     ],
-    "name": "setFee",
+    "name": "setWhiteList",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -562,7 +581,7 @@
   },
   {
     "inputs": [],
-    "name": "toWithdrawSDN",
+    "name": "toWithdrawed",
     "outputs": [
       {
         "internalType": "uint256",
@@ -590,7 +609,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "recipient",
+        "name": "to",
         "type": "address"
       },
       {
@@ -614,12 +633,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "sender",
+        "name": "from",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "recipient",
+        "name": "to",
         "type": "address"
       },
       {
@@ -666,14 +685,40 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "updateUnbondingPeriod",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "whiteList",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_unbondingPeriod",
+        "name": "ibASTRAmount",
         "type": "uint256"
       }
     ],
-    "name": "updateUnbondingPeriod",
+    "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -695,5 +740,9 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]

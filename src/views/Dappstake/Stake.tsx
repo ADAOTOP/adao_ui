@@ -7,18 +7,21 @@ import StakeTableReceive from './components/StakeTableReceive';
 import DappstakePage from './components/DappstakePage';
 import PageLayout from 'components/Layout/Page';
 import { useDAppStackingContract } from 'hooks/useContract';
-import { GetPoolUpdate } from './hooks/getPoolUpdate';
+import { GetPoolUpdate, IDappPoolDataInterface } from './hooks/getPoolUpdate';
 import { getReceiveNum } from './hooks/getReceiveNum';
 import { escapeRegExp } from 'utils';
 import useStakeWrap from './hooks/useStakeWrap';
-// import { UseStakeDApp } from './hooks/useStakeDApp';
+import { UseStakeDApp } from './hooks/useStakeDApp';
+import { chainId, ibASTR } from 'config/constants/tokens';
+import { LoadingIconStyle } from 'components/svg/Loading';
 const Stake = () => {
   const {
     balance,
     isBalanceZero,
     decimals,
     fullBalance,
-  }: // account,
+    account,
+  }: //
   {
     balance: BigNumber;
     isBalanceZero: boolean;
@@ -29,7 +32,7 @@ const Stake = () => {
   } = useStakeWrap();
   // 获取合约
   const contract = useDAppStackingContract();
-  const pool = GetPoolUpdate(contract);
+  const pool: IDappPoolDataInterface = GetPoolUpdate(contract);
 
   const { toastSuccess, toastError } = useToast();
   const [val, setVal] = useState('');
@@ -49,6 +52,8 @@ const Stake = () => {
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance);
   }, [fullBalance, setVal]);
+
+  const ibASTRSymbol = ibASTR[chainId].symbol;
   return (
     <PageLayout style={{ paddingTop: '80px' }}>
       <Flex justifyContent="center" alignContent="center">
@@ -83,7 +88,7 @@ const Stake = () => {
               onClick={async () => {
                 setPendingTx(true);
                 try {
-                  // await UseStakeDApp(contract, account, val);
+                  await UseStakeDApp(contract, account, val);
                   toastSuccess('Staked!', 'Your funds have been staked in the App');
                 } catch (e) {
                   toastError(
@@ -97,9 +102,12 @@ const Stake = () => {
               }}
             >
               {pendingTx ? 'Confirming' : 'Confirm'}
+              {pendingTx ? <LoadingIconStyle /> : null}
             </Button>
           </FarmStyled>
-          <StakeTableReceive receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, 'ibASTR')} ibASTR`} />
+          <StakeTableReceive
+            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, ibASTRSymbol)} ${ibASTRSymbol}`}
+          />
         </DappstakePage>
       </Flex>
     </PageLayout>

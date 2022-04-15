@@ -3,7 +3,7 @@ import { chainKey } from 'config';
 import addresses from 'config/constants/contracts';
 import tokens, { chainId, DEFAULT_Token } from 'config/constants/tokens';
 import { Address } from 'config/constants/types';
-import { dAppStakingcontract } from 'config/constants/dAppStaking';
+import { dAppStakingcontract, dAppStakingMaincontract } from 'config/constants/dAppStaking';
 
 export const getAddress = (address: Address | string): string => {
   if (typeof address === 'string') {
@@ -78,4 +78,8 @@ export const getKarsierAddress = () => {
 };
 export const getDappStakingAddress = () => {
   return getAddress(dAppStakingcontract);
+};
+
+export const getDappStakingMainAddress = () => {
+  return getAddress(dAppStakingMaincontract);
 };

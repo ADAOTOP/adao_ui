@@ -9,6 +9,7 @@ import DappstakePage from './components/DappstakePage';
 import { useDAppStackingContract } from 'hooks/useContract';
 import { GetPoolUpdate } from './hooks/getPoolUpdate';
 import useStakeWrap from './hooks/useStakeWrap';
+import { chainId, ibASTR } from 'config/constants/tokens';
 const Unstake = () => {
   const contract = useDAppStackingContract();
   const pool = GetPoolUpdate(contract);
@@ -44,6 +45,7 @@ const Unstake = () => {
   const handleUnstake = async (amount: string) => {
     await onUnstake(amount);
   };
+  const ibASTRSymbol = ibASTR[chainId].symbol;
 
   return (
     <DappstakePage
@@ -51,7 +53,7 @@ const Unstake = () => {
       pool={pool}
       balance={balance}
       decimals={decimals}
-      symbol="ibASTR"
+      symbol={ibASTRSymbol}
       isBalanceZero={isBalanceZero}
     >
       <FarmStyled>

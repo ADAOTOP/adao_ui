@@ -1,32 +1,92 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_BSC_SCAN_URL, BASE_URL } from 'config';
+import { ChainId } from '@my/sdk';
+import { BASE_BSC_SCAN_URL, BASE_URL, chainKey } from 'config';
 import { chainId } from 'config/constants/tokens';
-import { nodes } from './getRpcUrl';
 
 /**
  * Prompt the user to add BSC as a network on Metamask, or switch to BSC if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
+const wallet_config = {
+  [ChainId.ASTR_MAINNET]: {
+    chainId: `0x${ChainId.ASTR_MAINNET.toString(16)}`,
+    chainName: 'Astar Network Mainnet',
+    nativeCurrency: {
+      name: 'ASTR Token',
+      symbol: 'ASTR',
+      decimals: 18,
+    },
+    rpcUrls: ['https://rpc.astar.network:8545'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+  [ChainId.ASTR_TESTNET]: {
+    chainId: `0x${ChainId.ASTR_TESTNET.toString(16)}`,
+    chainName: 'Shibuya Testnet',
+    nativeCurrency: {
+      name: 'SBY Token',
+      symbol: 'SBY',
+      decimals: 18,
+    },
+    rpcUrls: ['https://rpc.shibuya.astar.network:8545'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+  [ChainId.SDN_MAINNET]: {
+    chainId: `0x${ChainId.SDN_MAINNET.toString(16)}`,
+    chainName: 'Shiden Network Mainnet',
+    nativeCurrency: {
+      name: 'SDN Token',
+      symbol: 'SDN',
+      decimals: 18,
+    },
+    rpcUrls: ['https://evm.shiden.astar.network'],
+    // rpcUrls: ['https://rpc.shiden.astar.network:8545'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+  [ChainId.SDN_TESTNET]: {
+    chainId: `0x${ChainId.ASTR_TESTNET.toString(16)}`,
+    chainName: 'Shibuya Testnet',
+    nativeCurrency: {
+      name: 'SBY Token',
+      symbol: 'SBY',
+      decimals: 18,
+    },
+    rpcUrls: ['https://rpc.shibuya.astar.network:8545'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+
+  [ChainId.BSC_MAINNET]: {
+    chainId: `0x${ChainId.BSC_MAINNET.toString(16)}`,
+    chainName: 'Binance Smart Chain Mainnet',
+    nativeCurrency: {
+      name: 'BNB Token',
+      symbol: 'BNB',
+      decimals: 18,
+    },
+    rpcUrls: ['https://bsc-dataseed.binance.org'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+
+  [ChainId.BSC_TESTNET]: {
+    chainId: `0x${ChainId.BSC_TESTNET.toString(16)}`,
+    chainName: 'Binance Smart Chain Testnet',
+    nativeCurrency: {
+      name: 'BNB Token',
+      symbol: 'BNB',
+      decimals: 18,
+    },
+    rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+    blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+  },
+};
+
 export const setupNetwork = async () => {
   const provider = window.ethereum;
   if (provider) {
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Binance Smart Chain Mainnet',
-            nativeCurrency: {
-              name: 'BNB',
-              symbol: 'bnb',
-              decimals: 18,
-            },
-            rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
-          },
-        ],
+        params: [wallet_config[chainId]],
       });
       return true;
     } catch (error) {
@@ -55,7 +115,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `${BASE_URL}/images/tokens/${tokenAddress}.png`,
+        image: `${BASE_URL[chainKey]}/images/tokens/${chainKey}/${tokenAddress}.svg`,
       },
     },
   });

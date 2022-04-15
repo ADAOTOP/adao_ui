@@ -1,10 +1,19 @@
 import { ChainId, CHAINKEY, Token } from '@my/sdk';
 import { BASE_BSC_SCAN_URL, chainKey } from 'config';
 
-export const chainId = ChainId.ASTR_MAINNET;
+export const chainId = ChainId.ASTR_TESTNET;
 
 const tokens = {
   [CHAINKEY.ASTR]: {
+    ibASTR: {
+      symbol: 'ibASTR',
+      address: {
+        [ChainId.ASTR_MAINNET]: '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
+        [ChainId.ASTR_TESTNET]: '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
+      },
+      decimals: 18,
+      projectLink: '',
+    },
     syrup: {
       symbol: 'SYRUP',
       address: {
@@ -2069,7 +2078,7 @@ const tokens = {
 };
 
 export const JPYC =
-  chainKey !== CHAINKEY.BSC
+  chainKey === CHAINKEY.SDN
     ? new Token(
         chainId,
         tokens[chainKey].jpyc.address[chainId],
@@ -2142,6 +2151,12 @@ export const DEFAULT_Token = {
     name: main_tokens.wbnb.name,
   },
   [ChainId.ASTR_MAINNET]: {
+    address: main_tokens.astr.address[ChainId.ASTR_MAINNET],
+    decimals: main_tokens.astr.decimals,
+    symbol: main_tokens.astr.symbol,
+    name: main_tokens.astr.name,
+  },
+  [ChainId.ASTR_TESTNET]: {
     address: main_tokens.astr.address[ChainId.ASTR_MAINNET],
     decimals: main_tokens.astr.decimals,
     symbol: main_tokens.astr.symbol,
@@ -2337,7 +2352,15 @@ export const ETH = new Token(
   'ETH',
   'Binance-Peg Ethereum Token',
 );
-
+export const ibASTR: { [chainId: number]: Token } = {
+  [ChainId.ASTR_TESTNET]: new Token(
+    ChainId.ASTR_TESTNET as any,
+    '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
+    18,
+    'ibSBY',
+    'ibSBY Coin',
+  ),
+};
 export const USDC: { [chainId: number]: Token } = {
   [ChainId.SDN_MAINNET]: new Token(
     ChainId.SDN_MAINNET as any,

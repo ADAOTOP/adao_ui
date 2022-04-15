@@ -16,7 +16,7 @@ const Header: FC<{ className?: string; setCollapsed: (collapsed: boolean) => voi
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset;
-      const size = isMobile ? 100 : 250;
+      const size = isMobile ? 100 : 80;
       if (currentOffset > size) {
         setShowBg(true);
       } else {
