@@ -56,9 +56,9 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
         <HeaderTitleH3>{_apr}%</HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
-        <HeaderTitleH6>Total Supply</HeaderTitleH6>
+        <HeaderTitleH6>Total Staked</HeaderTitleH6>
         <HeaderTitleH3>
-          {Number(pool.totalSupply).toLocaleString('en-US', {
+          {Number(Number(pool.totalSupply) * (pool?.ratio ?? 1)).toLocaleString('en-US', {
             maximumFractionDigits: 4,
           })}
           &nbsp; {mainTokenSymbol}
