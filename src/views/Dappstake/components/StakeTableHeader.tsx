@@ -52,7 +52,7 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
   return (
     <Header>
       <HeaderLi>
-        <HeaderTitleH6>APR</HeaderTitleH6>
+        <HeaderTitleH6>APY</HeaderTitleH6>
         <HeaderTitleH3>{_apr}%</HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
