@@ -4,10 +4,13 @@ import { Text } from '@my/ui';
 import styled from 'styled-components';
 const TextStyle = styled(Text)`
   font-size: 12px;
-  text-align: end;
+  text-align: center;
   font-weight: 600;
   padding-bottom: 10px;
   color: #91919e;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    text-align: end;
+  }
   i {
     font-style: normal;
     color: ${({ theme }) => theme.colors.primary};
