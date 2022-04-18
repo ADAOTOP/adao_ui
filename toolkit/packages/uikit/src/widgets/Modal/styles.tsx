@@ -51,6 +51,7 @@ export const ModalContainer = styled(Box)<{ minWidth: string }>`
   max-height: 100vh;
   z-index: ${({ theme }) => theme.zIndices.modal};
   background: linear-gradient(90deg, #ff13c8 0%, #128aff 50%, #ff13c8 100%);
+  background: #fff;
   box-shadow: 0px 8px 13px 3px rgba(9, 2, 18, 0.3);
   border-radius: 12px;
   padding: 1px;

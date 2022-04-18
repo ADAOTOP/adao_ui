@@ -9,7 +9,11 @@ const StyledNav = styled(Flex)`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
+  flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    justify-content: space-between;
+  }
 `;
 
 const getActiveIndex = (pathname: string): number => {
@@ -29,7 +33,7 @@ const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol 
   const activeIndex = getActiveIndex(location.pathname);
   return (
     <StyledNav>
-      <ButtonMenu py="6px" activeIndex={activeIndex} scale="sm" variant="subtle">
+      <ButtonMenu py="6px" activeIndex={activeIndex} scale="sm" variant="subtle" marginBottom="10px">
         <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" to="/dappstake/stake" as={Link}>
           Stake
         </ButtonMenuItem>

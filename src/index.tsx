@@ -21,11 +21,11 @@ function Updaters() {
 }
 
 function Blocklist({ children }: { children: ReactNode }) {
-  console.log(111);
+  // console.log(111);
   const { account } = useActiveWeb3React();
-  console.log(3333);
+  // console.log(3333);
   const blocked: boolean = useMemo(() => Boolean(account && BLOCKED_ADDRESSES.indexOf(account) !== -1), [account]);
-  console.log(444);
+  // console.log(444);
   if (blocked) {
     return <div>Blocked address</div>;
   }

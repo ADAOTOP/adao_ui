@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Button, Flex } from '@my/ui';
+import { Button, Flex, useMatchBreakpoints, useWalletModal } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import useToast from 'hooks/useToast';
 import { StyledTokenInput, StyledInput, MaxButton, FarmStyled } from './style/DappstakeStyle';
@@ -7,32 +7,38 @@ import StakeTableReceive from './components/StakeTableReceive';
 import DappstakePage from './components/DappstakePage';
 import PageLayout from 'components/Layout/Page';
 import { useDAppStackingContract } from 'hooks/useContract';
-import { GetPoolUpdate, IDappPoolDataInterface } from './hooks/getPoolUpdate';
+// import { GetPoolUpdate, IDappPoolDataInterface } from './hooks/getPoolUpdate';
 import { getReceiveNum } from './hooks/getReceiveNum';
 import { escapeRegExp } from 'utils';
-import useStakeWrap from './hooks/useStakeWrap';
 import { UseStakeDApp } from './hooks/useStakeDApp';
-import { chainId, ibASTR } from 'config/constants/tokens';
 import { LoadingIconStyle } from 'components/svg/Loading';
+import { GetPoolUpdate, useStakeBalance, useStakingState } from 'state/staking/hooks';
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
+import useAuth from 'hooks/useAuth';
 const Stake = () => {
+  const { account } = useActiveWeb3React();
+  const staking = useStakingState();
   const {
-    balance,
-    isBalanceZero,
-    decimals,
-    fullBalance,
-    account,
-  }: //
-  {
-    balance: BigNumber;
-    isBalanceZero: boolean;
-    decimals: number;
-    fullBalance: string;
-    pid: number;
-    account: string;
-  } = useStakeWrap();
+    mainTokenSymbol,
+    ibASTRTokenSymbol,
+    mainTokenBalance: balance = 0,
+    mainTokenIsBalanceZero: isBalanceZero,
+    mainTokenDecimals: decimals,
+    mainTokenFullBalance: fullBalance,
+    totalSupply = '0',
+    ratio = 1,
+    recordsIndex = 1,
+  } = staking;
+  useStakeBalance(account);
   // 获取合约
   const contract = useDAppStackingContract();
-  const pool: IDappPoolDataInterface = GetPoolUpdate(contract);
+  GetPoolUpdate(contract);
+
+  const pool = {
+    totalSupply,
+    ratio,
+    recordsIndex,
+  };
 
   const { toastSuccess, toastError } = useToast();
   const [val, setVal] = useState('');
@@ -52,18 +58,22 @@ const Stake = () => {
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance);
   }, [fullBalance, setVal]);
-
-  const ibASTRSymbol = ibASTR[chainId].symbol;
+  const { login, logout } = useAuth();
+  const { onPresentConnectModal } = useWalletModal(login, logout);
+  const { isXl, isLg } = useMatchBreakpoints();
+  const isMobile = !(isXl || isLg);
   return (
-    <PageLayout style={{ paddingTop: '80px' }}>
+    <PageLayout style={{ paddingTop: isMobile ? '20px' : '80px' }}>
       <Flex justifyContent="center" alignContent="center">
         <DappstakePage
           contract={contract}
           pool={pool}
-          balance={balance}
+          balance={new BigNumber(balance)}
           decimals={decimals}
           isBalanceZero={isBalanceZero}
-          symbol="ASTR"
+          symbol={mainTokenSymbol}
+          mainTokenSymbol={mainTokenSymbol}
+          ibASTRTokenSymbol={ibASTRTokenSymbol}
         >
           <FarmStyled>
             <StyledTokenInput isWarning={isBalanceZero}>
@@ -82,10 +92,17 @@ const Stake = () => {
             </StyledTokenInput>
             <Button
               width="100%"
+              variant={!account ? 'tertiary' : 'primary'}
               disabled={
-                pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
+                !account
+                  ? false
+                  : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
               }
               onClick={async () => {
+                if (!account) {
+                  onPresentConnectModal();
+                  return;
+                }
                 setPendingTx(true);
                 try {
                   await UseStakeDApp(contract, account, val);
@@ -97,16 +114,17 @@ const Stake = () => {
                   );
                   console.error(e);
                 } finally {
+                  setVal('');
                   setPendingTx(false);
                 }
               }}
             >
-              {pendingTx ? 'Confirming' : 'Confirm'}
+              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
               {pendingTx ? <LoadingIconStyle /> : null}
             </Button>
           </FarmStyled>
           <StakeTableReceive
-            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, ibASTRSymbol)} ${ibASTRSymbol}`}
+            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, ibASTRTokenSymbol)} ${ibASTRTokenSymbol}`}
           />
         </DappstakePage>
       </Flex>

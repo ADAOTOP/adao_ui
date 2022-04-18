@@ -39,7 +39,7 @@ const Input = styled.input<InputProps>`
   color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
   height: ${getHeight};
   outline: 0;
   padding: 0 16px;

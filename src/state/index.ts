@@ -21,8 +21,9 @@ import mint from './mint/reducer';
 import lists from './lists/reducer';
 import burn from './burn/reducer';
 import multicall from './multicall/reducer';
+import staking from './staking';
 
-const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists'];
+const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'staking'];
 
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -48,6 +49,7 @@ const store = configureStore({
     burn,
     multicall,
     lists,
+    staking,
   },
   middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   preloadedState: load({ states: PERSISTED_KEYS }),

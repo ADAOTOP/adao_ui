@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import DappstakeSubNav from './SubNav';
 import StakeTableHeader from './StakeTableHeader';
 import { IDappStakingInterface } from 'utils/types';
-import { IDappPoolDataInterface } from '../hooks/getPoolUpdate';
 import BigNumber from 'bignumber.js';
 
 const StyledPageStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   padding-bottom: 0;
   min-height: calc(100vh-64px);
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -30,7 +28,7 @@ const StyledPage = ({ children, ...props }) => {
 const StakePageLayout = styled.div`
   min-height: 0px;
   width: 600px;
-  border-radius: 23px;
+  border-radius: 20px;
   padding: 0;
   // margin: 100px auto;
 `;
@@ -38,16 +36,20 @@ const TableContent = styled.div`
   background: linear-gradient(0deg, #0d0d11, #3a3a4c);
   border-radius: 20px;
   padding: 30px 35px;
+  min-width: 84%;
+  max-width: 100%;
 `;
 // slippageAdjustedAmounts
 interface Iprops {
   children: React.HTMLAttributes<HTMLDivElement>;
   contract: IDappStakingInterface;
-  pool: IDappPoolDataInterface;
+  pool: any;
   balance: BigNumber;
   decimals: number;
   isBalanceZero: boolean;
   symbol: string;
+  mainTokenSymbol: string;
+  ibASTRTokenSymbol: string;
 }
 const DappstakePage: FC<Iprops> = ({
   children,
@@ -57,11 +59,18 @@ const DappstakePage: FC<Iprops> = ({
   decimals,
   isBalanceZero,
   symbol,
+  mainTokenSymbol,
+  ibASTRTokenSymbol,
   ...props
 }) => {
   return (
     <StakePageLayout>
-      <StakeTableHeader contract={contract} pool={pool} />
+      <StakeTableHeader
+        mainTokenSymbol={mainTokenSymbol}
+        ibASTRTokenSymbol={ibASTRTokenSymbol}
+        contract={contract}
+        pool={pool}
+      />
       <TableContent>
         <DappstakeSubNav balance={balance} decimals={decimals} isBalanceZero={isBalanceZero} symbol={symbol} />
         <StyledPage>{children}</StyledPage>

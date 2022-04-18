@@ -139,7 +139,7 @@ export interface IDappStakingInterface extends Contract {
 
   // event   uint _recordsIndex, uint _ibASTR, uint _ratio
   PoolUpdate(overrides?: CallOverrides): Promise<[ethers.BigNumber, ethers.BigNumber, ethers.BigNumber]>;
-  getRecordsLength(overrides?: CallOverrides): Promise<[ethers.BigNumber]>;
+  getUserRecordsLength(account: string, overrides?: CallOverrides): Promise<[ethers.BigNumber]>;
   getWithdrawRecords(
     // page
     startIndex: BigNumberish,

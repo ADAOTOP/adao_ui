@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Text } from '@my/ui';
-import NoHavePng from '../../NftWallet/img/nohave.png';
 
 const NoBalance: FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={className}>
-      <img src={NoHavePng} alt="" />
+      <img width="100px" src="/images/nohave.svg" alt="" />
       <Text fontSize="12px" mb={{ xs: '16px', md: '20px' }} mt={{ xs: '10px', md: '15px' }}>
         There's nothing here. Go look somewhere else
       </Text>

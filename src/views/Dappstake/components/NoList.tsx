@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Text } from '@my/ui';
-import NoHavePng from './nohave.png';
 
 const NoList: FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={className}>
-      <img src={NoHavePng} alt="" />
+      <img width="100px" src="/images/nohave.svg" alt="" />
       <Text
         fontSize="12px"
         color="textSubtle"

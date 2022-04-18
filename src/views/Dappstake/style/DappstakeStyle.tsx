@@ -31,6 +31,7 @@ export const StyledTokenInput = styled.div<InputProps>`
   padding: 10px 0;
   width: 100%;
   margin-bottom: 10px;
+  align-items: center;
   // box-shadow: 0px 0px 0px 1px #1f363a, 0px 0px 0px 2px rgb(34 132 133);
 `;
 export const StyledInput = styled(Input)`

@@ -3,6 +3,7 @@ import { AnyAction } from '@reduxjs/toolkit';
 import BigNumber from 'bignumber.js';
 import { ethers } from 'ethers';
 import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types';
+import { IWithdrawRecordItem } from 'utils/types';
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>;
 
@@ -131,7 +132,26 @@ export interface TeamsState {
   isLoading: boolean;
   data: TeamsById;
 }
+export interface StatingState {
+  isLoading: boolean;
+  data: IWithdrawRecordItem[];
 
+  mainTokenSymbol: string;
+  mainTokenBalance: string;
+  mainTokenIsBalanceZero: boolean;
+  mainTokenDecimals: number;
+  mainTokenFullBalance: string;
+
+  ibASTRTokenSymbol: string;
+  ibASTRTokenBalance: string;
+  ibASTRTokenIsBalanceZero: boolean;
+  ibASTRTokenDecimals: number;
+  ibASTRTokenFullBalance: string;
+
+  totalSupply: string;
+  ratio: number;
+  recordsIndex: number;
+}
 export interface Achievement {
   id: string;
   type: CampaignType;
@@ -484,4 +504,5 @@ export interface State {
   collectibles: CollectiblesState;
   voting: VotingState;
   lottery: LotteryState;
+  staking: StatingState;
 }

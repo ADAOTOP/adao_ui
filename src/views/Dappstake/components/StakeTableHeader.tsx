@@ -3,23 +3,24 @@ import styled from 'styled-components';
 import { Flex } from '@my/ui';
 import { GetDAppApr } from '../hooks/getApr';
 import { IDappStakingInterface } from 'utils/types';
-import { IDappPoolDataInterface } from '../hooks/getPoolUpdate';
+import { IDappPoolDataInterface } from 'state/staking/hooks';
 export const Header = styled(Flex)`
-  flex-wrap: wrap;
   background: linear-gradient(90deg, #303fff, #c947d9);
   justify-content: space-between;
   padding: 20px 20px 0;
   border-radius: 20px;
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  min-width: 84%;
+  max-width: 100%;
+  margin: 0 auto 16px;
   ${({ theme }) => theme.mediaQueries.md} {
+    max-width: 100%;
     padding: 20px 40px;
   }
 `;
 export const HeaderLi = styled.div`
+  padding-right: 10px;
   padding-bottom: 20px;
-  &:last-child {
-    padding-bottom: 0;
-  }
   ${({ theme }) => theme.mediaQueries.md} {
     padding-bottom: 0;
   }
@@ -43,8 +44,10 @@ export const HeaderTitleH6 = styled.h6`
 interface Iprops {
   contract: IDappStakingInterface;
   pool: IDappPoolDataInterface;
+  mainTokenSymbol: string;
+  ibASTRTokenSymbol: string;
 }
-const StakeTableHeader: FC<Iprops> = ({ contract, pool }) => {
+const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRTokenSymbol }) => {
   const _apr = GetDAppApr(contract);
   return (
     <Header>
@@ -55,13 +58,17 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool }) => {
       <HeaderLi>
         <HeaderTitleH6>Total Supply</HeaderTitleH6>
         <HeaderTitleH3>
-          {pool.totalSupply}
-          &nbsp; ASTR
+          {Number(pool.totalSupply).toLocaleString('en-US', {
+            maximumFractionDigits: 4,
+          })}
+          &nbsp; {mainTokenSymbol}
         </HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Net value</HeaderTitleH6>
-        <HeaderTitleH3>1 ibASTR= {(pool?.ratio ?? 0).toFixed(2)} ASTR</HeaderTitleH3>
+        <HeaderTitleH3>
+          1 {ibASTRTokenSymbol}= {(pool?.ratio ?? 0).toFixed(2)} {mainTokenSymbol}
+        </HeaderTitleH3>
       </HeaderLi>
     </Header>
   );

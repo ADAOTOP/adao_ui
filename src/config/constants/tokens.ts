@@ -8,8 +8,8 @@ const tokens = {
     ibASTR: {
       symbol: 'ibASTR',
       address: {
-        [ChainId.ASTR_MAINNET]: '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
-        [ChainId.ASTR_TESTNET]: '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
+        [ChainId.ASTR_MAINNET]: '0x50CE77Ed745374980aE8366424e79D08bD1BB37B',
+        [ChainId.ASTR_TESTNET]: '0x50CE77Ed745374980aE8366424e79D08bD1BB37B',
       },
       decimals: 18,
       projectLink: '',
@@ -2159,8 +2159,8 @@ export const DEFAULT_Token = {
   [ChainId.ASTR_TESTNET]: {
     address: main_tokens.astr.address[ChainId.ASTR_MAINNET],
     decimals: main_tokens.astr.decimals,
-    symbol: main_tokens.astr.symbol,
-    name: main_tokens.astr.name,
+    symbol: 'SBY',
+    name: 'SBY Token',
   },
   [ChainId.SDN_MAINNET]: {
     address: main_tokens.sdn.address[ChainId.SDN_MAINNET],
@@ -2355,7 +2355,7 @@ export const ETH = new Token(
 export const ibASTR: { [chainId: number]: Token } = {
   [ChainId.ASTR_TESTNET]: new Token(
     ChainId.ASTR_TESTNET as any,
-    '0xC6bA73A75291F5e4d37eF38D666387dd2e4a00d5',
+    '0x50CE77Ed745374980aE8366424e79D08bD1BB37B',
     18,
     'ibSBY',
     'ibSBY Coin',

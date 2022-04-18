@@ -28,7 +28,7 @@ const TreasuryStyled = styled(Flex)`
   background: linear-gradient(90deg, #303fff, #c947d9);
   border-radius: 20px;
   margin: 0 20px 80px;
-  padding: 20px 40px 24px;
+  padding: 15px 40px 25px;
   position: relative;
   // width: 80%;
   ${({ theme }) => theme.mediaQueries.xl} {

@@ -17,6 +17,7 @@ interface Iprops {
   pendingTxWithdraw: string;
   withdraw_symbol: string;
   current_era: number;
+  mainTokenSymbol: string;
 }
 const TextStyled = styled(Text)`
   font-size: 12px;
@@ -36,58 +37,70 @@ const TextAmount = styled(Text)`
   font-size: 14px;
   font-family: 'Gotham';
 `;
-const UnbindList: FC<Iprops> = ({ list, withdraw, withdraw_symbol, pendingTxWithdraw, current_era }) => {
+const UnbindList: FC<Iprops> = ({
+  list,
+  withdraw,
+  withdraw_symbol,
+  pendingTxWithdraw,
+  current_era,
+  mainTokenSymbol,
+}) => {
   // const lastBlockNumber = useBlockNumber();
   return (
     <UnbindListStyled>
       <HeadingStyled>Unbinding Rules</HeadingStyled>
       <TextStyled>
-        Due to the rules of ASTR dappstake it will take 2 days to unbind. When the time is up, you can claim it at any
-        time
+        Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod} ERAs(About {unbondingPeriod}{' '}
+        days) to unbind. When the time is up, you can claim it at any time
       </TextStyled>
       <UlStyled>
         {list && list.length
-          ? list
-              .sort((a, b) => Number(b.era.toString()) - Number(a.era.toString()))
-              .map((v, index) => {
-                console.log(' v.unbonding', v.unbonding, v.era, unbondingPeriod, current_era);
-                const mainEra = v.era + unbondingPeriod - current_era;
-                return (
-                  <li key={index}>
-                    <TextAmount>
-                      {v.amount || '-'}
-                      &nbsp;
-                      {withdraw_symbol}
-                    </TextAmount>
-                    <StatusWrap>
-                      {v.status === 0 ? (
-                        <Text fontSize="12px" color="#4C4C5C" bold>
-                          Withdrawed
-                        </Text>
-                      ) : null}
-                      {v.status === 1 && mainEra <= 0 ? (
-                        <ButtonStyled
-                          onClick={() => {
-                            withdraw(index);
-                          }}
-                          disabled={pendingTxWithdraw === `true${index}`}
-                        >
-                          Withdraw
-                          {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
-                        </ButtonStyled>
-                      ) : null}
-                      {v.status === 1 && mainEra > 0 ? <Text textAlign="right">{mainEra} Era</Text> : null}
-                      {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
-                    </StatusWrap>
-                  </li>
-                );
-              })
+          ? list.map((v, index) => {
+              const mainEra = v.era + unbondingPeriod - current_era;
+              return (
+                <li key={index}>
+                  <TextAmount>
+                    {v.amount || '-'}
+                    &nbsp;
+                    {withdraw_symbol}
+                  </TextAmount>
+                  <StatusWrap>
+                    {v.status === 0 ? (
+                      <Text fontSize="12px" color="#4C4C5C" bold>
+                        Withdrawed
+                      </Text>
+                    ) : null}
+                    {v.status === 1 && mainEra <= 0 ? (
+                      <ButtonStyled
+                        onClick={() => {
+                          withdraw(index);
+                        }}
+                        disabled={pendingTxWithdraw === `true${index}`}
+                      >
+                        Withdraw
+                        {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
+                      </ButtonStyled>
+                    ) : null}
+                    {v.status === 1 && mainEra > 0 ? <LineText>{mainEra} Era</LineText> : null}
+                    {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
+                  </StatusWrap>
+                </li>
+              );
+            })
           : null}
       </UlStyled>
       {list.length === 0 ? <NoList /> : null}
     </UnbindListStyled>
   );
 };
+const LineText = styled(Text)`
+  text-align: right;
+  color: transparent;
+  background: linear-gradient(90deg, #303fff 0%, #c947d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+`;
 const StatusWrap = styled.div`
   text-align: center;
   width: 100px;
@@ -104,6 +117,8 @@ const ButtonStyled = styled(Button)`
 const UlStyled = styled.ul`
   margin-top: 20px;
   list-style: none;
+  max-height: 268px;
+  overflow-y: auto;
   li {
     display: flex;
     justify-content: space-between;
@@ -122,7 +137,7 @@ const UlStyled = styled.ul`
 const UnbindListStyled = styled.div`
   margin-left: 0;
   background: linear-gradient(0deg, #0d0d11, #3a3a4c);
-  border-radius: 23px;
+  border-radius: 20px;
   margin-top: 12px;
   width: 600px;
   padding: 30px;
