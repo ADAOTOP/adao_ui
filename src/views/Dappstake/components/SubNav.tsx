@@ -9,7 +9,7 @@ const StyledNav = styled(Flex)`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: space-between;

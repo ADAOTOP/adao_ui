@@ -81,6 +81,7 @@ const UnbindList: FC<Iprops> = ({
                         {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
                       </ButtonStyled>
                     ) : null}
+                    {/* ((nextEraStartingBlock - 当前区块高度)+(record.era + unbondingPeriod - currentERA)* 7200  * 12  */}
                     {v.status === 1 && mainEra > 0 ? <LineText>{mainEra} Era</LineText> : null}
                     {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
                   </StatusWrap>
