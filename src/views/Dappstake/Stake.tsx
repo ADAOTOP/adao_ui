@@ -124,7 +124,7 @@ const Stake = () => {
             </Button>
           </FarmStyled>
           <StakeTableReceive
-            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, ibASTRTokenSymbol)} ${ibASTRTokenSymbol}`}
+            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, mainTokenSymbol)} ${ibASTRTokenSymbol}`}
           />
         </DappstakePage>
       </Flex>

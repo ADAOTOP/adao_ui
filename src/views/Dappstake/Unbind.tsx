@@ -132,7 +132,7 @@ const Unbind = () => {
             </Button>
           </FarmStyled>
           <StakeTableReceive
-            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, mainTokenSymbol)} ${mainTokenSymbol}`}
+            receiveText={`You will receive: ~${getReceiveNum(pool.ratio, val, ibASTRTokenSymbol)} ${mainTokenSymbol}`}
           />
         </DappstakePage>
         <UnbindList

@@ -67,7 +67,11 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
       <HeaderLi>
         <HeaderTitleH6>Net value</HeaderTitleH6>
         <HeaderTitleH3>
-          1 {ibASTRTokenSymbol}= {(pool?.ratio ?? 0).toFixed(2)} {mainTokenSymbol}
+          1 {ibASTRTokenSymbol}={' '}
+          {(pool?.ratio ?? 0).toLocaleString('en-US', {
+            maximumFractionDigits: 4,
+          })}{' '}
+          {mainTokenSymbol}
         </HeaderTitleH3>
       </HeaderLi>
     </Header>
