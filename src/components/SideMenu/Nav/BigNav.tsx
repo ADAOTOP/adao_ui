@@ -82,6 +82,11 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
         ))}
         <NavLinkP ref={BorrowTargetRef1}>Rewards</NavLinkP>
         <NavLinkP ref={BorrowTargetRef2}>Proposal</NavLinkP>
+        <NavLinkP>
+          <a href="https://docs.adaotop.com/" target="_blank" rel="noreferrer">
+            Doc
+          </a>
+        </NavLinkP>
       </NavWrap>
     </>
   );

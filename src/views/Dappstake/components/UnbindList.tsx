@@ -51,7 +51,7 @@ const UnbindList: FC<Iprops> = ({
       <HeadingStyled>Unbinding Rules</HeadingStyled>
       <TextStyled>
         Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod} ERAs(About {unbondingPeriod}{' '}
-        days) to unbind. When the time is up, you can claim it at any time
+        days) to unbind. When the time is up, {mainTokenSymbol} will be automatically sent to your address
       </TextStyled>
       <UlStyled>
         {list && list.length

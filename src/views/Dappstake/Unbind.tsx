@@ -107,7 +107,8 @@ const Unbind = () => {
                   onPresentConnectModal();
                   return;
                 }
-                if (!val || Number(val) < 1) {
+                const _val = getReceiveNum(pool.ratio, val, ibASTRTokenSymbol);
+                if (!val || Number(_val) < 1) {
                   toastWarning('Warning', 'Unbind amount must >= 1');
                   return;
                 }

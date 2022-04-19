@@ -4,7 +4,7 @@ import defaultTokenList from 'config/constants/tokenLists/pancake-default.tokenl
 const getTokenLogoURL = (address: string) => {
   const uri = defaultTokenList[chainKey].tokens.find((token) => token.address === address)?.logoURI;
 
-  return uri || `https://assets.trustwalletapp.com/blockchains/smartchain/assets/${address}/logo.png`;
+  return uri || ``;
 };
 
 export default getTokenLogoURL;
