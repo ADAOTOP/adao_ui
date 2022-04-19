@@ -8,7 +8,7 @@ import { IWithdrawRecordItem } from 'utils/types';
 // import { LoadingIconStyle } from 'components/svg/Loading';
 import { chainId } from 'config/constants/tokens';
 import { ChainId } from '@my/sdk';
-
+// @ts-ignore
 export const unbondingPeriod = chainId === ChainId.ASTR_TESTNET ? 2 : 10;
 
 interface Iprops {
