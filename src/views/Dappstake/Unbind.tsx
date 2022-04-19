@@ -14,13 +14,7 @@ import { UseUnbindDApp } from './hooks/useUnbindDApp';
 import { LoadingIconStyle } from 'components/svg/Loading';
 import { GetStakingContractData } from './hooks/getStakingContractData';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
-import {
-  GetPoolUpdate,
-  GetUserList,
-  IDappPoolDataInterface,
-  useStakeBalance,
-  useStakingState,
-} from 'state/staking/hooks';
+import { GetUserList, IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useAuth from 'hooks/useAuth';
 
 const Unbind = () => {
@@ -42,7 +36,6 @@ const Unbind = () => {
 
   const contract = useDAppStackingContract();
   const contractMain = useDAppStackingMainContract();
-  GetPoolUpdate(contract);
   const pool: IDappPoolDataInterface = {
     totalSupply,
     ratio,

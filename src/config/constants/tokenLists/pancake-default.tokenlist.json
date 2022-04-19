@@ -14,6 +14,14 @@
     ],
     "tokens": [
       {
+        "name": "WASTR Token",
+        "symbol": "WASTR",
+        "address": "0xecc867de9f5090f55908aaa1352950b9eed390cd",
+        "chainId": 592,
+        "decimals": 18,
+        "logoURI": "/images/tokens/astr/0xecc867de9f5090f55908aaa1352950b9eed390cd.svg"
+      },
+      {
         "name": "Tether USDC",
         "symbol": "USDC",
         "address": "0xfa9343c3897324496a05fc75abed6bac29f8a40f",

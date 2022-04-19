@@ -12,7 +12,7 @@ import { getReceiveNum } from './hooks/getReceiveNum';
 import { escapeRegExp } from 'utils';
 import { UseStakeDApp } from './hooks/useStakeDApp';
 import { LoadingIconStyle } from 'components/svg/Loading';
-import { GetPoolUpdate, useStakeBalance, useStakingState } from 'state/staking/hooks';
+import { useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import useAuth from 'hooks/useAuth';
 const Stake = () => {
@@ -30,9 +30,7 @@ const Stake = () => {
     recordsIndex = 1,
   } = staking;
   useStakeBalance();
-  // 获取合约
   const contract = useDAppStackingContract();
-  GetPoolUpdate(contract);
 
   const pool = {
     totalSupply,

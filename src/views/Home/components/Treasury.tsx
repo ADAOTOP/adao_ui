@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useStakingState } from 'state/staking/hooks';
 import styled from 'styled-components';
+import { usePrice } from 'state/price/hooks';
 
 const Treasury = () => {
+  const staking = useStakingState();
+  const { totalSupply = '0', ratio = 1, recordsIndex = 1 } = staking;
+  const pool = {
+    totalSupply,
+    ratio,
+    recordsIndex,
+  };
+  const { priceVsBusdMap } = usePrice();
+  console.log({ priceVsBusdMap });
   return (
     <TreasuryStyled>
       <div className="bg"></div>
@@ -14,7 +25,12 @@ const Treasury = () => {
         <div className="line"></div>
         <div className="fr">
           <h6>TVL</h6>
-          <h3>$989,120.18</h3>
+          <h3>
+            $
+            {Number(Number(pool.totalSupply) * (pool?.ratio ?? 1)).toLocaleString('en-US', {
+              maximumFractionDigits: 4,
+            })}
+          </h3>
         </div>
         <div className="a_bg">
           <Link to="/dappstake/stake">Stake To Earn</Link>

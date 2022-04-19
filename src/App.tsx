@@ -11,6 +11,8 @@ import PageLoader from './components/Loader/PageLoader';
 import history from './routerHistory';
 import { PriceProvider } from 'contexts/PriceProvider';
 import SideMenu from './components/SideMenu';
+import { useDAppStackingContract } from 'hooks/useContract';
+import { GetPoolUpdate } from 'state/staking/hooks';
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -29,6 +31,10 @@ BigNumber.config({
 const App: React.FC = () => {
   usePollBlockNumber();
   useEagerConnect();
+
+  // 获取合约
+  const contract = useDAppStackingContract();
+  GetPoolUpdate(contract);
   // useFetchProfile();
   // usePollCoreFarmData();
 
