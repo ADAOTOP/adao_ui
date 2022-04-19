@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Button, Text } from '@my/ui';
+import { Text } from '@my/ui';
 import NoList from './NoList';
 // import Countdown from './Countdown';
 import { IWithdrawRecordItem } from 'utils/types';
 // import useBlockNumber from 'state/application/hooks';
-import { LoadingIconStyle } from 'components/svg/Loading';
+// import { LoadingIconStyle } from 'components/svg/Loading';
 import { chainId } from 'config/constants/tokens';
 import { ChainId } from '@my/sdk';
 
@@ -65,12 +65,13 @@ const UnbindList: FC<Iprops> = ({
                     {withdraw_symbol}
                   </TextAmount>
                   <StatusWrap>
-                    {v.status === 0 ? (
+                    {/* {v.status === 0 ? ( */}
+                    {mainEra <= 0 ? (
                       <Text fontSize="12px" color="#4C4C5C" bold>
                         Withdrawed
                       </Text>
                     ) : null}
-                    {v.status === 1 && mainEra <= 0 ? (
+                    {/* {v.status === 1 && mainEra <= 0 ? (
                       <ButtonStyled
                         onClick={() => {
                           withdraw(index);
@@ -80,7 +81,7 @@ const UnbindList: FC<Iprops> = ({
                         Withdraw
                         {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
                       </ButtonStyled>
-                    ) : null}
+                    ) : null} */}
                     {/* ((nextEraStartingBlock - 当前区块高度)+(record.era + unbondingPeriod - currentERA)* 7200  * 12  */}
                     {v.status === 1 && mainEra > 0 ? <LineText>{mainEra} Era</LineText> : null}
                     {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
@@ -106,15 +107,15 @@ const StatusWrap = styled.div`
   text-align: center;
   width: 100px;
 `;
-const ButtonStyled = styled(Button)`
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: bold;
-  height: 24px;
-  border-width: 1px;
-  padding: 0;
-  width: 100%;
-`;
+// const ButtonStyled = styled(Button)`
+//   border-radius: 12px;
+//   font-size: 10px;
+//   font-weight: bold;
+//   height: 24px;
+//   border-width: 1px;
+//   padding: 0;
+//   width: 100%;
+// `;
 const UlStyled = styled.ul`
   margin-top: 20px;
   list-style: none;
