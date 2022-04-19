@@ -26,7 +26,7 @@ import useAuth from 'hooks/useAuth';
 const Unbind = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
-  useStakeBalance(account);
+  useStakeBalance();
   const {
     mainTokenSymbol,
     ibASTRTokenSymbol,
@@ -62,7 +62,7 @@ const Unbind = () => {
     },
     [setVal],
   );
-  GetUserList(contract, pendingTx, account);
+  GetUserList(contract, pendingTx);
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance);
   }, [fullBalance, setVal]);

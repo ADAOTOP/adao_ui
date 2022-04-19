@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { RATIO_PRECISION } from 'config/constants/dAppStaking';
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState, useAppDispatch } from 'state';
@@ -22,7 +23,8 @@ const pageSize = 20;
 export function useStakingState(): AppState['staking'] {
   return useSelector<AppState, AppState['staking']>((state) => state.staking);
 }
-export const useStakeBalance = (account: string) => {
+export const useStakeBalance = () => {
+  const { account } = useActiveWeb3React();
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (account) {
@@ -65,7 +67,9 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
   }, [dispatch, contract]);
 };
 
-export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean, account: string) => {
+export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
+  const { account } = useActiveWeb3React();
+
   // 当前处理到的数据   recordsIndex-500  最多
   const dispatch = useAppDispatch();
   const recordsIndex = useSelector((state: State) => state.staking.recordsIndex);

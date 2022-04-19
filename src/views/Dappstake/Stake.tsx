@@ -29,7 +29,7 @@ const Stake = () => {
     ratio = 1,
     recordsIndex = 1,
   } = staking;
-  useStakeBalance(account);
+  useStakeBalance();
   // 获取合约
   const contract = useDAppStackingContract();
   GetPoolUpdate(contract);
