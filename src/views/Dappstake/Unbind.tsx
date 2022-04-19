@@ -138,7 +138,7 @@ const Unbind = () => {
         </DappstakePage>
         <UnbindList
           withdraw_symbol={mainTokenSymbol}
-          list={list[account] ?? []}
+          list={account && list && list[account] ? list[account] : []}
           mainTokenSymbol={mainTokenSymbol}
           current_era={current_era}
           pendingTxWithdraw={pendingTxWithdraw}
