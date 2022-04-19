@@ -138,6 +138,7 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
 
             dispatch(
               fetchListSuccess({
+                account: account,
                 list: ___list.sort((a, b) => b.era - a.era),
               }),
             );

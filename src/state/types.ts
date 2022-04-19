@@ -134,7 +134,7 @@ export interface TeamsState {
 }
 export interface StatingState {
   isLoading: boolean;
-  data: IWithdrawRecordItem[];
+  data: Record<string, IWithdrawRecordItem[]>;
 
   mainTokenSymbol: string;
   mainTokenBalance: string;

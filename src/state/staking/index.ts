@@ -24,7 +24,7 @@ const initialState: StatingState = {
   recordsIndex: 1,
 
   isLoading: true,
-  data: [],
+  data: null,
 };
 
 export const fetchStakingBalance = createAsyncThunk<string[], { account: string }>(
@@ -53,7 +53,7 @@ export const stakingSlice = createSlice({
     },
     fetchListSuccess: (state, action) => {
       // console.log(111000);
-      state.data = action.payload.list;
+      state.data[action.payload.account] = action.payload.list;
     },
   },
   extraReducers: (builder) => {
