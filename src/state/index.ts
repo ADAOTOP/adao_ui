@@ -5,20 +5,24 @@ import farmsReducer from './farms';
 import poolsReducer from './pools';
 import predictionsReducer from './predictions';
 import profileReducer from './profile';
+import teamsReducer from './teams';
 import achievementsReducer from './achievements';
 import priceReducer from './price';
 import blockReducer from './block';
+import collectiblesReducer from './collectibles';
+import votingReducer from './voting';
+import lotteryReducer from './lottery';
+import application from './application/reducer';
 import { updateVersion } from './global/actions';
 import user from './user/reducer';
 import transactions from './transactions/reducer';
 import swap from './swap/reducer';
+import mint from './mint/reducer';
 import lists from './lists/reducer';
+import burn from './burn/reducer';
 import multicall from './multicall/reducer';
 import staking from './staking';
-import application from './application/reducer';
-import polkadotApi from './polkadotApi';
-import burn from './burn/reducer';
-import mint from './mint/reducer';
+// import polkadotApi from './polkadotApi';
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'staking'];
 
 const store = configureStore({
@@ -38,9 +42,14 @@ const store = configureStore({
     multicall,
     lists,
     staking,
-    polkadotApi,
+    // polkadotApi,
     burn,
     mint,
+
+    teams: teamsReducer,
+    collectibles: collectiblesReducer,
+    voting: votingReducer,
+    lottery: lotteryReducer,
   },
   middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   preloadedState: load({ states: PERSISTED_KEYS }),

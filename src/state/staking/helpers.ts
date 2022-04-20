@@ -11,7 +11,6 @@ export const fetchUserTokenBalances = async (contractAddress: string, account: s
         params: [account],
       },
     ];
-
     const rawTokenBalances = await multicall(dAppStakingAbi, calls);
     const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
       return new BigNumber(tokenBalance).toString();
