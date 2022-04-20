@@ -52,7 +52,7 @@ export const stakingSlice = createSlice({
       state.recordsIndex = action.payload.recordsIndex;
     },
     fetchListSuccess: (state, action) => {
-      console.log(111000, action.payload.account, action.payload.list);
+      // console.log(111000, action.payload.account, action.payload.list);
       state.data = {
         ...state.data,
         [action.payload.account]: action.payload.list,

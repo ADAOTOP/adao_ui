@@ -41,7 +41,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
           const __recordsIndex = await contract.recordsIndex();
           const __totalSupply = await contract.totalSupply();
           const __ratio = await contract.ratio();
-          console.log('recordsIndex:', __recordsIndex.toString());
+          // console.log('recordsIndex:', __recordsIndex.toString());
           dispatch(
             fetchSetStateSuccess({
               totalSupply: getFullDisplayBalance(new BigNumber(__totalSupply.toString()), 18, 4),
@@ -68,21 +68,21 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
-  // const { account } = useActiveWeb3React();
-  const account = '0xD15818BAF2D5ba10d554F037e16CC65D6B8c568F';
+  const { account } = useActiveWeb3React();
+  // const account = '0xD15818BAF2D5ba10d554F037e16CC65D6B8c568F';
   // 当前处理到的数据   recordsIndex-500  最多
   const dispatch = useAppDispatch();
   const recordsIndex = useSelector((state: State) => state.staking.recordsIndex);
   useEffect(() => {
-    console.log({ recordsIndex, pendingTx });
-    console.log(112222, dispatch, contract, recordsIndex, account);
+    // console.log({ recordsIndex, pendingTx });
+    // console.log(112222, dispatch, contract, recordsIndex, account);
     if (dispatch && contract && account && !pendingTx) {
       const getList = async () => {
         try {
           //  dapptodo
           const _records = await contract.getUserRecordsLength(account);
           const records = Number(_records.toString());
-          console.log('records: ', records);
+          // console.log('records: ', records);
           // const records = arr;
           const _unbondingPeriod = await contract.unbondingPeriod();
           const unbondingPeriod = Number(_unbondingPeriod.toString());
@@ -102,13 +102,13 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
           }
           const _list: IWithdrawRecordItem[] = [];
           const promiseArr = pageList.map(async (item: pageInterface) => {
-            console.log('item.pageNum, item.pageSize: ', item.pageNum, item.pageSize);
+            // console.log('item.pageNum, item.pageSize: ', item.pageNum, item.pageSize);
             const getListApi = await contract.getUserWithdrawRecords(account, item.pageNum, item.pageSize);
-            console.log({ getListApi });
+            // console.log({ getListApi });
             // const getListApi = arr;
             if (getListApi && getListApi.length) {
               for (let jj = 0; jj < getListApi.length; jj++) {
-                console.log('era:', getListApi[jj].era);
+                // console.log('era:', getListApi[jj].era);
                 _list.push({
                   era: Number(getListApi[jj].era.toString()),
                   address: getListApi[jj][1],
@@ -123,32 +123,32 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
               }
             }
 
-            console.log(222, _list, getListApi);
+            // console.log(222, _list, getListApi);
           });
-          console.log(2121214);
+          // console.log(2121214);
           await Promise.all(promiseArr);
-          console.log(1244551);
+          // console.log(1244551);
 
           const __list = _list.length ? _list.filter((v: IWithdrawRecordItem) => v.address === account) : [];
-          console.log({ __list, _list });
+          // console.log({ __list, _list });
           if (__list.length) {
             const ___list = __list.map((v) => ({
               ...v,
               status: Number(v.era.toString()) <= recordsIndex ? 0 : 1,
               unbonding: Number(v.era.toString()) + Number(unbondingPeriod.toString()),
             }));
-            console.log(1111);
+            // console.log(1111);
             dispatch(
               fetchListSuccess({
                 account: account,
                 list: ___list.sort((a, b) => b.era - a.era),
               }),
             );
-            console.log(232344);
+            // console.log(232344);
             // setList(___list);
           }
         } catch (e) {
-          console.log('GetUserList err', e);
+          // console.log('GetUserList err', e);
         }
       };
       getList();
