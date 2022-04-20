@@ -3089,7 +3089,7 @@ var shadows = {
     success: "0px 0px 0px 1px #060608, 0px 0px 0px 4px rgb(20 19 21)",
     warning: "0px 0px 0px 1px #1a1a22, 0px 0px 0px 4px rgb(26 26 34)",
     focus: "0px 0px 0px 1px #1a1a22, 0px 0px 0px 4px rgb(26 26 34)",
-    inset: "inset 0px 2px 2px -1px rgba(74, 74, 104, 0.1)",
+    inset: "none",
 };
 var spacing = [0, 4, 8, 16, 24, 32, 48, 64];
 var radii = {
