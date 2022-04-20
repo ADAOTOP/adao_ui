@@ -1,7 +1,7 @@
 import { ChainId, CHAINKEY, Token } from '@my/sdk';
 import { BASE_BSC_SCAN_URL, chainKey } from 'config';
 // change chain
-export const chainId = ChainId.ASTR_TESTNET;
+export const chainId = ChainId.ASTR_MAINNET;
 
 const tokens = {
   [CHAINKEY.ASTR]: {
