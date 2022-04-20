@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import erc20ABI from 'config/abi/erc20.json';
+import dAppStakingAbi from 'config/abi/dAppStakingAbi.json';
 import multicall from 'utils/multicall';
 
 export const fetchUserTokenBalances = async (contractAddress: string, account: string) => {
@@ -12,12 +12,13 @@ export const fetchUserTokenBalances = async (contractAddress: string, account: s
       },
     ];
 
-    const rawTokenBalances = await multicall(erc20ABI, calls);
-    const parsedTokenBalances = rawTokenBalances.map((tokenBalance, index) => {
+    const rawTokenBalances = await multicall(dAppStakingAbi, calls);
+    const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
       return new BigNumber(tokenBalance).toString();
     });
     return parsedTokenBalances[0];
   } catch (e) {
+    console.log(e);
     return '0';
   }
 };
