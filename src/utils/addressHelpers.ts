@@ -73,9 +73,6 @@ export const getMerkleAddress = () => {
   return getAddress(addresses.merkle);
 };
 
-export const getKarsierAddress = () => {
-  return getAddress(addresses.karsier);
-};
 export const getDappStakingAddress = () => {
   return getAddress(dAppStakingcontract);
 };

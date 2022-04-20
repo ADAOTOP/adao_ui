@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { BigNumber } from '@ethersproject/bignumber';
 import { TransactionResponse } from '@ethersproject/providers';
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@my/sdk';
-import { Button, Text, Flex, CardBody, useModal, useMatchBreakpoints } from '@my/ui';
+import { Button, Text, Flex, AddIcon, CardBody, useModal, useMatchBreakpoints } from '@my/ui';
 import { RouteComponentProps } from 'react-router-dom';
 import { useIsTransactionUnsupported } from 'hooks/Trades';
 import { useTranslation } from 'contexts/Localization';
@@ -37,6 +37,10 @@ import { currencyId } from '../../utils/currencyId';
 import PoolPriceBar from './PoolPriceBar';
 import Page from '../Page';
 import WarningSvg from './imgs/warning.svg';
+
+import JSBI from 'jsbi';
+import { chainKey } from 'config';
+import { chainId as myChainId } from 'config/constants/tokens';
 
 export default function AddLiquidity({
   match: {
@@ -115,8 +119,8 @@ export default function AddLiquidity({
   );
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS);
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS);
+  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS[myChainId]);
+  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS[myChainId]);
 
   const addTransaction = useTransactionAdder();
 
@@ -143,9 +147,17 @@ export default function AddLiquidity({
       estimate = router.estimateGas.addLiquidityETH;
       method = router.addLiquidityETH;
 
+      const commonToken: Currency = tokenBIsETH ? currencyA : currencyB;
+      const rawAmountA = (tokenBIsETH ? parsedAmountA : parsedAmountB).raw;
+      let amountPrecion = JSBI.BigInt(1);
+      if (commonToken.decimals >= 18) {
+        amountPrecion = JSBI.BigInt(1000000000000);
+      }
+      const concatAmountA = JSBI.multiply(JSBI.divide(rawAmountA, amountPrecion), amountPrecion);
+
       args = [
         wrappedCurrency(tokenBIsETH ? currencyA : currencyB, chainId)?.address ?? '', // token
-        (tokenBIsETH ? parsedAmountA : parsedAmountB).raw.toString(), // token desired
+        concatAmountA.toString(), // token desired
         amountsMin[tokenBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(), // token min
         amountsMin[tokenBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(), // eth min
         account,
@@ -166,6 +178,9 @@ export default function AddLiquidity({
         deadline.toHexString(),
       ];
       value = null;
+    }
+
+    if (value) {
     }
 
     setAttemptingTxn(true);
@@ -198,7 +213,7 @@ export default function AddLiquidity({
   const modalHeader = () => {
     return noLiquidity ? (
       <Flex alignItems="center">
-        <Text fontSize="32px" color="primary" marginRight="16px">
+        <Text fontSize="32px" color="#1BD3D5" marginRight="16px">
           {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol}`}
         </Text>
         <DoubleCurrencyLogo
@@ -210,7 +225,7 @@ export default function AddLiquidity({
     ) : (
       <AutoColumn>
         <Flex alignItems="center">
-          <Text fontSize="32px" color="primary" marginRight="16px">
+          <Text fontSize="32px" color="#1BD3D5" marginRight="16px">
             {liquidityMinted?.toSignificant(6)}
           </Text>
           <DoubleCurrencyLogo
@@ -220,7 +235,7 @@ export default function AddLiquidity({
           />
         </Flex>
         <Row mt="10px">
-          <Text fontSize="14px" color="text">
+          <Text fontSize="14px" color="white">
             {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol}`}
           </Text>
           <Text fontSize="14px">&nbsp;Pool Tokens</Text>
@@ -275,7 +290,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`);
         }
       } else {
-        history.push(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`);
+        history.push(`/add/${currencyIdA || chainKey}/${newCurrencyIdB}`);
       }
     },
     [currencyIdA, history, currencyIdB],
@@ -346,7 +361,7 @@ export default function AddLiquidity({
               showCommonBases
             />
             <ColumnCenter>
-              <img src="/images/AddIcon.svg" alt="add" />
+              <AddIcon color="#1BD3D5" width="16px" />
             </ColumnCenter>
             <CurrencyInputPanel
               value={formattedAmounts[Field.CURRENCY_B]}
@@ -361,7 +376,7 @@ export default function AddLiquidity({
               showCommonBases
             />
             {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
-              <div style={{ border: '1px dashed #1A1A22', borderRadius: '16px' }}>
+              <div style={{ border: '1px dashed #272E32', borderRadius: '16px' }}>
                 <LightCard padding="0px">
                   <RowBetween padding="1rem">
                     <Text fontSize="12px">

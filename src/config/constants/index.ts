@@ -17,7 +17,10 @@ import {
   UST,
 } from './tokens';
 
-export const ROUTER_ADDRESS = '0x72e86269b919Db5bDbF61cB1DeCfD6d14feC4D7F';
+export const ROUTER_ADDRESS = {
+  [ChainId.ASTR_MAINNET]: '0xa5e48a6E56e164907263e901B98D9b11CCB46C47',
+  [ChainId.SDN_MAINNET]: '0x72e86269b919Db5bDbF61cB1DeCfD6d14feC4D7F',
+};
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -26,15 +29,16 @@ type ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ASTR_MAINNET]: [
-    Base_Token,
-    Adao,
-    DOT[chainId],
-    KSM[chainId],
+    // Base_Token,
+    // Adao,
+    // DOT[chainId],
+    // KSM[chainId],
     BUSD[chainId],
-    BTCB[chainId],
-    UST,
-    ETH[chainId],
-    USDC[chainId],
+    // USDT,
+    // BTCB[chainId],
+    // UST[chainId],
+    // ETH[chainId],
+    // USDC,
   ],
   [ChainId.ASTR_TESTNET]: [Base_Token, ETH[chainId], Adao, BUSD[chainId]],
 
@@ -181,8 +185,8 @@ export const FACTORY_ADDRESS = {
   [ChainId.SDN_MAINNET]: '0xcd8620889c1dA22ED228e6C00182177f9dAd16b7',
   [ChainId.SDN_TESTNET]: '0x1CeE94a11eAf390B67Aa346E9Dda3019DfaD4f6A',
 
-  [ChainId.ASTR_MAINNET]: '0xcd8620889c1dA22ED228e6C00182177f9dAd16b7',
-  [ChainId.ASTR_TESTNET]: '0xcd8620889c1dA22ED228e6C00182177f9dAd16b7',
+  [ChainId.ASTR_MAINNET]: '0x72e86269b919Db5bDbF61cB1DeCfD6d14feC4D7F',
+  [ChainId.ASTR_TESTNET]: '0x72e86269b919Db5bDbF61cB1DeCfD6d14feC4D7F',
 
   [ChainId.BSC_TESTNET]: '0xd95D56A112D62DFc1e6F9bC2432d12b8e1B25d60',
   [ChainId.BSC_MAINNET]: '0xa5e48a6E56e164907263e901B98D9b11CCB46C47',

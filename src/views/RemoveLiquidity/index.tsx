@@ -4,7 +4,7 @@ import { splitSignature } from '@ethersproject/bytes';
 import { Contract } from '@ethersproject/contracts';
 import { TransactionResponse } from '@ethersproject/providers';
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@my/sdk';
-import { Button, Text, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@my/ui';
+import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@my/ui';
 import { RouteComponentProps } from 'react-router';
 import { BigNumber } from '@ethersproject/bignumber';
 import { useTranslation } from 'contexts/Localization';
@@ -39,7 +39,8 @@ import { useUserSlippageTolerance } from '../../state/user/hooks';
 import Page from '../Page';
 import ArrowSvg from './imgs/arrow.svg';
 import { DashedPrimayCard } from 'components/Card';
-import useTheme from 'hooks/useTheme';
+import { chainKey } from 'config';
+import { chainId as myChainId } from 'config/constants/tokens';
 
 const BorderCard = styled.div`
   padding: 16px;
@@ -51,7 +52,6 @@ export default function RemoveLiquidity({
     params: { currencyIdA, currencyIdB },
   },
 }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
-  const { theme } = useTheme();
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined];
   const { account, chainId, library } = useActiveWeb3React();
   const [tokenA, tokenB] = useMemo(
@@ -99,7 +99,7 @@ export default function RemoveLiquidity({
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(
     null,
   );
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS);
+  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS[myChainId]);
 
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies');
@@ -116,7 +116,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ];
     const domain = {
-      name: 'Adao LPs',
+      name: 'Kaco LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -327,7 +327,7 @@ export default function RemoveLiquidity({
                 {currencyA?.symbol}
               </Text>
             </RowFixed>
-            <Text fontSize="32px" color="primary">
+            <Text fontSize="32px" color="#1BD3D5">
               {parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}
             </Text>
           </RowBetween>
@@ -338,7 +338,7 @@ export default function RemoveLiquidity({
                 {currencyB?.symbol}
               </Text>
             </RowFixed>
-            <Text fontSize="32px" color="primary">
+            <Text fontSize="32px" color="#1BD3D5">
               {parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}
             </Text>
           </RowBetween>
@@ -374,13 +374,13 @@ export default function RemoveLiquidity({
             <React.Fragment>
               <RowBetween mb="6px">
                 <Text fontSize="12px">{t('Price')}</Text>
-                <Text fontSize="12px" color="text">
+                <Text fontSize="12px" color="white">
                   1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
                 </Text>
               </RowBetween>
               <RowBetween>
                 <div />
-                <Text fontSize="12px" color="text">
+                <Text fontSize="12px" color="white">
                   1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
                 </Text>
               </RowBetween>
@@ -493,10 +493,10 @@ export default function RemoveLiquidity({
             {!showDetailed && (
               <BorderCard>
                 <Flex mb="26px" alignItems="flex-end">
-                  <Text fontSize="32px" color="primary" bold style={{ lineHeight: 1 }}>
+                  <Text fontSize="32px" color="#1BD3D5" bold style={{ lineHeight: 1 }}>
                     {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
                   </Text>
-                  <Text color="primary" fontSize="12px" marginLeft="10px">
+                  <Text color="#1BD3D5" fontSize="12px" marginLeft="10px">
                     {t('Amount')}
                   </Text>
                 </Flex>
@@ -512,8 +512,8 @@ export default function RemoveLiquidity({
                   <Button
                     style={{
                       marginTop: '16px',
-                      color: innerLiquidityPercentage === 25 ? 'white' : theme.colors.primary,
-                      background: innerLiquidityPercentage === 25 ? theme.colors.primary : '#1F252A',
+                      color: innerLiquidityPercentage === 25 ? 'white' : '#1BD3D5',
+                      background: innerLiquidityPercentage === 25 ? '#1BD3D5' : '#1F252A',
                       borderRadius: '12px',
                     }}
                     variant="tertiary"
@@ -525,8 +525,8 @@ export default function RemoveLiquidity({
                   <Button
                     style={{
                       marginTop: '16px',
-                      color: innerLiquidityPercentage === 50 ? 'white' : theme.colors.primary,
-                      background: innerLiquidityPercentage === 50 ? theme.colors.primary : '#1F252A',
+                      color: innerLiquidityPercentage === 50 ? 'white' : '#1BD3D5',
+                      background: innerLiquidityPercentage === 50 ? '#1BD3D5' : '#1F252A',
                       borderRadius: '12px',
                     }}
                     variant="tertiary"
@@ -538,8 +538,8 @@ export default function RemoveLiquidity({
                   <Button
                     style={{
                       marginTop: '16px',
-                      color: innerLiquidityPercentage === 75 ? 'white' : theme.colors.primary,
-                      background: innerLiquidityPercentage === 75 ? theme.colors.primary : '#1F252A',
+                      color: innerLiquidityPercentage === 75 ? 'white' : '#1BD3D5',
+                      background: innerLiquidityPercentage === 75 ? '#1BD3D5' : '#1F252A',
                       borderRadius: '12px',
                     }}
                     variant="tertiary"
@@ -551,8 +551,8 @@ export default function RemoveLiquidity({
                   <Button
                     style={{
                       marginTop: '16px',
-                      color: innerLiquidityPercentage === 100 ? 'white' : theme.colors.primary,
-                      background: innerLiquidityPercentage === 100 ? theme.colors.primary : '#1F252A',
+                      color: innerLiquidityPercentage === 100 ? 'white' : '#1BD3D5',
+                      background: innerLiquidityPercentage === 100 ? '#1BD3D5' : '#1F252A',
                       borderRadius: '12px',
                     }}
                     variant="tertiary"
@@ -603,15 +603,15 @@ export default function RemoveLiquidity({
                             currencyB === ETHER[chainId] ? WETH[chainId].address : currencyIdB
                           }`}
                         >
-                          {t('Receive WBNB')}
+                          {t('Receive WSDN')}
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
-                          to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA}/${
-                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB
-                          }`}
+                          to={`/remove/${
+                            currencyA && currencyEquals(currencyA, WETH[chainId]) ? chainKey : currencyIdA
+                          }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? chainKey : currencyIdB}`}
                         >
-                          {t('Receive BNB')}
+                          {t('Receive SDN')}
                         </StyledInternalLink>
                       ) : null}
                     </RowBetween>
@@ -651,7 +651,7 @@ export default function RemoveLiquidity({
                 id="remove-liquidity-tokena"
               />
               <ColumnCenter>
-                <img src="/images/AddIcon.svg" alt="AddIcon" width="24px" />
+                <AddIcon width="24px" my="16px" />
               </ColumnCenter>
               <CurrencyInputPanel
                 hideBalance
@@ -675,10 +675,10 @@ export default function RemoveLiquidity({
                     {t('Prices')}:&nbsp;
                   </Text>
 
-                  <Text fontSize="12px" small color="text">
+                  <Text fontSize="12px" small color="white">
                     1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
                   </Text>
-                  <Text fontSize="12px" small color="text" ml="24px">
+                  <Text fontSize="12px" small color="white" ml="24px">
                     1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
                   </Text>
                 </Flex>

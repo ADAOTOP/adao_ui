@@ -26,7 +26,6 @@ import {
   getDappStakingContract,
   getFarmAuctionContract,
   getMerkleContract,
-  getKarsierContract,
   getMainDappStakingContract,
 } from 'utils/contractHelpers';
 import { getMulticallAddress } from 'utils/addressHelpers';
@@ -189,11 +188,6 @@ export const useFarmAuctionContract = () => {
 export const useMerkleDistributorContract = () => {
   const { account, library } = useActiveWeb3React();
   return useMemo(() => getMerkleContract(account ? library.getSigner() : library), [library, account]);
-};
-
-export const useKarsierContract = () => {
-  const { account, library } = useActiveWeb3React();
-  return useMemo(() => getKarsierContract(account ? library.getSigner() : library), [library, account]);
 };
 
 // Code below migrated from Exchange useContract.ts

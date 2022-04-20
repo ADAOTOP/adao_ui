@@ -109,7 +109,7 @@ const Animation = () => {
     <AnimationStyled>
       {['a', 'b', 'c', 'd', 'e', 'f', 'g'].map((v: string) => {
         return (
-          <div className={`img_${v}`}>
+          <div className={`img_${v}`} key={v}>
             <img src={`/images/Image_${v}.webp`} alt="" />
           </div>
         );

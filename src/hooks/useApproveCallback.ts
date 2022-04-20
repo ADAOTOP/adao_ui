@@ -10,7 +10,7 @@ import { useTransactionAdder, useHasPendingApproval } from '../state/transaction
 import { computeSlippageAdjustedAmounts } from '../utils/prices';
 import { calculateGasMargin } from '../utils';
 import { useTokenContract } from './useContract';
-import { chainId } from 'config/constants/tokens';
+import { chainId as myChainId } from 'config/constants/tokens';
 
 export enum ApprovalState {
   UNKNOWN,
@@ -32,7 +32,7 @@ export function useApproveCallback(
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     if (!amountToApprove || !spender) return ApprovalState.UNKNOWN;
-    if (amountToApprove.currency === ETHER[chainId]) return ApprovalState.APPROVED;
+    if (amountToApprove.currency === ETHER[myChainId]) return ApprovalState.APPROVED;
     // we might not have enough data to know whether or not we need to approve
     if (!currentAllowance) return ApprovalState.UNKNOWN;
 
@@ -106,5 +106,5 @@ export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) 
     [trade, allowedSlippage],
   );
 
-  return useApproveCallback(amountToApprove, ROUTER_ADDRESS);
+  return useApproveCallback(amountToApprove, ROUTER_ADDRESS[myChainId]);
 }

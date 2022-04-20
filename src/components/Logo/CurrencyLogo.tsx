@@ -1,13 +1,13 @@
-import { Currency, ETHER, Token } from '@my/sdk';
-import { BinanceIcon } from '@my/ui';
-import { BASE_URL } from 'config';
+import { CHAINKEY, Currency, ETHER, Token } from '@my/sdk';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import useHttpLocations from '../../hooks/useHttpLocations';
 import { WrappedTokenInfo } from '../../state/lists/hooks';
 import getTokenLogoURL from '../../utils/getTokenLogoURL';
+import SdnSvg from './Sdn.svg';
 import Logo from './Logo';
 import { chainId } from 'config/constants/tokens';
+import { chainKey } from 'config';
 
 const StyledLogo = styled(Logo)<{ size: string }>`
   width: ${({ size }) => size};
@@ -23,9 +23,7 @@ export default function CurrencyLogo({
   size?: string;
   style?: React.CSSProperties;
 }) {
-  const uriLocations = useHttpLocations(
-    currency instanceof WrappedTokenInfo ? `${BASE_URL}${currency.logoURI}` : undefined,
-  );
+  const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? `${currency.logoURI}` : undefined);
 
   const srcs: string[] = useMemo(() => {
     if (currency === ETHER[chainId]) return [];
@@ -40,7 +38,17 @@ export default function CurrencyLogo({
   }, [currency, uriLocations]);
 
   if (currency === ETHER[chainId]) {
-    return <BinanceIcon width={size} style={style} />;
+    if (chainKey === CHAINKEY.ASTR) {
+      return (
+        <img
+          src={`/images/tokens/${chainKey}/0xaeaaf0e2c81af264101b9129c00f4440ccf0f720.svg`}
+          alt=""
+          width={size}
+          style={style}
+        />
+      );
+    }
+    return <img src={SdnSvg} alt="" width={size} style={style} />;
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />;

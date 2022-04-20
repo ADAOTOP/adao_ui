@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useStakingState } from 'state/staking/hooks';
 import styled from 'styled-components';
 import { usePrice } from 'state/price/hooks';
+import { chainId, DEFAULT_Token } from 'config/constants/tokens';
 
 const Treasury = () => {
   const staking = useStakingState();
@@ -13,10 +14,12 @@ const Treasury = () => {
   };
   const { priceVsBusdMap } = usePrice();
   console.log({ priceVsBusdMap });
+  const main_token_busd = priceVsBusdMap[DEFAULT_Token[chainId].address.toLocaleLowerCase()];
   return (
     <TreasuryStyled>
-      <div className="bg"></div>
-      <p className="t">Come to ADAO to participate in Astar dApp Staking to get higher returns</p>
+      <div className="bg">
+        <p className="t">Come to ADAO to participate in Astar dApp Staking to get higher returns</p>
+      </div>
       <div className="inner">
         <div>
           <h6>Treasury</h6>
@@ -26,10 +29,13 @@ const Treasury = () => {
         <div className="fr">
           <h6>TVL</h6>
           <h3>
-            $
-            {Number(Number(pool.totalSupply) * (pool?.ratio ?? 1)).toLocaleString('en-US', {
-              maximumFractionDigits: 4,
-            })}
+            {main_token_busd ? '$' : ''}
+            {Number(Number(pool.totalSupply) * (pool?.ratio ?? 1) * Number(main_token_busd ?? 1)).toLocaleString(
+              'en-US',
+              {
+                maximumFractionDigits: 4,
+              },
+            )}
           </h3>
         </div>
         <div className="a_bg">
@@ -47,10 +53,10 @@ const TreasuryStyled = styled.div`
   overflow: hidden;
   .bg {
     width: 100%;
-    height: 44px;
-    position: absolute;
-    top: 0;
-    left: 0;
+    // height: 44px;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     background: linear-gradient(0deg, #0d0d11, #343443);
     transform: perspective(21px) rotateX(5deg);
     transform-origin: bottom;
@@ -62,12 +68,18 @@ const TreasuryStyled = styled.div`
     color: ${({ theme }) => theme.colors.text};
     font-weight: 500;
     font-size: 14px;
-    line-height: 44px;
+    line-height: 22px;
     text-align: center;
     // background: linear-gradient(90deg, #303fff 0%, #c947d9 100%);
     // -webkit-background-clip: text;
     // -webkit-text-fill-color: transparent;
     // display: inline-block;
+    transform: perspective(22px) rotateX(-5deg);
+    transform-origin: bottom;
+    padding: 30px 40px 10px;
+    ${({ theme }) => theme.mediaQueries.sm} {
+      padding: 10px 30px 10px;
+    }
   }
   // width: 80%;
   ${({ theme }) => theme.mediaQueries.xl} {

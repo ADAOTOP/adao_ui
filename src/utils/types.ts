@@ -149,7 +149,7 @@ export interface IDappStakingInterface extends Contract {
   // Allow a user to deposit underlying tokens and mint the corresponding number of wrapped tokens.
   depositFor(account: string, overrides?: CallOverrides): Promise<ContractTransaction>;
   // Allow a user to burn a number of wrapped tokens and withdraw the corresponding number of underlying tokens.
-  withdraw(ibASTRAmount: BigNumberish): Promise<ContractTransaction>;
+  withdraw(ibASTRAmount: BigNumberish, overrides?: CallOverrides): Promise<ContractTransaction>;
   withdrawTo(account: string, ibASTRAmount: BigNumberish): Promise<ContractTransaction>;
   calcDailyApr(): Promise<[ethers.BigNumber]>;
 }

@@ -7,7 +7,6 @@ import { usePollBlockNumber } from 'state/block/hooks';
 import GlobalStyle from './style/Global';
 import SuspenseWithChunkError from './components/SuspenseWithChunkError';
 import { ToastListener } from './contexts/ToastsContext';
-import PageLoader from './components/Loader/PageLoader';
 import history from './routerHistory';
 import { PriceProvider } from 'contexts/PriceProvider';
 import SideMenu from './components/SideMenu';
@@ -44,7 +43,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <PriceProvider />
       <SideMenu>
-        <SuspenseWithChunkError fallback={<PageLoader />}>
+        <SuspenseWithChunkError fallback={<></>}>
           <Switch>
             <Route path="/" exact>
               <Home />
