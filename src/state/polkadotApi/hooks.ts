@@ -48,7 +48,7 @@ export async function useCurrentEra() {
         const [currentEra, blockAmtPerEra, blockHeight, nextEraStartingBlockHeight] = await Promise.all([
           api.query.dappsStaking.currentEra(),
           api.consts.dappsStaking.blockPerEra,
-          api.derive.chain.bestNumber,
+          api.derive.chain.bestNumber(),
           api.query.dappsStaking.nextEraStartingBlock(),
         ]);
         // console.log(3333);
@@ -57,24 +57,25 @@ export async function useCurrentEra() {
         const blockPerEra = Number(blockAmtPerEra.toString());
         // console.log(era, blockPerEra, blockHeight, nextEraStartingBlockHeight);
 
-        const handleBestNumber = blockHeight;
-        await handleBestNumber((bestNumber) => {
-          const best = bestNumber.toNumber();
-          const nextEraStartingBlock = Number(nextEraStartingBlockHeight.toString());
-          const _countDown = nextEraStartingBlock - best;
-          const _progressRes = ((blockPerEra - _countDown) / blockPerEra) * 100;
-          // setCountDown(_countDown);
-          // setProgressRes(_progressRes);
-          // console.log({ _progressRes });
-          dispatch(
-            setInfo({
-              era: era,
-              blockPerEra: blockPerEra,
-              progress: _progressRes,
-              blocksUntilNextEra: _countDown,
-            }),
-          );
-        });
+        // const handleBestNumber = blockHeight;
+        // await handleBestNumber((bestNumber) => {
+        const best = blockHeight.toNumber();
+        const nextEraStartingBlock = Number(nextEraStartingBlockHeight.toString());
+        const _countDown = nextEraStartingBlock - best;
+        console.log({ nextEraStartingBlock, best });
+        const _progressRes = ((blockPerEra - _countDown) / blockPerEra) * 100;
+        // setCountDown(_countDown);
+        // setProgressRes(_progressRes);
+        // console.log({ _progressRes });
+        dispatch(
+          setInfo({
+            era: era,
+            blockPerEra: blockPerEra,
+            progress: _progressRes,
+            blocksUntilNextEra: _countDown,
+          }),
+        );
+        // });
       } catch (e) {}
     };
     getEra();

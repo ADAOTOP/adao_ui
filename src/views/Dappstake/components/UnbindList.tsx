@@ -65,9 +65,13 @@ const UnbindList: FC<Iprops> = ({
         {list && list.length
           ? list.map((v, index) => {
               const mainEra = v.era + unbondingPeriod - current_era;
-              // 12/block   7200
-              // // {/* (blocksUntilNextEra)+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
-              const timp = mainEra > 0 ? (blocksUntilNextEra + (v.era + unbondingPeriod - era) * 7200) * 12 : 0;
+              // 12 s/block   7200 block/day
+              // // {/* blocksUntilNextEra+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
+              //
+              const timp = mainEra > 0 ? (blocksUntilNextEra + (v.era + unbondingPeriod - era - 1) * 7200) * 12 : 0;
+              if (timp) {
+                console.log({ blocksUntilNextEra, era }, 'v.era: ' + v.era);
+              }
               return (
                 <li key={index}>
                   <TextAmount>
