@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js';
 import { ethers } from 'ethers';
 import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types';
 import { IWithdrawRecordItem } from 'utils/types';
+import { IPolkadotApiState } from './polkadotApi';
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>;
 
@@ -505,4 +506,5 @@ export interface State {
   voting: VotingState;
   lottery: LotteryState;
   staking: StatingState;
+  polkadotApi: IPolkadotApiState;
 }

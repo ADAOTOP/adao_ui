@@ -36,7 +36,6 @@ const App: React.FC = () => {
   GetPoolUpdate(contract);
   // useFetchProfile();
   // usePollCoreFarmData();
-
   return (
     <Router history={history}>
       <ResetCSS />

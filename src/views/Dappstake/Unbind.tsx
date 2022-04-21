@@ -16,11 +16,13 @@ import { GetStakingContractData } from './hooks/getStakingContractData';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { GetUserList, IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useAuth from 'hooks/useAuth';
+import { useCurrentEra } from 'state/polkadotApi/hooks';
 
 const Unbind = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
   useStakeBalance();
+  useCurrentEra();
   const {
     mainTokenSymbol,
     ibASTRTokenSymbol,

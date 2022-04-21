@@ -22,7 +22,7 @@ import lists from './lists/reducer';
 import burn from './burn/reducer';
 import multicall from './multicall/reducer';
 import staking from './staking';
-// import polkadotApi from './polkadotApi';
+import polkadotApi from './polkadotApi';
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'staking'];
 
 const store = configureStore({
@@ -42,7 +42,7 @@ const store = configureStore({
     multicall,
     lists,
     staking,
-    // polkadotApi,
+    polkadotApi,
     burn,
     mint,
 

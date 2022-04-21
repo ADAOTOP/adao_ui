@@ -13,7 +13,6 @@ const Treasury = () => {
     recordsIndex,
   };
   const { priceVsBusdMap } = usePrice();
-  console.log({ priceVsBusdMap });
   const main_token_busd = priceVsBusdMap[DEFAULT_Token[chainId].address.toLocaleLowerCase()];
   return (
     <TreasuryStyled>

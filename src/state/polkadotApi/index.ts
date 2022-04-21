@@ -4,12 +4,17 @@ import type { KeyringPair } from '@polkadot/keyring/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { UnsubscribePromise } from '@polkadot/api/types';
 import keyring from '@polkadot/ui-keyring';
-interface IPolkadotApiState {
+export interface IPolkadotApiState {
   api?: ApiPromise;
   extensions?: InjectedExtension[];
   currentAccount?: KeyringPair;
   currentBalance?: number;
   unsubscribeAccountInfo?: UnsubscribePromise;
+
+  era?: number;
+  blockPerEra?: number;
+  progress?: number;
+  blocksUntilNextEra?: number;
 }
 const initialState: IPolkadotApiState = {};
 export const polkadotApiSlice = createSlice({
@@ -17,10 +22,16 @@ export const polkadotApiSlice = createSlice({
   initialState,
   reducers: {
     setApi: (state, action) => {
-      state.api = action.payload.apiInst;
+      state.api = action.payload.api;
     },
     setExtensions: (state, action) => {
       state.extensions = action.payload.extensions;
+    },
+    setInfo: (state, action) => {
+      state.era = action.payload.era;
+      state.blockPerEra = action.payload.blockPerEra;
+      state.progress = action.payload.progress;
+      state.blocksUntilNextEra = action.payload.blocksUntilNextEra;
     },
     setCurrentAccount: (state, action) => {
       const api = state.api;
@@ -47,4 +58,5 @@ export const polkadotApiSlice = createSlice({
     },
   },
 });
+export const { setApi, setExtensions, setInfo } = polkadotApiSlice.actions;
 export default polkadotApiSlice.reducer;
