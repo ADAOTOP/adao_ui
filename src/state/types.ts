@@ -149,6 +149,9 @@ export interface StatingState {
   ibASTRTokenDecimals: number;
   ibASTRTokenFullBalance: string;
 
+  stakerApr: number;
+  stakerApy: number;
+
   totalSupply: string;
   ratio: number;
   recordsIndex: number;

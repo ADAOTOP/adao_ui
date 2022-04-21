@@ -16,11 +16,14 @@ import { GetStakingContractData } from './hooks/getStakingContractData';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { GetUserList, IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useAuth from 'hooks/useAuth';
-import { useCurrentEra } from 'state/polkadotApi/hooks';
+import { useCurrentEra, usePolkadotApi } from 'state/polkadotApi/hooks';
+import { chainId } from 'config/constants/tokens';
 
 const Unbind = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
+  const polkadotApi = usePolkadotApi();
+  const { blocksUntilNextEra, era } = polkadotApi;
   useStakeBalance();
   useCurrentEra();
   const {
@@ -34,6 +37,8 @@ const Unbind = () => {
     ratio = 1,
     recordsIndex = 1,
     data: list = [],
+    stakerApr,
+    stakerApy,
   } = staking;
 
   const contract = useDAppStackingContract();
@@ -42,6 +47,8 @@ const Unbind = () => {
     totalSupply,
     ratio,
     recordsIndex,
+    stakerApr,
+    stakerApy,
   };
   const { current_era } = GetStakingContractData(contractMain);
   const { toastSuccess, toastError, toastWarning } = useToast();
@@ -133,10 +140,12 @@ const Unbind = () => {
         </DappstakePage>
         <UnbindList
           withdraw_symbol={mainTokenSymbol}
-          list={account && list && list[account] ? list[account] : []}
+          list={account && list && list[`${account}-${chainId}`] ? list[`${account}-${chainId}`] : []}
           mainTokenSymbol={mainTokenSymbol}
           current_era={current_era}
           pendingTxWithdraw={pendingTxWithdraw}
+          blocksUntilNextEra={blocksUntilNextEra}
+          era={era}
           withdraw={async (index: number) => {
             setPendingTxWithdraw(`true${index}`);
             try {

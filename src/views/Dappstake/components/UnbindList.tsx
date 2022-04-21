@@ -8,6 +8,7 @@ import { IWithdrawRecordItem } from 'utils/types';
 // import { LoadingIconStyle } from 'components/svg/Loading';
 import { chainId } from 'config/constants/tokens';
 import { ChainId } from '@my/sdk';
+import Countdown from './Countdown';
 // @ts-ignore
 export const unbondingPeriod = chainId === ChainId.ASTR_TESTNET ? 2 : 10;
 
@@ -18,6 +19,8 @@ interface Iprops {
   withdraw_symbol: string;
   current_era: number;
   mainTokenSymbol: string;
+  blocksUntilNextEra: number;
+  era: number;
 }
 const TextStyled = styled(Text)`
   font-size: 12px;
@@ -25,7 +28,10 @@ const TextStyled = styled(Text)`
   color: #91919e;
   padding: 0px 10px;
   line-height: 20px;
-  margin-top: 20px;
+  margin-top: 6px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-top: 20px;
+  }
 `;
 const HeadingStyled = styled(Text)`
   font-size: 18px;
@@ -44,6 +50,8 @@ const UnbindList: FC<Iprops> = ({
   pendingTxWithdraw,
   current_era,
   mainTokenSymbol,
+  blocksUntilNextEra,
+  era,
 }) => {
   // const lastBlockNumber = useBlockNumber();
   return (
@@ -57,6 +65,9 @@ const UnbindList: FC<Iprops> = ({
         {list && list.length
           ? list.map((v, index) => {
               const mainEra = v.era + unbondingPeriod - current_era;
+              // 12/block   7200
+              // // {/* (blocksUntilNextEra)+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
+              const timp = mainEra > 0 ? (blocksUntilNextEra + (v.era + unbondingPeriod - era) * 7200) * 12 : 0;
               return (
                 <li key={index}>
                   <TextAmount>
@@ -67,7 +78,7 @@ const UnbindList: FC<Iprops> = ({
                   <StatusWrap>
                     {/* {v.status === 0 ? ( */}
                     {mainEra <= 0 ? (
-                      <Text fontSize="12px" color="#4C4C5C" bold>
+                      <Text fontSize="12px" color="#4C4C5C" textAlign="right" bold>
                         Withdrawed
                       </Text>
                     ) : null}
@@ -82,8 +93,19 @@ const UnbindList: FC<Iprops> = ({
                         {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
                       </ButtonStyled>
                     ) : null} */}
-                    {/* ((nextEraStartingBlock - 当前区块高度)+(record.era + unbondingPeriod - currentERA)* 7200  * 12  */}
-                    {v.status === 1 && mainEra > 0 ? <LineText>{mainEra} Era</LineText> : null}
+                    {v.status === 1 && mainEra > 0 ? (
+                      `${timp}` !== 'NaN' ? (
+                        <>
+                          {/* // <Flex alignItems="center" justifyContent="end"> */}
+                          <LineText>{mainEra} Era</LineText>
+                          {/* &nbsp; &nbsp; */}
+                          <Countdown nextEventTime={timp} />
+                          {/* // </Flex> */}
+                        </>
+                      ) : (
+                        <LineText>{mainEra} Era</LineText>
+                      )
+                    ) : null}
                     {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
                   </StatusWrap>
                 </li>
@@ -105,7 +127,7 @@ const LineText = styled(Text)`
 `;
 const StatusWrap = styled.div`
   text-align: center;
-  width: 100px;
+  width: 140px;
 `;
 // const ButtonStyled = styled(Button)`
 //   border-radius: 12px;
@@ -131,8 +153,8 @@ const UlStyled = styled.ul`
     border-radius: 12px;
     padding: 9px 20px;
     margin-top: 9px;
-    height: 42px;
-    line-height: 42px;
+    min-height: 42px;
+    line-height: 22px;
     border: 1px solid #060608;
   }
 `;

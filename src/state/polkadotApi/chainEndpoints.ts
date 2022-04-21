@@ -1,4 +1,6 @@
+import { ChainId } from '@my/sdk';
 import { RegistryTypes } from '@polkadot/types/types';
+import { chainId } from 'config/constants/tokens';
 import * as typeDefs from './registry-types';
 export enum endpointKey {
   ASTAR = 0,
@@ -7,6 +9,15 @@ export enum endpointKey {
   LOCAL = 3,
   CUSTOM = 4,
 }
+export const DAPPS_REWARD_RATE = 0.5;
+export const currentNetworkIdx =
+  // @ts-ignore
+  chainId === ChainId.SDN_TESTNET || chainId === ChainId.ASTR_TESTNET
+    ? endpointKey.SHIBUYA
+    : // @ts-ignore
+    chainId === ChainId.SDN_MAINNET
+    ? endpointKey.SHIDEN
+    : endpointKey.ASTAR;
 interface ChainProvider {
   networkAlias: string;
   displayName: string;
@@ -32,7 +43,7 @@ export const providerEndpoints: ChainProvider[] = [
     networkAlias: 'astar',
     displayName: 'Astar Network',
     info: 'Smart contract platform for decentralized applications (dapps) on the Polkadot network',
-    endpoint: 'wss://rpc.astar.network',
+    endpoint: 'wss://astar.api.onfinality.io/public-ws',
     favicon: 'https://polkadot.js.org/apps/static/astar.b48435e0.png',
     isSupportContract: true,
     prefix: 0x250,
@@ -42,7 +53,7 @@ export const providerEndpoints: ChainProvider[] = [
     subscan: 'https://astar.subscan.io',
     blockscout: 'https://blockscout.com/astar',
     evmChainId: '592',
-    evmRpc: 'https://rpc.astar.network:8545',
+    evmRpc: 'https://astar.api.onfinality.io/public',
     faucetEndpoint: 'https://astar-discord-faucet.herokuapp.com/astar',
     // defaultLogo: require('/src/assets/img/ic_astar.png'),
   },
@@ -78,7 +89,7 @@ export const providerEndpoints: ChainProvider[] = [
     subscan: 'https://shibuya.subscan.io',
     blockscout: 'https://blockscout.com/shibuya',
     evmChainId: '81',
-    evmRpc: 'https://rpc.shibuya.astar.network:8545',
+    evmRpc: 'wss://rpc.shibuya.astar.network',
     faucetEndpoint: 'https://astar-discord-faucet.herokuapp.com/shibuya',
     // defaultLogo: require('/src/assets/img/ic_shibuya.png'),
   },

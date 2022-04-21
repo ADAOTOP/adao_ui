@@ -4,6 +4,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState, useAppDispatch } from 'state';
+import { useApr } from 'state/polkadotApi/hooks';
 import { State } from 'state/types';
 import { BIG_TEN } from 'utils/bigNumber';
 import { getFullDisplayBalance } from 'utils/formatBalance';
@@ -17,6 +18,8 @@ export interface IDappPoolDataInterface {
   totalSupply: string;
   ratio: number;
   recordsIndex: number;
+  stakerApr: number;
+  stakerApy: number;
 }
 
 const pageSize = 20;
@@ -34,6 +37,8 @@ export const useStakeBalance = () => {
 };
 export const GetPoolUpdate = (contract: IDappStakingInterface) => {
   const dispatch = useAppDispatch();
+  const { stakerApr, stakerApy } = useApr();
+  // console.log(stakerApr, stakerApy);
   useEffect(() => {
     if (contract) {
       const getPool = async (contract: IDappStakingInterface) => {
@@ -47,6 +52,8 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
               totalSupply: getFullDisplayBalance(new BigNumber(__totalSupply.toString()), 18, 4),
               ratio: Number(__ratio.toString()) / RATIO_PRECISION,
               recordsIndex: Number(__recordsIndex.toString()),
+              stakerApr: stakerApr,
+              stakerApy: stakerApy,
             }),
           );
 
@@ -55,6 +62,8 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
               totalSupply: getFullDisplayBalance(new BigNumber(_totalSupply.toString()), 18, 4),
               ratio: Number(_ratio.toString()) / RATIO_PRECISION,
               recordsIndex: Number(_recordsIndex.toString()),
+              stakerApr: stakerApr,
+              stakerApy: stakerApy,
             });
           });
           return () => {
@@ -64,7 +73,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
       };
       getPool(contract);
     }
-  }, [dispatch, contract]);
+  }, [dispatch, contract, stakerApr, stakerApy]);
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
@@ -82,7 +91,7 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
           //  dapptodo
           const _records = await contract.getUserRecordsLength(account);
           const records = Number(_records.toString());
-          // console.log('records: ', records);
+          console.log('records: ', records);
           // const records = arr;
           const _unbondingPeriod = await contract.unbondingPeriod();
           const unbondingPeriod = Number(_unbondingPeriod.toString());
@@ -96,13 +105,13 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
           for (let i = 0; i < len; i++) {
             const _pageSize = i !== 0 && i === len - 1 ? len % pageSize : pageSize;
             pageList.push({
-              pageNum: i,
+              pageNum: i * pageSize,
               pageSize: _pageSize,
             });
           }
           const _list: IWithdrawRecordItem[] = [];
           const promiseArr = pageList.map(async (item: pageInterface) => {
-            // console.log('item.pageNum, item.pageSize: ', item.pageNum, item.pageSize);
+            console.log('item.pageNum, item.pageSize: ', item.pageNum, item.pageSize);
             const getListApi = await contract.getUserWithdrawRecords(account, item.pageNum, item.pageSize);
             // console.log({ getListApi });
             // const getListApi = arr;
@@ -130,14 +139,14 @@ export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean)
           // console.log(1244551);
 
           const __list = _list.length ? _list.filter((v: IWithdrawRecordItem) => v.address === account) : [];
-          // console.log({ __list, _list });
+          console.log({ __list, _list });
           if (__list.length) {
             const ___list = __list.map((v) => ({
               ...v,
               status: Number(v.era.toString()) <= recordsIndex ? 0 : 1,
               unbonding: Number(v.era.toString()) + Number(unbondingPeriod.toString()),
             }));
-            // console.log(1111);
+            console.log(1111);
             dispatch(
               fetchListSuccess({
                 account: account,

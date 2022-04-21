@@ -1,16 +1,6 @@
-import BN from 'bn.js';
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
 import { TypeRegistry } from '@polkadot/types';
-
-import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { SubmittableResult } from '@polkadot/api/submittable';
-import type { IKeyringPair, Codec, DetectCodec } from '@polkadot/types/types';
-import type { DispatchErrorModule } from '@polkadot/types/interfaces';
-import type { Hash } from '@polkadot/types/interfaces/runtime';
-import type { InjectedExtension } from '@polkadot/extension-inject/types';
-
-import { web3Enable } from '@polkadot/extension-dapp';
-import { buildTypes, KeyringPairOrAddressAndSigner, extractTxArgs } from './utils';
+import { buildTypes } from './utils';
 
 let endpoint = '';
 let apiPromise: ApiPromise | null = null;
@@ -29,10 +19,8 @@ export const connected = async (endpoint: string, f?: () => Promise<any>) => {
     return api;
   } catch (e) {
     console.error(e);
-  } finally {
     if (api) {
       await api.disconnect();
-      return api;
     }
   }
 };
@@ -47,12 +35,12 @@ export const connect = async (newEndpoint: string) => {
   endpoint = newEndpoint;
   // if we don't pass `types` here,
   // it seems the types data will be cleared when the runtime upgrade occurs
+  const provider = new WsProvider(endpoint);
   // @ts-ignore
-  apiPromise = await ApiPromise.create({
-    provider: new WsProvider(newEndpoint),
-    registry,
-    types,
+  apiPromise = new ApiPromise({
+    provider,
   });
+  await apiPromise.isReady;
 
   apiPromise.on('error', (error: Error) => console.error(error.message));
   return apiPromise;
@@ -71,6 +59,18 @@ const getApi = () => {
   throw new Error('not connected');
 };
 
+export const checkIsEnableIndividualClaim = async (api: ApiPromise): Promise<boolean> => {
+  try {
+    const version = await api.query.dappsStaking.storageVersion();
+    if (!version) {
+      throw Error('invalid version');
+    }
+    const isEnableIndividualClaim = version.toHuman() !== 'V2_0_0';
+    return isEnableIndividualClaim;
+  } catch (error) {
+    return false;
+  }
+};
 // export const query = <T>(f: (query: ApiPromise['query']) => Promise<T>): Promise<T> => {
 //   const api = getApi();
 //   return f(api.query);
@@ -153,10 +153,10 @@ const getApi = () => {
 
 export const getRuntimeVersion = () => getApi().runtimeVersion;
 
-export const createType = <T extends Codec = Codec, K extends string = string>(
-  type: K,
-  ...params: unknown[]
-): DetectCodec<T, K> => registry.createType(type, ...params);
+// export const createType = <T extends Codec = Codec, K extends string = string>(
+//   type: K,
+//   ...params: unknown[]
+// ): DetectCodec<T, K> => registry.createType(type, ...params);
 
 // slow, be careful
 export const buildKeyringPair = (mnemonic: string) => new Keyring({ type: 'ed25519' }).createFromUri(mnemonic);

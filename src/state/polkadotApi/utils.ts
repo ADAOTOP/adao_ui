@@ -1,5 +1,7 @@
 import BN from 'bn.js';
 import type { Signer } from '@polkadot/api/types';
+import { BigNumber, formatFixed } from '@ethersproject/bignumber';
+import { isString } from '@polkadot/util';
 import type { SignerOptions } from '@polkadot/api/submittable/types';
 import type { IKeyringPair } from '@polkadot/types/types';
 import type { RegistryTypes } from '@polkadot/types/types/registry';
@@ -49,4 +51,21 @@ export const withToggleAsync = async <T>(toggle: (b: boolean) => void, main: () 
   const result = await main();
   toggle(false);
   return result;
+};
+export const defaultAmountWithDecimals = (value: BN | BigNumber | string, decimal: number): string => {
+  const strToBig = (str: string) => BigNumber.from(str.toString());
+
+  if (isString(value)) {
+    const hexValue = strToBig(value);
+    return formatFixed(hexValue, decimal);
+  }
+
+  try {
+    const hexValue = value.toJSON();
+    return formatFixed(hexValue, decimal);
+  } catch (error) {
+    const bigValue = strToBig(value.toString());
+    const hexValue = bigValue.toJSON();
+    return formatFixed(hexValue, decimal);
+  }
 };

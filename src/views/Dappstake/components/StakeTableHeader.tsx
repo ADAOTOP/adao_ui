@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Flex } from '@my/ui';
-import { GetDAppApr } from '../hooks/getApr';
+// import { GetDAppApr } from '../hooks/getApr';
 import { IDappStakingInterface } from 'utils/types';
 import { IDappPoolDataInterface } from 'state/staking/hooks';
 export const Header = styled(Flex)`
@@ -48,12 +48,12 @@ interface Iprops {
   ibASTRTokenSymbol: string;
 }
 const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRTokenSymbol }) => {
-  const _apr = GetDAppApr(contract);
+  // const _apr = GetDAppApr(contract);
   return (
     <Header>
       <HeaderLi>
         <HeaderTitleH6>APY</HeaderTitleH6>
-        <HeaderTitleH3>{_apr}%</HeaderTitleH3>
+        <HeaderTitleH3>{pool.stakerApy.toFixed(2)}%</HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Total Staked</HeaderTitleH6>
@@ -61,16 +61,16 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
           {Number(Number(pool.totalSupply) * (pool?.ratio ?? 1)).toLocaleString('en-US', {
             maximumFractionDigits: 4,
           })}
-          &nbsp; {mainTokenSymbol}
+          {mainTokenSymbol}
         </HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Net value</HeaderTitleH6>
         <HeaderTitleH3>
-          1 {ibASTRTokenSymbol}={' '}
+          1{ibASTRTokenSymbol}=
           {(pool?.ratio ?? 0).toLocaleString('en-US', {
             maximumFractionDigits: 4,
-          })}{' '}
+          })}
           {mainTokenSymbol}
         </HeaderTitleH3>
       </HeaderLi>

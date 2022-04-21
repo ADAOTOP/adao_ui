@@ -11,8 +11,8 @@ const useNextEventCountdown = (nextEventTime: number): number => {
 
   useEffect(() => {
     dispatch(setLotteryIsTransitioning({ isTransitioning: false }));
-    const currentSeconds = Math.floor(Date.now() / 1000);
-    const secondsRemainingCalc = nextEventTime - currentSeconds;
+    // const currentSeconds = Math.floor(Date.now() / 1000);
+    const secondsRemainingCalc = nextEventTime;
     setSecondsRemaining(secondsRemainingCalc < 0 ? 0 : secondsRemainingCalc);
     if (secondsRemainingCalc > 0) {
       timer.current = setInterval(() => {

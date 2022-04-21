@@ -10,7 +10,7 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
     targetRef: BorrowTargetRef1,
     tooltip: BorrowTooltip1,
     tooltipVisible: BorrowTooltipVisible1,
-  } = useTooltip('Comming Soon', {
+  } = useTooltip('Coming Soon', {
     placement: 'right-start',
     trigger: 'hover',
     tootipStyle: {
@@ -22,6 +22,8 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
       lineHeight: '24px',
       border: 'none',
       fontWeight: 'bold',
+      top: '-14px',
+      left: '-14px',
     },
     hideArrow: true,
   });
@@ -29,7 +31,7 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
     targetRef: BorrowTargetRef2,
     tooltip: BorrowTooltip2,
     tooltipVisible: BorrowTooltipVisible2,
-  } = useTooltip('Comming Soon', {
+  } = useTooltip('Coming Soon', {
     placement: 'right-start',
     trigger: 'hover',
     tootipStyle: {
@@ -41,6 +43,8 @@ const BigNav: FC<{ menuItems: IMenu[] }> = ({ menuItems }) => {
       lineHeight: '24px',
       border: 'none',
       fontWeight: 'bold',
+      top: '-14px',
+      left: '-14px',
     },
     hideArrow: true,
   });

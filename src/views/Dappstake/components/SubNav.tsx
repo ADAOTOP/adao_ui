@@ -33,7 +33,15 @@ const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol 
   const activeIndex = getActiveIndex(location.pathname);
   return (
     <StyledNav>
-      <ButtonMenu py="6px" activeIndex={activeIndex} scale="sm" variant="subtle" marginBottom="10px">
+      <ButtonMenu
+        py="6px"
+        marginLeft="18px"
+        marginRight="18px"
+        activeIndex={activeIndex}
+        scale="sm"
+        variant="subtle"
+        marginBottom="10px"
+      >
         <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" to="/dappstake/stake" as={Link}>
           Stake
         </ButtonMenuItem>

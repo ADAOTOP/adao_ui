@@ -23,6 +23,8 @@ const initialState: StatingState = {
   ratio: 1,
   recordsIndex: 1,
 
+  stakerApy: 0,
+  stakerApr: 0,
   isLoading: true,
   data: null,
 };
@@ -50,12 +52,14 @@ export const stakingSlice = createSlice({
       state.totalSupply = action.payload.totalSupply;
       state.ratio = action.payload.ratio;
       state.recordsIndex = action.payload.recordsIndex;
+      state.stakerApr = action.payload.stakerApr;
+      state.stakerApy = action.payload.stakerApy;
     },
     fetchListSuccess: (state, action) => {
       // console.log(111000, action.payload.account, action.payload.list);
       state.data = {
         ...state.data,
-        [action.payload.account]: action.payload.list,
+        [`${action.payload.account}-${chainId}`]: action.payload.list,
       };
     },
   },

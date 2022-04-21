@@ -17,7 +17,7 @@ const wallet_config = {
       symbol: 'ASTR',
       decimals: 18,
     },
-    rpcUrls: ['https://rpc.astar.network:8545'],
+    rpcUrls: ['https://astar.api.onfinality.io/public'],
     blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
   },
   [ChainId.ASTR_TESTNET]: {
@@ -40,7 +40,7 @@ const wallet_config = {
       decimals: 18,
     },
     rpcUrls: ['https://evm.shiden.astar.network'],
-    // rpcUrls: ['https://rpc.shiden.astar.network:8545'],
+    // rpcUrls: ['https://shiden.api.onfinality.io/public'],
     blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
   },
   [ChainId.SDN_TESTNET]: {

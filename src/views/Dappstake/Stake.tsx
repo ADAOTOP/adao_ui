@@ -12,9 +12,10 @@ import { getReceiveNum } from './hooks/getReceiveNum';
 import { escapeRegExp } from 'utils';
 import { UseStakeDApp } from './hooks/useStakeDApp';
 import { LoadingIconStyle } from 'components/svg/Loading';
-import { useStakeBalance, useStakingState } from 'state/staking/hooks';
+import { IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import useAuth from 'hooks/useAuth';
+import { useCurrentEra } from 'state/polkadotApi/hooks';
 const Stake = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
@@ -28,14 +29,19 @@ const Stake = () => {
     totalSupply = '0',
     ratio = 1,
     recordsIndex = 1,
+    stakerApr,
+    stakerApy,
   } = staking;
   useStakeBalance();
+  useCurrentEra();
   const contract = useDAppStackingContract();
 
-  const pool = {
+  const pool: IDappPoolDataInterface = {
     totalSupply,
     ratio,
     recordsIndex,
+    stakerApr,
+    stakerApy,
   };
 
   const { toastSuccess, toastError } = useToast();

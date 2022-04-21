@@ -16,7 +16,7 @@ const StyledTimerText = styled(Heading)`
   margin: 0;
 `;
 const FlexStyled = styled(Flex)`
-  justify-content: center;
+  justify-content: end;
   background: linear-gradient(90deg, #303fff 0%, #c947d9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
