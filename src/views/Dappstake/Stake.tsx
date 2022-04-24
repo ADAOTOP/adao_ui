@@ -11,7 +11,7 @@ import { useDAppStackingContract } from 'hooks/useContract';
 import { getReceiveNum } from './hooks/getReceiveNum';
 import { escapeRegExp } from 'utils';
 import { UseStakeDApp } from './hooks/useStakeDApp';
-import { LoadingIconStyle } from 'components/svg/Loading';
+// import { LoadingIconStyle } from 'components/svg/Loading';
 import { IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import useAuth from 'hooks/useAuth';
@@ -46,8 +46,9 @@ const Stake = () => {
 
   const { toastSuccess, toastError } = useToast();
   const [val, setVal] = useState('');
-  const [pendingTx, setPendingTx] = useState(false);
-  const lpTokensToStake = new BigNumber(val);
+  const [, setPendingTx] = useState(false);
+  // const [pendingTx, setPendingTx] = useState(false);
+  // const lpTokensToStake = new BigNumber(val);
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       if (e.currentTarget.validity.valid) {
@@ -98,9 +99,10 @@ const Stake = () => {
               width="100%"
               variant={!account ? 'tertiary' : 'primary'}
               disabled={
-                !account
-                  ? false
-                  : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
+                !account ? false : true
+                // !account
+                //   ? false
+                //   : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
               }
               onClick={async () => {
                 if (!account) {
@@ -123,8 +125,9 @@ const Stake = () => {
                 }
               }}
             >
-              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
-              {pendingTx ? <LoadingIconStyle /> : null}
+              {!account ? 'Connect Wallet' : 'Coming Soon'}
+              {/* {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
+              {pendingTx ? <LoadingIconStyle /> : null} */}
             </Button>
           </FarmStyled>
           <StakeTableReceive

@@ -103,7 +103,10 @@ const Unbind = () => {
             <Button
               width="100%"
               variant={!account ? 'tertiary' : 'primary'}
-              disabled={!account ? false : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0)}
+              disabled={
+                !account ? false : true
+                // !account ? false : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0)
+              }
               onClick={async () => {
                 if (!account) {
                   onPresentConnectModal();
@@ -130,8 +133,9 @@ const Unbind = () => {
                 }
               }}
             >
-              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
-              {pendingTx ? <LoadingIconStyle /> : null}
+              {!account ? 'Connect Wallet' : 'Coming Soon'}
+              {/* {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
+              {pendingTx ? <LoadingIconStyle /> : null} */}
             </Button>
           </FarmStyled>
           <StakeTableReceive

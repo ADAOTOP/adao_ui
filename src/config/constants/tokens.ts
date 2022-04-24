@@ -1,14 +1,14 @@
 import { ChainId, CHAINKEY, Token } from '@my/sdk';
 import { BASE_BSC_SCAN_URL, chainKey } from 'config';
 // change chain
-export const chainId = ChainId.ASTR_TESTNET;
+export const chainId = ChainId.ASTR_MAINNET;
 
 const tokens = {
   [CHAINKEY.ASTR]: {
     ibASTR: {
       symbol: 'ibASTR',
       address: {
-        [ChainId.ASTR_MAINNET]: '0x56823CE52ab02e247a78ceC08715FEcE228ab682',
+        [ChainId.ASTR_MAINNET]: '0x3BFcAE71e7d5ebC1e18313CeCEbCaD8239aA386c',
         [ChainId.ASTR_TESTNET]: '0x50CE77Ed745374980aE8366424e79D08bD1BB37B',
       },
       decimals: 18,
@@ -2442,10 +2442,10 @@ export const ibASTR: { [chainId: number]: Token } = {
   ),
   [ChainId.ASTR_MAINNET]: new Token(
     ChainId.ASTR_MAINNET as any,
-    '0x56823CE52ab02e247a78ceC08715FEcE228ab682',
+    '0x3BFcAE71e7d5ebC1e18313CeCEbCaD8239aA386c',
     18,
-    main_tokens.astr.symbol,
-    main_tokens.astr.name,
+    'ib' + main_tokens.astr.symbol,
+    'ib' + main_tokens.astr.name,
   ),
 };
 export const USDC = new Token(

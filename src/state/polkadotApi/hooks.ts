@@ -130,6 +130,7 @@ export const useApr = () => {
             api.query.timestamp.now(),
             api.rpc.chain.getHeader(),
             api.query.blockReward.rewardDistributionConfigStorage<RewardDistributionConfig>(),
+            // eraRewardsAndStakes
             api.query.dappsStaking.generalEraInfo(era),
           ]);
           const rawBlockRewards = results[0];
