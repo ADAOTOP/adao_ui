@@ -30,7 +30,7 @@ const TextStyled = styled(Text)`
   line-height: 20px;
   margin-top: 6px;
   ${({ theme }) => theme.mediaQueries.md} {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 const HeadingStyled = styled(Text)`
