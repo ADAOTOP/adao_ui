@@ -11,7 +11,7 @@ import { useDAppStackingContract, useDAppStackingMainContract } from 'hooks/useC
 import { getReceiveNum } from './hooks/getReceiveNum';
 import { UseStakeDApp } from './hooks/useStakeDApp';
 import { UseUnbindDApp } from './hooks/useUnbindDApp';
-import { LoadingIconStyle } from 'components/svg/Loading';
+// import { LoadingIconStyle } from 'components/svg/Loading';
 import { GetStakingContractData } from './hooks/getStakingContractData';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { GetUserList, IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/staking/hooks';
@@ -55,7 +55,7 @@ const Unbind = () => {
   const [val, setVal] = useState('');
   const [pendingTx, setPendingTx] = useState(false);
   const [pendingTxWithdraw, setPendingTxWithdraw] = useState('false');
-  const lpTokensToStake = new BigNumber(val);
+  // const lpTokensToStake = new BigNumber(val);
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       if (e.currentTarget.validity.valid) {
