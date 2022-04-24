@@ -50,6 +50,7 @@ interface Iprops {
   symbol: string;
   mainTokenSymbol: string;
   ibASTRTokenSymbol: string;
+  isMobile: boolean;
 }
 const DappstakePage: FC<Iprops> = ({
   children,
@@ -61,6 +62,7 @@ const DappstakePage: FC<Iprops> = ({
   symbol,
   mainTokenSymbol,
   ibASTRTokenSymbol,
+  isMobile,
   ...props
 }) => {
   return (
@@ -72,7 +74,13 @@ const DappstakePage: FC<Iprops> = ({
         pool={pool}
       />
       <TableContent>
-        <DappstakeSubNav balance={balance} decimals={decimals} isBalanceZero={isBalanceZero} symbol={symbol} />
+        <DappstakeSubNav
+          isMobile={isMobile}
+          balance={balance}
+          decimals={decimals}
+          isBalanceZero={isBalanceZero}
+          symbol={symbol}
+        />
         <StyledPage>{children}</StyledPage>
       </TableContent>
     </StakePageLayout>

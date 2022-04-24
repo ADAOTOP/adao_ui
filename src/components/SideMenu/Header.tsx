@@ -1,40 +1,47 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import { FC } from 'react';
+// import React, { FC, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { throttle } from 'lodash';
+// import { throttle } from 'lodash';
 import UserWidget from './UserWidget';
 import Logo from './Logo';
 import Nav from './Nav';
-import { Flex, useMatchBreakpoints } from '@my/ui';
+import { Flex } from '@my/ui';
+// import { useLocation } from 'react-router-dom';
 const Header: FC<{ className?: string; setCollapsed: (collapsed: boolean) => void; collapsed: boolean }> = ({
   className,
   collapsed,
 }) => {
-  const { isXl } = useMatchBreakpoints();
-  const [showBg, setShowBg] = useState(false);
-  const refPrevOffset = useRef(window.pageXOffset);
-  const isMobile = isXl === false;
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentOffset = window.pageYOffset;
-      const size = isMobile ? 100 : 80;
-      if (currentOffset > size) {
-        setShowBg(true);
-      } else {
-        setShowBg(false);
-      }
-      refPrevOffset.current = currentOffset;
-    };
-    const throttledHandleScroll = throttle(handleScroll, 200);
-    window.addEventListener('scroll', throttledHandleScroll);
-    return () => {
-      window.removeEventListener('scroll', throttledHandleScroll);
-    };
-  }, [isMobile]);
+  // const { isXl } = useMatchBreakpoints();
+  // const { pathname } = useLocation();
+  // const [showBg, setShowBg] = useState(false);
+  // const refPrevOffset = useRef(window.pageXOffset);
+  // const isMobile = isXl === false;
+  // console.log({ pathname });
+  // useEffect(() => {
+  //   if (pathname === '/') {
+  //     const handleScroll = () => {
+  //       const currentOffset = window.pageYOffset;
+  //       const size = isMobile ? 100 : 80;
+  //       if (currentOffset > size) {
+  //         setShowBg(true);
+  //       } else {
+  //         setShowBg(false);
+  //       }
+  //       refPrevOffset.current = currentOffset;
+  //     };
+  //     const throttledHandleScroll = throttle(handleScroll, 200);
+  //     window.addEventListener('scroll', throttledHandleScroll);
+  //     return () => {
+  //       window.removeEventListener('scroll', throttledHandleScroll);
+  //     };
+  //   }
+  // }, [isMobile, pathname]);
   return (
     <div
       className={className}
       style={{
-        backgroundColor: showBg ? `rgba(6, 6, 8, 0.9)` : 'transparent',
+        backgroundColor: `rgba(6, 6, 8, 0.9)`,
+        // backgroundColor: showBg ? `rgba(6, 6, 8, 0.9)` : 'transparent',
       }}
     >
       <div className="inner">

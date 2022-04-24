@@ -27,16 +27,17 @@ interface IProps {
   decimals: number;
   isBalanceZero: boolean;
   symbol: string;
+  isMobile: boolean;
 }
-const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol }) => {
+const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol, isMobile }) => {
   const location = useLocation();
   const activeIndex = getActiveIndex(location.pathname);
   return (
     <StyledNav>
       <ButtonMenu
         py="6px"
-        marginLeft="18px"
-        marginRight="18px"
+        marginLeft={isMobile ? '18px' : '0'}
+        marginRight={isMobile ? '18px' : '0'}
         activeIndex={activeIndex}
         scale="sm"
         variant="subtle"

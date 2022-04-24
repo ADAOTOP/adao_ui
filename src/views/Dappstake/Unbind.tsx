@@ -70,7 +70,7 @@ const Unbind = () => {
   }, [fullBalance, setVal]);
   const { login, logout } = useAuth();
   const { onPresentConnectModal } = useWalletModal(login, logout);
-  const { isXl, isLg } = useMatchBreakpoints();
+  const { isXl, isLg, isMd } = useMatchBreakpoints();
   const isMobile = !(isXl || isLg);
   return (
     <PageLayout style={{ paddingTop: isMobile ? '20px' : '80px' }}>
@@ -84,6 +84,7 @@ const Unbind = () => {
           isBalanceZero={isBalanceZero}
           mainTokenSymbol={mainTokenSymbol}
           ibASTRTokenSymbol={ibASTRTokenSymbol}
+          isMobile={!(isXl || isLg || isMd)}
         >
           <FarmStyled>
             <StyledTokenInput isWarning={isBalanceZero}>
