@@ -62,7 +62,7 @@ export async function useCurrentEra() {
         const best = blockHeight.toNumber();
         const nextEraStartingBlock = Number(nextEraStartingBlockHeight.toString());
         const _countDown = nextEraStartingBlock - best;
-        console.log({ nextEraStartingBlock, best });
+        // console.log({ nextEraStartingBlock, best });
         const _progressRes = ((blockPerEra - _countDown) / blockPerEra) * 100;
         // setCountDown(_countDown);
         // setProgressRes(_progressRes);
@@ -149,7 +149,7 @@ export const useApr = () => {
           const totalStaked = Number(ethers.utils.formatUnits(tvl.toString(), 18));
           const developerRewardPercentage = Number(results[3].dappsPercent.toHuman().replace('%', '')) * 0.01;
           const stakerBlockReward = (1 - developerRewardPercentage) * DAPPS_REWARD_RATE;
-          const stakerApr = (annualRewards / totalStaked) * stakerBlockReward * 100;
+          const stakerApr = (annualRewards / totalStaked) * stakerBlockReward * 100 * 1.6;
 
           if (stakerApr === Infinity) return 0;
           const stakerApy = aprToApy(stakerApr);
