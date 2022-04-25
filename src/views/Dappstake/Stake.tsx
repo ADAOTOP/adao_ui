@@ -16,6 +16,7 @@ import { IDappPoolDataInterface, useStakeBalance, useStakingState } from 'state/
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import useAuth from 'hooks/useAuth';
 import { useCurrentEra } from 'state/polkadotApi/hooks';
+import { LoadingIconStyle } from 'components/svg/Loading';
 const Stake = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
@@ -46,9 +47,8 @@ const Stake = () => {
 
   const { toastSuccess, toastError } = useToast();
   const [val, setVal] = useState('');
-  const [, setPendingTx] = useState(false);
-  // const [pendingTx, setPendingTx] = useState(false);
-  // const lpTokensToStake = new BigNumber(val);
+  const [pendingTx, setPendingTx] = useState(false);
+  const lpTokensToStake = new BigNumber(val);
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       if (e.currentTarget.validity.valid) {
@@ -100,10 +100,9 @@ const Stake = () => {
               width="100%"
               variant={!account ? 'tertiary' : 'primary'}
               disabled={
-                !account ? false : true
-                // !account
-                //   ? false
-                //   : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
+                !account
+                  ? false
+                  : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(balance)
               }
               onClick={async () => {
                 if (!account) {
@@ -126,9 +125,8 @@ const Stake = () => {
                 }
               }}
             >
-              {!account ? 'Connect Wallet' : 'Coming Soon'}
-              {/* {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
-              {pendingTx ? <LoadingIconStyle /> : null} */}
+              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
+              {pendingTx ? <LoadingIconStyle /> : null}
             </Button>
           </FarmStyled>
           <StakeTableReceive

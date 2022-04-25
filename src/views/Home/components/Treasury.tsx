@@ -22,7 +22,7 @@ const Treasury = () => {
       <div className="inner">
         <div>
           <h6>Treasury</h6>
-          <h3>$891,192,980.12</h3>
+          <h3>$-</h3>
         </div>
         <div className="line"></div>
         <div className="fr">

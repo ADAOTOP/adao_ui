@@ -18,6 +18,7 @@ import { GetUserList, IDappPoolDataInterface, useStakeBalance, useStakingState }
 import useAuth from 'hooks/useAuth';
 import { useCurrentEra, usePolkadotApi } from 'state/polkadotApi/hooks';
 import { chainId } from 'config/constants/tokens';
+import { LoadingIconStyle } from 'components/svg/Loading';
 
 const Unbind = () => {
   const { account } = useActiveWeb3React();
@@ -55,7 +56,7 @@ const Unbind = () => {
   const [val, setVal] = useState('');
   const [pendingTx, setPendingTx] = useState(false);
   const [pendingTxWithdraw, setPendingTxWithdraw] = useState('false');
-  // const lpTokensToStake = new BigNumber(val);
+  const lpTokensToStake = new BigNumber(val);
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       if (e.currentTarget.validity.valid) {
@@ -104,10 +105,7 @@ const Unbind = () => {
             <Button
               width="100%"
               variant={!account ? 'tertiary' : 'primary'}
-              disabled={
-                !account ? false : true
-                // !account ? false : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0)
-              }
+              disabled={!account ? false : pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0)}
               onClick={async () => {
                 if (!account) {
                   onPresentConnectModal();
@@ -134,9 +132,8 @@ const Unbind = () => {
                 }
               }}
             >
-              {!account ? 'Connect Wallet' : 'Coming Soon'}
-              {/* {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
-              {pendingTx ? <LoadingIconStyle /> : null} */}
+              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
+              {pendingTx ? <LoadingIconStyle /> : null}
             </Button>
           </FarmStyled>
           <StakeTableReceive
