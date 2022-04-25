@@ -15,7 +15,7 @@ export const HomeStyled = styled.div`
     z-index: 9;
   }
   .banner h1 {
-    padding-top: 210px;
+    padding-top: 160px;
     padding-bottom: 30px;
     font-size: 68px;
     font-weight: 600;
