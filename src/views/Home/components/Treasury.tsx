@@ -6,7 +6,7 @@ import { chainId, DEFAULT_Token } from 'config/constants/tokens';
 
 const Treasury = () => {
   const staking = useStakingState();
-  const { totalSupply = '0', ratio = 1, recordsIndex = 1 } = staking;
+  const { totalSupply = '0', ratio = 1, recordsIndex = 1, mainTokenSymbol } = staking;
   const pool = {
     totalSupply,
     ratio,
@@ -35,6 +35,7 @@ const Treasury = () => {
                 maximumFractionDigits: 4,
               },
             )}
+            {main_token_busd ? '' : mainTokenSymbol}
           </h3>
         </div>
         <div className="a_bg">
