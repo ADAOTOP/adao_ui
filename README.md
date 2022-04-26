@@ -2,4 +2,4 @@
 
 follow us at https://twitter.com/ADAO_Official
 
-![ADAO](./img/banner.gif)
+![ADAO](./img/banner.png)
