@@ -62,6 +62,7 @@ export const stakingSlice = createSlice({
       state.recordsIndex = action.payload?.recordsIndex ?? state.recordsIndex;
       state.stakerApr = action.payload?.stakerApr ?? state.stakerApr;
       state.stakerApy = action.payload?.stakerApy ?? state.stakerApy;
+      state.currentEra = action.payload?.currentEra ?? state.currentEra;
     },
     fetchListSuccess: (state, action) => {
       // console.log(111000, action.payload.account, action.payload.list);

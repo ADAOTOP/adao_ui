@@ -12,7 +12,7 @@ export const usePollBlockNumber = () => {
     const interval = setInterval(async () => {
       const blockNumber = await simpleRpcProvider.getBlockNumber();
       dispatch(setBlock(blockNumber));
-    }, 6000);
+    }, 6000000);
 
     return () => clearInterval(interval);
   }, [dispatch]);

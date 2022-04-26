@@ -74,15 +74,21 @@ export const GetStakingContractData = (contract) => {
   }, [contract, dispatch]);
 };
 
-export const GetPoolUpdate = (contract: IDappStakingInterface) => {
+export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => {
   const dispatch = useAppDispatch();
   // const { stakerApr, stakerApy } = useApr();
   const currentEra = useSelector<AppState, number>((state) => state.staking.currentEra);
+
   // console.log(stakerApr, stakerApy);
   useEffect(() => {
-    if (contract && currentEra) {
-      const getPool = async (contract: IDappStakingInterface) => {
+    const getPool = async (contract: IDappStakingInterface) => {
+      if (contract && mainContract) {
         try {
+          let _currentEra = currentEra;
+          if (!_currentEra) {
+            const __recordsIndex = await mainContract.read_current_era();
+            _currentEra = Number(__recordsIndex.toString());
+          }
           const __recordsIndex = await contract.recordsIndex();
           const __totalSupply = await contract.totalSupply();
           const __ratio = await contract.ratio();
@@ -98,6 +104,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
               recordsIndex: Number(__recordsIndex.toString()),
               stakerApr: stakerApr,
               stakerApy: stakerApy,
+              currentEra: _currentEra,
             }),
           );
 
@@ -114,10 +121,10 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
             contract = null;
           };
         } catch (e) {}
-      };
-      getPool(contract);
-    }
-  }, [dispatch, contract, currentEra]);
+      }
+    };
+    getPool(contract);
+  }, [dispatch, contract, currentEra, mainContract]);
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {

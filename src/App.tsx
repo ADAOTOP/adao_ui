@@ -10,7 +10,7 @@ import { ToastListener } from './contexts/ToastsContext';
 import history from './routerHistory';
 import { PriceProvider } from 'contexts/PriceProvider';
 import SideMenu from './components/SideMenu';
-import { useDAppStackingContract } from 'hooks/useContract';
+import { useDAppStackingContract, useDAppStackingMainContract } from 'hooks/useContract';
 import { GetPoolUpdate } from 'state/staking/hooks';
 
 // Route-based code splitting
@@ -33,7 +33,8 @@ const App: React.FC = () => {
 
   // 获取合约
   const contract = useDAppStackingContract();
-  GetPoolUpdate(contract);
+  const contractMain = useDAppStackingMainContract();
+  GetPoolUpdate(contract, contractMain);
   // useFetchProfile();
   // usePollCoreFarmData();
   return (
