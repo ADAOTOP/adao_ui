@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
-import { RATIO_PRECISION } from 'config/constants/dAppStaking';
+import { RATIO_PRECISION, treasurycontract } from 'config/constants/dAppStaking';
+import { chainId } from 'config/constants/tokens';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,7 +9,8 @@ import { State } from 'state/types';
 import { BIG_TEN } from 'utils/bigNumber';
 import { getFullDisplayBalance } from 'utils/formatBalance';
 import { IDappStakingInterface, IWithdrawRecordItem } from 'utils/types';
-import { fetchListSuccess, fetchSetStateSuccess, fetchStakingBalance, setcurrentEra } from '.';
+import { fetchListSuccess, fetchSetStateSuccess, fetchStakingBalance, setcurrentEra, setTreasuryBalance } from '.';
+import { simpleRpcProvider } from 'utils/providers';
 interface pageInterface {
   pageSize: number;
   pageNum: number;
@@ -33,6 +35,24 @@ export const useStakeBalance = () => {
       dispatch(fetchStakingBalance({ account }));
     }
   }, [dispatch, account]);
+};
+export const GetTreasuryContractData = () => {
+  // 当前处理到的数据   recordsIndex-500  最多
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const walletBalance = await simpleRpcProvider.getBalance(treasurycontract[chainId]);
+        const balance = getFullDisplayBalance(new BigNumber(walletBalance.toString()), 18, 8);
+        dispatch(
+          setTreasuryBalance({
+            treasuryBalance: balance,
+          }),
+        );
+      } catch (e) {}
+    };
+    getData();
+  }, [dispatch]);
 };
 export const GetStakingContractData = (contract) => {
   // 当前处理到的数据   recordsIndex-500  最多
@@ -70,9 +90,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
           const ratio = Number(__ratio.toString()) / RATIO_PRECISION;
 
           const stakerApr = (1.00033 - 1) / (currentEra - 12) + 1;
-          console.log({ stakerApr, currentEra });
           const stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
-          console.log({ stakerApy });
           dispatch(
             fetchSetStateSuccess({
               totalSupply: getFullDisplayBalance(new BigNumber(__totalSupply.toString()), 18, 4),

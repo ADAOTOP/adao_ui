@@ -152,6 +152,7 @@ export interface StatingState {
   stakerApr: number;
   stakerApy: number;
 
+  treasuryBalance: string;
   currentEra: number;
   totalSupply: string;
   ratio: number;

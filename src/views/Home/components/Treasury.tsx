@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useStakingState } from 'state/staking/hooks';
+import { GetTreasuryContractData, useStakingState } from 'state/staking/hooks';
 import styled from 'styled-components';
 import { usePrice } from 'state/price/hooks';
 import { chainId, DEFAULT_Token } from 'config/constants/tokens';
 
 const Treasury = () => {
   const staking = useStakingState();
-  const { totalSupply = '0', ratio = 1, recordsIndex = 1, mainTokenSymbol } = staking;
+  GetTreasuryContractData();
+  const { totalSupply = '0', ratio = 1, recordsIndex = 1, mainTokenSymbol, treasuryBalance } = staking;
   const pool = {
     totalSupply,
     ratio,
@@ -22,7 +23,15 @@ const Treasury = () => {
       <div className="inner">
         <div>
           <h6>Treasury</h6>
-          <h3>$-</h3>
+          <h3>
+            {main_token_busd ? '$' : ''}
+            {treasuryBalance
+              ? Number(Number(treasuryBalance) * Number(main_token_busd ?? 1)).toLocaleString('en-US', {
+                  maximumFractionDigits: 4,
+                })
+              : '-'}
+            {main_token_busd ? '' : mainTokenSymbol}
+          </h3>
         </div>
         <div className="line"></div>
         <div className="fr">

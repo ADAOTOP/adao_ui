@@ -27,6 +27,7 @@ import {
   getFarmAuctionContract,
   getMerkleContract,
   getMainDappStakingContract,
+  getTreasuryContract,
 } from 'utils/contractHelpers';
 import { getMulticallAddress } from 'utils/addressHelpers';
 
@@ -164,6 +165,12 @@ export const useDAppStackingContract = () => {
   const { account, library } = useActiveWeb3React();
   return useMemo(() => getDappStakingContract(account ? library.getSigner() : library), [library, account]);
 };
+
+export const useTreasuryContract = () => {
+  const { account, library } = useActiveWeb3React();
+  return useMemo(() => getTreasuryContract(account ? library.getSigner() : library), [library, account]);
+};
+
 export const useDAppStackingMainContract = () => {
   const { account, library } = useActiveWeb3React();
   return useMemo(() => getMainDappStakingContract(account ? library.getSigner() : library), [library, account]);

@@ -27,6 +27,7 @@ import {
   getMerkleAddress,
   getDappStakingAddress,
   getDappStakingMainAddress,
+  getTreasuryAddress,
 } from 'utils/addressHelpers';
 
 // ABI
@@ -161,6 +162,10 @@ export const getMerkleContract = (signer?: ethers.Signer | ethers.providers.Prov
 
 export const getDappStakingContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   const _merkle = getContract(dAppStakingAbi, getDappStakingAddress(), signer) as IDappStakingInterface;
+  return _merkle;
+};
+export const getTreasuryContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  const _merkle = getContract(dAppStakingAbi, getTreasuryAddress(), signer) as IDappStakingInterface;
   return _merkle;
 };
 

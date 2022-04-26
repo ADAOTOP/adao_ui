@@ -19,6 +19,7 @@ const initialState: StatingState = {
   ibASTRTokenDecimals: ibASTR[chainId].decimals,
   ibASTRTokenFullBalance: '0',
 
+  treasuryBalance: '0',
   currentEra: 0,
   totalSupply: '0',
   ratio: 1,
@@ -49,9 +50,11 @@ export const stakingSlice = createSlice({
     fetchFailed: (state) => {
       state.isLoading = false;
     },
-
     setcurrentEra: (state, action) => {
       state.currentEra = action.payload.currentEra;
+    },
+    setTreasuryBalance: (state, action) => {
+      state.treasuryBalance = action.payload.treasuryBalance;
     },
     fetchSetStateSuccess: (state, action) => {
       state.totalSupply = action.payload?.totalSupply ?? state.totalSupply;
@@ -91,6 +94,7 @@ export const stakingSlice = createSlice({
     });
   },
 });
-export const { fetchStart, fetchFailed, fetchSetStateSuccess, setcurrentEra, fetchListSuccess } = stakingSlice.actions;
+export const { fetchStart, fetchFailed, fetchSetStateSuccess, setcurrentEra, setTreasuryBalance, fetchListSuccess } =
+  stakingSlice.actions;
 
 export default stakingSlice.reducer;
