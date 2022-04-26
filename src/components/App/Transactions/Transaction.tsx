@@ -5,6 +5,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { getBscScanLink } from 'utils';
 import { TransactionDetails } from 'state/transactions/reducer';
 import CircleLoader from '../../Loader/CircleLoader';
+import { chainId } from 'config/constants/tokens';
 
 const TransactionState = styled.div<{ pending: boolean; success?: boolean }>`
   display: flex;
@@ -24,8 +25,6 @@ const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
 `;
 
 export default function Transaction({ tx }: { tx: TransactionDetails }) {
-  const { chainId } = useActiveWeb3React();
-
   const summary = tx?.summary;
   const pending = !tx?.receipt;
   const success = !pending && tx && (tx.receipt?.status === 1 || typeof tx.receipt?.status === 'undefined');

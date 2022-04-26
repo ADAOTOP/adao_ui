@@ -13,6 +13,7 @@ import { useTranslation } from 'contexts/Localization';
 import Column, { AutoColumn } from '../Layout/Column';
 import ImportRow from './ImportRow';
 import { CurrencyModalView } from './types';
+import { chainId } from 'config/constants/tokens';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,8 +39,6 @@ export default function ManageTokens({
   setImportToken: (token: Token) => void;
 }) {
   const theme = useTheme();
-  const { chainId } = useActiveWeb3React();
-
   const { t } = useTranslation();
 
   const [searchQuery, setSearchQuery] = useState<string>('');

@@ -11,6 +11,7 @@ import { getBscScanLink } from '../../utils';
 import Spinner from './Spinner';
 import IconSvg from '../svg/icon.svg';
 import { wrappedCurrency } from 'utils/wrappedCurrency';
+import { chainId } from 'config/constants/tokens';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -162,8 +163,6 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   content,
   currencyToAdd,
 }) => {
-  const { chainId } = useActiveWeb3React();
-
   const handleDismiss = useCallback(() => {
     if (customOnDismiss) {
       customOnDismiss();

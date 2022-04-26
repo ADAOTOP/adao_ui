@@ -8,9 +8,9 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { clearAllTransactions } from 'state/transactions/actions';
 import { orderBy } from 'lodash';
 import TransactionRow from './TransactionRow';
+import { chainId } from 'config/constants/tokens';
 
 const WalletTransactions: React.FC = () => {
-  const { chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
   const allTransactions = useAllTransactions();

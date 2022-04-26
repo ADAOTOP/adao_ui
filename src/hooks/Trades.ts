@@ -3,7 +3,6 @@ import { isTradeBetter } from 'utils/trades';
 import { Currency, CurrencyAmount, Pair, Token, Trade } from '@my/sdk';
 import flatMap from 'lodash/flatMap';
 import { useMemo } from 'react';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
 
 import { useUserSingleHopOnly } from 'state/user/hooks';
 import {
@@ -17,10 +16,9 @@ import { wrappedCurrency } from '../utils/wrappedCurrency';
 
 import { useUnsupportedTokens } from './Tokens';
 import { chainKey } from 'config';
+import { chainId } from 'config/constants/tokens';
 
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
-  const { chainId } = useActiveWeb3React();
-
   const [tokenA, tokenB] = chainId
     ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
     : [undefined, undefined];
@@ -32,7 +30,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
     const additionalB = tokenB ? ADDITIONAL_BASES[chainId]?.[tokenB.address] ?? [] : [];
 
     return [...common, ...additionalA, ...additionalB];
-  }, [chainId, tokenA, tokenB]);
+  }, [tokenA, tokenB]);
 
   const basePairs: [Token, Token][] = useMemo(
     () => flatMap(bases, (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])),
@@ -68,7 +66,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
               return true;
             })
         : [],
-    [tokenA, tokenB, bases, basePairs, chainId],
+    [tokenA, tokenB, bases, basePairs],
   );
   const allPairs = usePairs(allPairCombinations);
 
@@ -195,7 +193,6 @@ export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: Curr
 
 export function useIsTransactionUnsupported(currencyIn?: Currency, currencyOut?: Currency): boolean {
   const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens();
-  const { chainId } = useActiveWeb3React();
 
   const tokenIn = wrappedCurrency(currencyIn, chainId);
   const tokenOut = wrappedCurrency(currencyOut, chainId);

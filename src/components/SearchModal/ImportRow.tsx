@@ -10,6 +10,7 @@ import { useCombinedInactiveList } from 'state/lists/hooks';
 import styled from 'styled-components';
 import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens';
 import { useTranslation } from 'contexts/Localization';
+import { chainId } from 'config/constants/tokens';
 
 const TokenSection = styled.div<{ dim?: boolean }>`
   padding: 4px 20px;
@@ -52,7 +53,6 @@ export default function ImportRow({
   setImportToken: (token: Token) => void;
 }) {
   // gloabls
-  const { chainId } = useActiveWeb3React();
 
   const { t } = useTranslation();
 

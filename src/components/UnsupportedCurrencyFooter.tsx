@@ -9,6 +9,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { getBscScanLink } from 'utils';
 import { wrappedCurrency } from 'utils/wrappedCurrency';
 import { useUnsupportedTokens } from '../hooks/Tokens';
+import { chainId } from 'config/constants/tokens';
 
 interface Props extends InjectedModalProps {
   currencies: (Currency | undefined)[];
@@ -26,7 +27,6 @@ const DetailsFooter = styled.div`
 `;
 
 const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
-  const { chainId } = useActiveWeb3React();
   const tokens =
     chainId && currencies
       ? currencies.map((currency) => {

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { TransactionDetails } from 'state/transactions/reducer';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { getBscScanLink } from 'utils';
+import { chainId } from 'config/constants/tokens';
 
 interface TransactionRowProps {
   txn: TransactionDetails;
@@ -45,8 +46,6 @@ const renderIcon = (txn: TransactionDetails) => {
 };
 
 const TransactionRow: React.FC<TransactionRowProps> = ({ txn }) => {
-  const { chainId } = useActiveWeb3React();
-
   if (!txn) {
     return null;
   }

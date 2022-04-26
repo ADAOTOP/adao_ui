@@ -3,7 +3,6 @@ import { parseBytes32String } from '@ethersproject/strings';
 import { Currency, ETHER, Token, currencyEquals } from '@my/sdk';
 import { useMemo } from 'react';
 import { arrayify } from 'ethers/lib/utils';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { chainId } from 'config/constants/tokens';
 import {
   TokenAddressMap,
@@ -22,7 +21,6 @@ import { filterTokens } from '../components/SearchModal/filtering';
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
-  const { chainId } = useActiveWeb3React();
   const userAddedTokens = useUserAddedTokens();
 
   return useMemo(() => {
@@ -51,7 +49,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
     }
 
     return mapWithoutUrls;
-  }, [chainId, userAddedTokens, tokenMap, includeUserAdded]);
+  }, [userAddedTokens, tokenMap, includeUserAdded]);
 }
 
 export function useDefaultTokens(): { [address: string]: Token } {
@@ -100,7 +98,6 @@ export function useIsTokenActive(token: Token | undefined | null): boolean {
 
 // used to detect extra search results
 export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined {
-  const { chainId } = useActiveWeb3React();
   const inactiveTokens = useAllInactiveTokens();
 
   return useMemo(() => {
@@ -109,7 +106,7 @@ export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined
     }
     const tokens = filterTokens(Object.values(inactiveTokens), searchQuery);
     return tokens;
-  }, [chainId, inactiveTokens, searchQuery]);
+  }, [inactiveTokens, searchQuery]);
 }
 
 // Check if currency is included in custom list from user storage
@@ -139,7 +136,6 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
 // null if loading
 // otherwise returns the token
 export function useToken(tokenAddress?: string): Token | undefined | null {
-  const { chainId } = useActiveWeb3React();
   const tokens = useAllTokens();
 
   const address = isAddress(tokenAddress);
@@ -180,7 +176,6 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
     return undefined;
   }, [
     address,
-    chainId,
     decimals.loading,
     decimals.result,
     symbol.loading,

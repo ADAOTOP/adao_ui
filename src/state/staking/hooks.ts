@@ -95,8 +95,10 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
           // console.log('recordsIndex:', __recordsIndex.toString());
           const ratio = Number(__ratio.toString()) / RATIO_PRECISION;
 
-          const stakerApr = (1.00033 - 1) / (currentEra - 12) + 1;
-          const stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
+          const _stakerApr = (1.00033 - 1) / (currentEra - 12) + 1;
+          const stakerApr = _stakerApr > 0 ? _stakerApr : 0;
+          const _stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
+          const stakerApy = _stakerApy > 0 ? _stakerApy : 0;
           dispatch(
             fetchSetStateSuccess({
               totalSupply: getFullDisplayBalance(new BigNumber(__totalSupply.toString()), 18, 4),

@@ -10,11 +10,11 @@ import masterChef from 'config/abi/masterchef.json';
 import { useEffect, useState } from 'react';
 import { chainKey } from 'config';
 import { CHAINKEY } from '@my/sdk';
+import { chainId } from 'config/constants/tokens';
 
 const base = BIG_TEN.pow(new RealBigNumber(18));
 
 const useKacPerBlock = (): RealBigNumber => {
-  const { chainId } = useActiveWeb3React();
   const [kacPerBlock, setKacPerBlock] = useState<RealBigNumber>(new RealBigNumber(0));
   useEffect(() => {
     multicall(masterChef, [
@@ -28,10 +28,9 @@ const useKacPerBlock = (): RealBigNumber => {
             : 'kacPerShidenBlock',
       },
     ]).then(([kacPerBlock]) => {
-      console.log(11111);
       setKacPerBlock(new RealBigNumber(kacPerBlock.toString()).div(base));
     });
-  }, [chainId]);
+  }, []);
 
   return kacPerBlock;
 };

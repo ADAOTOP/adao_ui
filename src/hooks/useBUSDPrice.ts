@@ -72,7 +72,6 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 }
 
 export const useCakeBusdPrice = (): Price | undefined => {
-  const { chainId } = useActiveWeb3React();
   const currentChaindId = chainId || ChainId.BSC_MAINNET;
   const cakeBusdPrice = useBUSDPrice(Adao[currentChaindId]);
   return cakeBusdPrice;

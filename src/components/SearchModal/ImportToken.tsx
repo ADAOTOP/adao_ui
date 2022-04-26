@@ -8,6 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useCombinedInactiveList } from 'state/lists/hooks';
 import { ListLogo } from 'components/Logo';
 import { useTranslation } from 'contexts/Localization';
+import { chainId } from 'config/constants/tokens';
 
 interface ImportProps {
   tokens: Token[];
@@ -15,8 +16,6 @@ interface ImportProps {
 }
 
 function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
-  const { chainId } = useActiveWeb3React();
-
   const { t } = useTranslation();
 
   const [confirmed, setConfirmed] = useState(false);
