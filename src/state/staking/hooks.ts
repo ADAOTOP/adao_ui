@@ -4,12 +4,11 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState, useAppDispatch } from 'state';
-import { useApr } from 'state/polkadotApi/hooks';
 import { State } from 'state/types';
 import { BIG_TEN } from 'utils/bigNumber';
 import { getFullDisplayBalance } from 'utils/formatBalance';
 import { IDappStakingInterface, IWithdrawRecordItem } from 'utils/types';
-import { fetchListSuccess, fetchSetStateSuccess, fetchStakingBalance } from '.';
+import { fetchListSuccess, fetchSetStateSuccess, fetchStakingBalance, setcurrentEra } from '.';
 interface pageInterface {
   pageSize: number;
   pageNum: number;
@@ -35,22 +34,49 @@ export const useStakeBalance = () => {
     }
   }, [dispatch, account]);
 };
-export const GetPoolUpdate = (contract: IDappStakingInterface) => {
+export const GetStakingContractData = (contract) => {
+  // 当前处理到的数据   recordsIndex-500  最多
   const dispatch = useAppDispatch();
-  const { stakerApr, stakerApy } = useApr();
-  // console.log(stakerApr, stakerApy);
   useEffect(() => {
     if (contract) {
+      const getPool = async (contract: IDappStakingInterface) => {
+        try {
+          const __recordsIndex = await contract.read_current_era();
+          dispatch(
+            setcurrentEra({
+              currentEra: Number(__recordsIndex.toString()),
+            }),
+          );
+        } catch (e) {}
+      };
+      getPool(contract);
+    }
+  }, [contract, dispatch]);
+};
+
+export const GetPoolUpdate = (contract: IDappStakingInterface) => {
+  const dispatch = useAppDispatch();
+  // const { stakerApr, stakerApy } = useApr();
+  const currentEra = useSelector<AppState, number>((state) => state.staking.currentEra);
+  // console.log(stakerApr, stakerApy);
+  useEffect(() => {
+    if (contract && currentEra) {
       const getPool = async (contract: IDappStakingInterface) => {
         try {
           const __recordsIndex = await contract.recordsIndex();
           const __totalSupply = await contract.totalSupply();
           const __ratio = await contract.ratio();
           // console.log('recordsIndex:', __recordsIndex.toString());
+          const ratio = Number(__ratio.toString()) / RATIO_PRECISION;
+
+          const stakerApr = (1.00033 - 1) / (currentEra - 12) + 1;
+          console.log({ stakerApr, currentEra });
+          const stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
+          console.log({ stakerApy });
           dispatch(
             fetchSetStateSuccess({
               totalSupply: getFullDisplayBalance(new BigNumber(__totalSupply.toString()), 18, 4),
-              ratio: Number(__ratio.toString()) / RATIO_PRECISION,
+              ratio,
               recordsIndex: Number(__recordsIndex.toString()),
               stakerApr: stakerApr,
               stakerApy: stakerApy,
@@ -62,8 +88,8 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
               totalSupply: getFullDisplayBalance(new BigNumber(_totalSupply.toString()), 18, 4),
               ratio: Number(_ratio.toString()) / RATIO_PRECISION,
               recordsIndex: Number(_recordsIndex.toString()),
-              stakerApr: stakerApr,
-              stakerApy: stakerApy,
+              // stakerApr: stakerApr,
+              // stakerApy: stakerApy,
             });
           });
           return () => {
@@ -73,7 +99,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface) => {
       };
       getPool(contract);
     }
-  }, [dispatch, contract, stakerApr, stakerApy]);
+  }, [dispatch, contract, currentEra]);
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {

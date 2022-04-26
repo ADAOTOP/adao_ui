@@ -17,7 +17,7 @@ interface Iprops {
   list: IWithdrawRecordItem[];
   pendingTxWithdraw: string;
   withdraw_symbol: string;
-  current_era: number;
+  currentEra: number;
   mainTokenSymbol: string;
   blocksUntilNextEra: number;
   era: number;
@@ -48,7 +48,7 @@ const UnbindList: FC<Iprops> = ({
   withdraw,
   withdraw_symbol,
   pendingTxWithdraw,
-  current_era,
+  currentEra,
   mainTokenSymbol,
   blocksUntilNextEra,
   era,
@@ -64,7 +64,7 @@ const UnbindList: FC<Iprops> = ({
       <UlStyled>
         {list && list.length
           ? list.map((v, index) => {
-              const mainEra = v.era + unbondingPeriod - current_era;
+              const mainEra = v.era + unbondingPeriod - currentEra;
               // 12 s/block   7200 block/day
               // // {/* blocksUntilNextEra+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
               //

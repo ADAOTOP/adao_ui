@@ -19,6 +19,7 @@ const initialState: StatingState = {
   ibASTRTokenDecimals: ibASTR[chainId].decimals,
   ibASTRTokenFullBalance: '0',
 
+  currentEra: 0,
   totalSupply: '0',
   ratio: 1,
   recordsIndex: 1,
@@ -48,12 +49,16 @@ export const stakingSlice = createSlice({
     fetchFailed: (state) => {
       state.isLoading = false;
     },
+
+    setcurrentEra: (state, action) => {
+      state.currentEra = action.payload.currentEra;
+    },
     fetchSetStateSuccess: (state, action) => {
-      state.totalSupply = action.payload.totalSupply;
-      state.ratio = action.payload.ratio;
-      state.recordsIndex = action.payload.recordsIndex;
-      state.stakerApr = action.payload.stakerApr;
-      state.stakerApy = action.payload.stakerApy;
+      state.totalSupply = action.payload?.totalSupply ?? state.totalSupply;
+      state.ratio = action.payload?.ratio ?? state.ratio;
+      state.recordsIndex = action.payload?.recordsIndex ?? state.recordsIndex;
+      state.stakerApr = action.payload?.stakerApr ?? state.stakerApr;
+      state.stakerApy = action.payload?.stakerApy ?? state.stakerApy;
     },
     fetchListSuccess: (state, action) => {
       // console.log(111000, action.payload.account, action.payload.list);
@@ -86,6 +91,6 @@ export const stakingSlice = createSlice({
     });
   },
 });
-export const { fetchStart, fetchFailed, fetchSetStateSuccess, fetchListSuccess } = stakingSlice.actions;
+export const { fetchStart, fetchFailed, fetchSetStateSuccess, setcurrentEra, fetchListSuccess } = stakingSlice.actions;
 
 export default stakingSlice.reducer;

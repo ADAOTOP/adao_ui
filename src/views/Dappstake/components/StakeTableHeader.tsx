@@ -53,7 +53,7 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
     <Header>
       <HeaderLi>
         <HeaderTitleH6>APY</HeaderTitleH6>
-        <HeaderTitleH3>{pool.stakerApy.toFixed(2)}%</HeaderTitleH3>
+        <HeaderTitleH3>{pool.stakerApy ? pool.stakerApy.toFixed(2) : '-'}%</HeaderTitleH3>
       </HeaderLi>
       <HeaderLi>
         <HeaderTitleH6>Total Staked</HeaderTitleH6>
