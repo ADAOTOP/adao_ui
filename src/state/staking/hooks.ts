@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { RATIO_PRECISION, treasurycontract } from 'config/constants/dAppStaking';
 import { chainId } from 'config/constants/tokens';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState, useAppDispatch } from 'state';
 import { State } from 'state/types';
@@ -78,11 +78,11 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
   const dispatch = useAppDispatch();
   // const { stakerApr, stakerApy } = useApr();
   const currentEra = useSelector<AppState, number>((state) => state.staking.currentEra);
-
+  const [isLoad, setIsLoad] = useState(false);
   // console.log(stakerApr, stakerApy);
   useEffect(() => {
     const getPool = async (contract: IDappStakingInterface) => {
-      if (contract && mainContract) {
+      if (!isLoad && contract && mainContract) {
         try {
           let _currentEra = currentEra;
           if (!_currentEra) {
@@ -122,10 +122,11 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
             contract = null;
           };
         } catch (e) {}
+        setIsLoad(true);
       }
     };
     getPool(contract);
-  }, [dispatch, contract, currentEra, mainContract]);
+  }, [dispatch, contract, isLoad, currentEra, mainContract]);
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
