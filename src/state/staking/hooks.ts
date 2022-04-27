@@ -83,7 +83,6 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
   useEffect(() => {
     const getPool = async (contract: IDappStakingInterface) => {
       if (contract && mainContract) {
-        console.log(1222);
         try {
           let _currentEra = currentEra;
           if (!_currentEra) {
