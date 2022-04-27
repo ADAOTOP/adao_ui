@@ -83,6 +83,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
   useEffect(() => {
     const getPool = async (contract: IDappStakingInterface) => {
       if (contract && mainContract) {
+        console.log(1222);
         try {
           let _currentEra = currentEra;
           if (!_currentEra) {
@@ -94,8 +95,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
           const __ratio = await contract.ratio();
           // console.log('recordsIndex:', __recordsIndex.toString());
           const ratio = Number(__ratio.toString()) / RATIO_PRECISION;
-
-          const _stakerApr = (1.00033 - 1) / (currentEra - 12) + 1;
+          const _stakerApr = (ratio - 1) / (currentEra - 12) + 1;
           const stakerApr = _stakerApr > 0 ? _stakerApr : 0;
           const _stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
           const stakerApy = _stakerApy > 0 ? _stakerApy : 0;
