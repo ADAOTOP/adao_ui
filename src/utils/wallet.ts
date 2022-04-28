@@ -115,7 +115,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `${BASE_URL[chainKey]}/images/tokens/${chainKey}/${tokenAddress}.svg`,
+        image: `${BASE_URL[chainKey]}/images/tokens/${chainKey}/${tokenAddress.toLocaleLowerCase()}.svg`,
       },
     },
   });
