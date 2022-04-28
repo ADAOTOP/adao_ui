@@ -51,6 +51,7 @@ interface Iprops {
   mainTokenSymbol: string;
   ibASTRTokenSymbol: string;
   isMobile: boolean;
+  addToMetamask: any;
 }
 const DappstakePage: FC<Iprops> = ({
   children,
@@ -63,6 +64,7 @@ const DappstakePage: FC<Iprops> = ({
   mainTokenSymbol,
   ibASTRTokenSymbol,
   isMobile,
+  addToMetamask,
   ...props
 }) => {
   return (
@@ -72,6 +74,7 @@ const DappstakePage: FC<Iprops> = ({
         ibASTRTokenSymbol={ibASTRTokenSymbol}
         contract={contract}
         pool={pool}
+        addToMetamask={addToMetamask}
       />
       <TableContent>
         <DappstakeSubNav

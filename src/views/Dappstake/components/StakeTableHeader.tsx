@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Flex } from '@my/ui';
+import { AddIcon, Flex, MetamaskIcon } from '@my/ui';
 // import { GetDAppApr } from '../hooks/getApr';
 import { IDappStakingInterface } from 'utils/types';
 import { IDappPoolDataInterface } from 'state/staking/hooks';
@@ -13,6 +13,8 @@ export const Header = styled(Flex)`
   min-width: 84%;
   max-width: 100%;
   margin: 0 auto 16px;
+  position: relative;
+  // display: blocl;
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 100%;
     padding: 20px 40px;
@@ -41,13 +43,33 @@ export const HeaderTitleH6 = styled.h6`
     padding-bottom: 8px;
   }
 `;
+const AddToken = styled.div`
+  position: absolute;
+  bottom: 10px;
+  height: 24px;
+  right: 10px;
+  background: linear-gradient(90deg, #303fff, #e67af3);
+  border-radius: 12px;
+  padding: 2px 6px 0px;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.md} {
+    top: 10px;
+  }
+  &:hover {
+    background: linear-gradient(-45deg, #e67af3, #303fff);
+    box-shadow: 0 0 3px #6b167b;
+  }
+`;
 interface Iprops {
   contract: IDappStakingInterface;
   pool: IDappPoolDataInterface;
   mainTokenSymbol: string;
   ibASTRTokenSymbol: string;
+  addToMetamask: any;
 }
-const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRTokenSymbol }) => {
+const StakeTableHeader: FC<Iprops> = ({ contract, addToMetamask, pool, mainTokenSymbol, ibASTRTokenSymbol }) => {
   // const _apr = GetDAppApr(contract);
   return (
     <Header>
@@ -76,7 +98,12 @@ const StakeTableHeader: FC<Iprops> = ({ contract, pool, mainTokenSymbol, ibASTRT
           {mainTokenSymbol}
         </HeaderTitleH3>
       </HeaderLi>
+      <AddToken onClick={addToMetamask}>
+        <AddIcon />
+        <MetamaskIcon />
+      </AddToken>
     </Header>
   );
 };
+
 export default StakeTableHeader;

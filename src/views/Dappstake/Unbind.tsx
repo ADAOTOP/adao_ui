@@ -24,6 +24,7 @@ import useAuth from 'hooks/useAuth';
 import { useCurrentEra, usePolkadotApi } from 'state/polkadotApi/hooks';
 import { chainId } from 'config/constants/tokens';
 import { LoadingIconStyle } from 'components/svg/Loading';
+import { addToMetamask } from './hooks/addToMetamask';
 
 const Unbind = () => {
   const { account } = useActiveWeb3React();
@@ -84,6 +85,7 @@ const Unbind = () => {
       <Flex justifyContent="center" alignContent="center" flexWrap="wrap">
         <DappstakePage
           contract={contract}
+          addToMetamask={() => addToMetamask(account, onPresentConnectModal)}
           pool={pool}
           balance={new BigNumber(balance)}
           decimals={decimals}

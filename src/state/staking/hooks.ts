@@ -76,6 +76,7 @@ export const GetStakingContractData = (contract) => {
 
 export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => {
   const dispatch = useAppDispatch();
+
   // const { stakerApr, stakerApy } = useApr();
   const currentEra = useSelector<AppState, number>((state) => state.staking.currentEra);
   const [isLoad, setIsLoad] = useState(false);

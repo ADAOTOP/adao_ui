@@ -17,6 +17,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import useAuth from 'hooks/useAuth';
 import { useCurrentEra } from 'state/polkadotApi/hooks';
 import { LoadingIconStyle } from 'components/svg/Loading';
+import { addToMetamask } from './hooks/addToMetamask';
 const Stake = () => {
   const { account } = useActiveWeb3React();
   const staking = useStakingState();
@@ -63,14 +64,17 @@ const Stake = () => {
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance);
   }, [fullBalance, setVal]);
+
   const { login, logout } = useAuth();
   const { onPresentConnectModal } = useWalletModal(login, logout);
   const { isXl, isLg, isMd } = useMatchBreakpoints();
   const isMobile = !(isXl || isLg);
+
   return (
     <PageLayout style={{ paddingTop: isMobile ? '20px' : '80px' }}>
       <Flex justifyContent="center" alignContent="center">
         <DappstakePage
+          addToMetamask={() => addToMetamask(account, onPresentConnectModal)}
           contract={contract}
           pool={pool}
           balance={new BigNumber(balance)}
