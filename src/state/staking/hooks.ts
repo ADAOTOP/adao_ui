@@ -126,7 +126,8 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
       }
     };
     getPool(contract);
-  }, [dispatch, contract, isLoad, currentEra, mainContract]);
+    // eslint-disable-next-line
+  }, [dispatch, contract, mainContract]);
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
