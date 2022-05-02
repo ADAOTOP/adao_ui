@@ -10,7 +10,7 @@ import { chainId } from 'config/constants/tokens';
 import { ChainId } from '@my/sdk';
 import Countdown from './Countdown';
 // @ts-ignore
-export const unbondingPeriod = chainId === ChainId.ASTR_TESTNET ? 2 : 10;
+export const unbondingPeriod = chainId === ChainId.ASTR_TESTNET ? 2 : 4;
 
 interface Iprops {
   withdraw: any;
@@ -58,8 +58,12 @@ const UnbindList: FC<Iprops> = ({
     <UnbindListStyled>
       <HeadingStyled>Unbinding Rules</HeadingStyled>
       <TextStyled>
+        Due to the {mainTokenSymbol}'s dappstaking rule, the maximum unlocking chunks is {unbondingPeriod}, and we are
+        unlocking at era 12, 13, 14, 16. So the next era that can do unbinding is: 22. Sorry for the unconvinience, We
+        are working in lifting this restriction.
+        {/* 
         Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod} ERAs(About {unbondingPeriod}{' '}
-        days) to unbind. When the time is up, {mainTokenSymbol} will be automatically sent to your address
+        days) to unbind. When the time is up, {mainTokenSymbol} will be automatically sent to your address */}
       </TextStyled>
       <UlStyled>
         {list && list.length
