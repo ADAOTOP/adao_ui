@@ -140,7 +140,7 @@ const Unbind = () => {
                 }
               }}
             >
-              {!account ? 'Connect Wallet' : pendingTx ? 'Confirming' : 'Confirm'}
+              {!account ? 'Connect Wallet' : pendingTx ? 'Availableing from Era 22' : 'Available from Era 22 '}
               {pendingTx ? <LoadingIconStyle /> : null}
             </Button>
           </FarmStyled>
