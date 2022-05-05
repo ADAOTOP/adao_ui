@@ -78,18 +78,14 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
   const dispatch = useAppDispatch();
 
   // const { stakerApr, stakerApy } = useApr();
-  const currentEra = useSelector<AppState, number>((state) => state.staking.currentEra);
   const [isLoad, setIsLoad] = useState(false);
   // console.log(stakerApr, stakerApy);
   useEffect(() => {
     const getPool = async (contract: IDappStakingInterface) => {
       if (!isLoad && contract && mainContract) {
         try {
-          let _currentEra = currentEra;
-          if (!_currentEra) {
-            const __recordsIndex = await mainContract.read_current_era();
-            _currentEra = Number(__recordsIndex.toString());
-          }
+          const currentEra = await mainContract.read_current_era();
+          const _currentEra = Number(currentEra.toString());
           const __recordsIndex = await contract.recordsIndex();
           const __totalSupply = await contract.totalSupply();
           const __ratio = await contract.ratio();
