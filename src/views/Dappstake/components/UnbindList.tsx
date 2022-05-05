@@ -54,21 +54,34 @@ const UnbindList: FC<Iprops> = ({
   era,
 }) => {
   // const lastBlockNumber = useBlockNumber();
+  // console.log('0: 20', subNextPre(20));
+  // console.log('1: 21', subNextPre(21));
+  // console.log('2: 22', subNextPre(22));
+  // console.log('3: 23', subNextPre(23));
+  // console.log('4: 24', subNextPre(24));
+  // console.log('5: 25', subNextPre(25));
+  // console.log('6: 26', subNextPre(26));
+  // console.log('7: 27', subNextPre(27));
+  // console.log('8: 28', subNextPre(28));
+  // console.log('9: 29', subNextPre(29));
+  // console.log('10: 30', subNextPre(30));
   return (
     <UnbindListStyled>
       <HeadingStyled>Unbinding Rules</HeadingStyled>
       <TextStyled>
-        Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod} ERAs(About {unbondingPeriod}{' '}
-        days) to unbind. When the time is up, {mainTokenSymbol} will be automatically sent to your address
+        Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod}~{unbondingPeriod + 2} ERAs
+        (About {unbondingPeriod}~{unbondingPeriod + 2} days) to unbind. When the time is up, {mainTokenSymbol} will be
+        automatically sent to your address
       </TextStyled>
       <UlStyled>
         {list && list.length
           ? list.map((v, index) => {
-              const mainEra = v.era + unbondingPeriod - currentEra;
+              // const mainEra = v.era + unbondingPeriod - currentEra;
+              const mainEra = subNextPre(v.era) - currentEra;
               // 12 s/block   7200 block/day
               // // {/* blocksUntilNextEra+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
               //
-              const timp = mainEra > 0 ? (blocksUntilNextEra + (v.era + unbondingPeriod - era - 1) * 7200) * 12 : 0;
+              const timp = mainEra > 0 ? (blocksUntilNextEra + (subNextPre(v.era) - era - 1) * 7200) * 12 : 0;
               if (timp) {
                 console.log({ blocksUntilNextEra, era }, 'v.era: ' + v.era);
               }
@@ -121,6 +134,16 @@ const UnbindList: FC<Iprops> = ({
     </UnbindListStyled>
   );
 };
+const subNextPre = (recordEra: number): number => {
+  const pre = (recordEra + unbondingPeriod) % unbondingPeriod;
+  const arr = [2, 4, 7, 9];
+  if (arr.includes(pre)) {
+    return recordEra + unbondingPeriod;
+  } else {
+    return subNextPre(recordEra + 1);
+  }
+};
+
 const LineText = styled(Text)`
   text-align: right;
   color: transparent;
