@@ -17,17 +17,19 @@ const StakeWrap = ({ children }) => {
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(balance);
   }, [balance]);
-  return (
-    <StyledPage
-      balance={balance}
-      decimals={decimals}
-      max={max}
-      isBalanceZero={isBalanceZero}
-      fullBalance={fullBalance}
-      pid={pid}
-    >
-      {children}
-    </StyledPage>
-  );
+  return useMemo(() => {
+    return (
+      <StyledPage
+        balance={balance}
+        decimals={decimals}
+        max={max}
+        isBalanceZero={isBalanceZero}
+        fullBalance={fullBalance}
+        pid={pid}
+      >
+        {children}
+      </StyledPage>
+    );
+  }, [balance, decimals, max, isBalanceZero, fullBalance, pid]);
 };
 export default StakeWrap;

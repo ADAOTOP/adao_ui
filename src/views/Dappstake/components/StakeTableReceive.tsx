@@ -1,4 +1,5 @@
 import { Text } from '@my/ui';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 const TextStyle = styled(Text)`
   font-size: 14px;
@@ -9,6 +10,8 @@ const TextStyle = styled(Text)`
   padding-top: 24px;
 `;
 const StakeTableReceive = ({ receiveText }: { receiveText: string }) => {
-  return <TextStyle>{receiveText}</TextStyle>;
+  return useMemo(() => {
+    return <TextStyle>{receiveText}</TextStyle>;
+  }, [receiveText]);
 };
 export default StakeTableReceive;

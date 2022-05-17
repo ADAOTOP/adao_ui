@@ -27,7 +27,10 @@ const StyledPage = ({ children, ...props }) => {
 };
 const StakePageLayout = styled.div`
   min-height: 0px;
-  width: 600px;
+  width: 100%;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 600px;
+  }
   border-radius: 20px;
   padding: 0;
   // margin: 100px auto;
@@ -35,9 +38,14 @@ const StakePageLayout = styled.div`
 const TableContent = styled.div`
   background: linear-gradient(0deg, #0d0d11, #3a3a4c);
   border-radius: 20px;
-  padding: 30px 35px;
+  padding: 30px 12px;
   min-width: 84%;
-  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 30px 35px;
+    max-width: 100%;
+  }
 `;
 // slippageAdjustedAmounts
 interface Iprops {

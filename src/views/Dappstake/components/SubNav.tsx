@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { ButtonMenu, ButtonMenuItem, Flex } from '@my/ui';
@@ -32,21 +32,22 @@ interface IProps {
 const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol, isMobile }) => {
   const location = useLocation();
   const activeIndex = getActiveIndex(location.pathname);
-  return (
-    <StyledNav>
-      <ButtonMenu
-        py="6px"
-        marginLeft={isMobile ? '18px' : '0'}
-        marginRight={isMobile ? '18px' : '0'}
-        activeIndex={activeIndex}
-        scale="sm"
-        variant="subtle"
-        marginBottom="10px"
-      >
-        <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" to="/dappstake/stake" as={Link}>
-          Stake
-        </ButtonMenuItem>
-        {/* <ButtonMenuItem
+  return useMemo(() => {
+    return (
+      <StyledNav>
+        <ButtonMenu
+          py="6px"
+          marginLeft={isMobile ? '18px' : '0'}
+          marginRight={isMobile ? '18px' : '0'}
+          activeIndex={activeIndex}
+          scale="sm"
+          variant="subtle"
+          marginBottom="10px"
+        >
+          <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" to="/dappstake/stake" as={Link}>
+            Stake
+          </ButtonMenuItem>
+          {/* <ButtonMenuItem
           style={activeIndex === 1 ? { color: '#ffffff', background: 'linear-gradient(0deg, #0D0D11, #3A3A4C)' } : { color: "#4C4C5 " }}
           height="44px"
           width="112px"
@@ -56,13 +57,14 @@ const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol,
         >
           Unstake
         </ButtonMenuItem> */}
-        <ButtonMenuItem isActive={activeIndex === 1} id="Unstake-nav-link" to="/dappstake/unbind" as={Link}>
-          Unbind
-        </ButtonMenuItem>
-      </ButtonMenu>
-      <Balance balance={balance} decimals={decimals} symbol={symbol} isBalanceZero={isBalanceZero} />
-    </StyledNav>
-  );
+          <ButtonMenuItem isActive={activeIndex === 1} id="Unstake-nav-link" to="/dappstake/unbind" as={Link}>
+            Unbind
+          </ButtonMenuItem>
+        </ButtonMenu>
+        <Balance balance={balance} decimals={decimals} symbol={symbol} isBalanceZero={isBalanceZero} />
+      </StyledNav>
+    );
+  }, [activeIndex, balance, decimals, isBalanceZero, isMobile, symbol]);
 };
 
 export default DappstakeSubNav;

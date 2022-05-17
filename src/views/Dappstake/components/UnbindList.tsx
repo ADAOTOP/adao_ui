@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import styled from 'styled-components';
 import { Text } from '@my/ui';
 import NoList from './NoList';
@@ -65,74 +65,66 @@ const UnbindList: FC<Iprops> = ({
   // console.log('8: 28', subNextPre(28));
   // console.log('9: 29', subNextPre(29));
   // console.log('10: 30', subNextPre(30));
-  return (
-    <UnbindListStyled>
-      <HeadingStyled>Unbinding Rules</HeadingStyled>
-      <TextStyled>
-        Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod}~{unbondingPeriod + 2} ERAs
-        (About {unbondingPeriod}~{unbondingPeriod + 2} days) to unbind. When the time is up, {mainTokenSymbol} will be
-        automatically sent to your address
-      </TextStyled>
-      <UlStyled>
-        {list && list.length
-          ? list.map((v, index) => {
-              // const mainEra = v.era + unbondingPeriod - currentEra;
-              const mainEra = subNextPre(v.era) - currentEra;
-              // 12 s/block   7200 block/day
-              // // {/* blocksUntilNextEra+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
-              //
-              const timp = mainEra > 0 ? (blocksUntilNextEra + (subNextPre(v.era) - era - 1) * 7200) * 12 : 0;
-              if (timp) {
-                console.log({ blocksUntilNextEra, era }, 'v.era: ' + v.era);
-              }
-              return (
-                <li key={index}>
-                  <TextAmount>
-                    {v.amount || '-'}
-                    &nbsp;
-                    {withdraw_symbol}
-                  </TextAmount>
-                  <StatusWrap>
-                    {/* {v.status === 0 ? ( */}
-                    {mainEra <= 0 ? (
-                      <Text fontSize="12px" color="#4C4C5C" textAlign="right" bold>
-                        Withdrawed
-                      </Text>
-                    ) : null}
-                    {/* {v.status === 1 && mainEra <= 0 ? (
-                      <ButtonStyled
-                        onClick={() => {
-                          withdraw(index);
-                        }}
-                        disabled={pendingTxWithdraw === `true${index}`}
-                      >
-                        Withdraw
-                        {pendingTxWithdraw === `true${index}` ? <LoadingIconStyle /> : null}
-                      </ButtonStyled>
-                    ) : null} */}
-                    {v.status === 1 && mainEra > 0 ? (
-                      `${timp}` !== 'NaN' ? (
-                        <>
-                          {/* // <Flex alignItems="center" justifyContent="end"> */}
+  return useMemo(() => {
+    return (
+      <UnbindListStyled>
+        <HeadingStyled>Unbinding Rules</HeadingStyled>
+        <TextStyled>
+          Due to the {mainTokenSymbol}'s dappstaking rule, users will take {unbondingPeriod}~{unbondingPeriod + 2} ERAs
+          (About {unbondingPeriod}~{unbondingPeriod + 2} days) to unbind. When the time is up, {mainTokenSymbol} will be
+          automatically sent to your address
+        </TextStyled>
+        <UlStyled>
+          {list && list.length
+            ? list.map((v, index) => {
+                // const mainEra = v.era + unbondingPeriod - currentEra;
+                const mainEra = subNextPre(v.era) - currentEra;
+                // 12 s/block   7200 block/day
+                // // {/* blocksUntilNextEra+((record.era + unbondingPeriod - currentER)* 7200)  * 12  */} s
+                //
+                const timp = mainEra > 0 ? (blocksUntilNextEra + (subNextPre(v.era) - era - 1) * 7200) * 12 : 0;
+                if (timp) {
+                  console.log({ blocksUntilNextEra, era }, 'v.era: ' + v.era);
+                }
+                return (
+                  <li key={index}>
+                    <TextAmount>
+                      {v.amount || '-'}
+                      &nbsp;
+                      {withdraw_symbol}
+                    </TextAmount>
+                    <StatusWrap>
+                      {/* {v.status === 0 ? ( */}
+                      {mainEra <= 0 ? (
+                        <Text fontSize="12px" color="#4C4C5C" textAlign="right" bold>
+                          Withdrawed
+                        </Text>
+                      ) : null}
+                      {/* v.status === 1 &&  */}
+                      {mainEra > 0 ? (
+                        `${timp}` !== 'NaN' ? (
+                          <>
+                            {/* // <Flex alignItems="center" justifyContent="end"> */}
+                            <LineText>{mainEra} Era</LineText>
+                            {/* &nbsp; &nbsp; */}
+                            <Countdown nextEventTime={timp} />
+                            {/* // </Flex> */}
+                          </>
+                        ) : (
                           <LineText>{mainEra} Era</LineText>
-                          {/* &nbsp; &nbsp; */}
-                          <Countdown nextEventTime={timp} />
-                          {/* // </Flex> */}
-                        </>
-                      ) : (
-                        <LineText>{mainEra} Era</LineText>
-                      )
-                    ) : null}
-                    {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
-                  </StatusWrap>
-                </li>
-              );
-            })
-          : null}
-      </UlStyled>
-      {list.length === 0 ? <NoList /> : null}
-    </UnbindListStyled>
-  );
+                        )
+                      ) : null}
+                      {/* <Countdown nextEventTime={(v.unbonding - lastBlockNumber) * 12} /> */}
+                    </StatusWrap>
+                  </li>
+                );
+              })
+            : null}
+        </UlStyled>
+        {list.length === 0 ? <NoList /> : null}
+      </UnbindListStyled>
+    );
+  }, [blocksUntilNextEra, currentEra, era, list, mainTokenSymbol, withdraw_symbol]);
 };
 const subNextPre = (recordEra: number): number => {
   const pre = (recordEra + unbondingPeriod) % unbondingPeriod;
@@ -190,7 +182,10 @@ const UnbindListStyled = styled.div`
   background: linear-gradient(0deg, #0d0d11, #3a3a4c);
   border-radius: 20px;
   margin-top: 12px;
-  width: 600px;
+  width: 100%;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 600px;
+  }
   padding: 30px;
   @media screen and (min-width: 1200px) {
     margin-left: 16px;

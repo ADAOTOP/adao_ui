@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js';
 import { getFullDisplayBalance } from 'utils/formatBalance';
 import { Text } from '@my/ui';
 import styled from 'styled-components';
+import { useMemo } from 'react';
 const TextStyle = styled(Text)`
   font-size: 12px;
   text-align: center;
@@ -35,16 +36,17 @@ const Balance = (props) => {
     isBalanceZero: boolean;
     symbol: string;
   } = props;
-
-  return (
-    <TextStyle>
-      <i>
-        {Number(getFullDisplayBalance(balance, decimals, 10)).toLocaleString('en-US', {
-          maximumFractionDigits: 8,
-        })}
-      </i>
-      <p>{symbol} in Wallet</p>
-    </TextStyle>
-  );
+  return useMemo(() => {
+    return (
+      <TextStyle>
+        <i>
+          {Number(getFullDisplayBalance(balance, decimals, 10)).toLocaleString('en-US', {
+            maximumFractionDigits: 8,
+          })}
+        </i>
+        <p>{symbol} in Wallet</p>
+      </TextStyle>
+    );
+  }, [balance, decimals, symbol]);
 };
 export default Balance;
