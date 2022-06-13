@@ -128,8 +128,8 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
 };
 
 export const GetUserList = (contract: IDappStakingInterface, pendingTx: boolean) => {
-  // const { account } = useActiveWeb3React();
-  const account = '0x622cB4f5Ab9fA81eEC83251D23Cc0AF5f2ee029F';
+  const { account } = useActiveWeb3React();
+  // const account = '0x622cB4f5Ab9fA81eEC83251D23Cc0AF5f2ee029F';
   // 当前处理到的数据   recordsIndex-500  最多
   const dispatch = useAppDispatch();
   const recordsIndex = useSelector((state: State) => state.staking.recordsIndex);
