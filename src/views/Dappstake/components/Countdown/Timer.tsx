@@ -46,9 +46,8 @@ const DaysComp = ({ days }) => {
 const HoursComp = ({ hours }) => {
   return useMemo(() => {
     return (
-      <StyledTimerText>
-        <h2>{hours >= 10 ? hours : `0${hours}`}</h2>
-        <h4>Hours</h4>
+      <StyledTimerText mb="-4px" scale="xl" mr="4px">
+        {hours >= 10 ? hours : `0${hours}`}
       </StyledTimerText>
     );
   }, [hours]);
@@ -56,9 +55,8 @@ const HoursComp = ({ hours }) => {
 const MinComp = ({ minutes }) => {
   return useMemo(() => {
     return (
-      <StyledTimerText>
-        <h2>{minutes >= 10 ? minutes : `0${minutes}`}</h2>
-        <h4>Min</h4>
+      <StyledTimerText mb="-4px" scale="xl" mr="4px">
+        {minutes >= 10 ? minutes : `0${minutes}`}:
       </StyledTimerText>
     );
   }, [minutes]);
@@ -66,9 +64,8 @@ const MinComp = ({ minutes }) => {
 const SecComp = ({ seconds }) => {
   return useMemo(() => {
     return (
-      <StyledTimerText>
-        <h2>{seconds >= 10 ? seconds : `0${seconds}`}</h2>
-        <h4>Sec</h4>
+      <StyledTimerText mb="-4px" scale="xl" mr="4px">
+        {seconds >= 10 ? seconds : `0${seconds}`}
       </StyledTimerText>
     );
   }, [seconds]);
