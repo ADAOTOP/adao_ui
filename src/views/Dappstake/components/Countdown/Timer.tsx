@@ -47,7 +47,7 @@ const HoursComp = ({ hours }) => {
   return useMemo(() => {
     return (
       <StyledTimerText mb="-4px" scale="xl" mr="4px">
-        {hours >= 10 ? hours : `0${hours}`}
+        {hours >= 10 ? hours : `0${hours}`}:
       </StyledTimerText>
     );
   }, [hours]);
