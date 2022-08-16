@@ -92,7 +92,7 @@ export const GetPoolUpdate = (contract: IDappStakingInterface, mainContract) => 
           //// console.log('recordsIndex:', __recordsIndex.toString());
           const ratio = Number(__ratio.toString()) / RATIO_PRECISION;
           // console.log({ ratio, currentEra });
-          const _stakerApr = (ratio - 1.029) / (currentEra - 86) + 1;
+          const _stakerApr = (ratio - 1.0685) / (currentEra - 116) + 1;
           const stakerApr = _stakerApr > 0 ? _stakerApr : 0;
           const _stakerApy = (Math.pow(stakerApr, 365) - 1) * 100;
           // ((ratio-1.0290)/(currentEra - 86) + 1)^365 - 1
