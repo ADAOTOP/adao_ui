@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Button, Flex, useMatchBreakpoints, useWalletModal } from '@my/ui';
 import BigNumber from 'bignumber.js';
 import useToast from 'hooks/useToast';
@@ -22,9 +22,11 @@ import {
 } from 'state/staking/hooks';
 import useAuth from 'hooks/useAuth';
 import { useCurrentEra, usePolkadotApi } from 'state/polkadotApi/hooks';
-import { chainId } from 'config/constants/tokens';
+import { chainId, ibASTR } from 'config/constants/tokens';
 import { LoadingIconStyle } from 'components/svg/Loading';
 import { addToMetamask } from './hooks/addToMetamask';
+import { fetchUserTokenBalances } from 'state/staking/helpers';
+import { getFullDisplayBalance } from 'utils/formatBalance';
 
 const Unbind = () => {
   const { account } = useActiveWeb3React();
@@ -36,10 +38,10 @@ const Unbind = () => {
   const {
     mainTokenSymbol,
     ibASTRTokenSymbol,
-    ibASTRTokenIsBalanceZero: isBalanceZero,
+    ibASTRTokenIsBalanceZero,
     ibASTRTokenDecimals: decimals,
-    ibASTRTokenBalance: balance = 0,
-    ibASTRTokenFullBalance: fullBalance,
+    ibASTRTokenBalance,
+    ibASTRTokenFullBalance,
     totalSupply,
     ratio = 1,
     recordsIndex = 1,
@@ -48,7 +50,30 @@ const Unbind = () => {
     stakerApy,
     currentEra,
   } = staking;
+  const { balance, isBalanceZero, fullBalance } = useMemo(() => {
+    if (!account) {
+      return { balance: '0', isBalanceZero: true, fullBalance: '0' };
+    }
+    if (!ibASTRTokenBalance) {
+      (async () => {
+        const ibASTRbalance = await fetchUserTokenBalances(ibASTR[chainId].address, account);
 
+        const balance = `${ibASTRbalance || 0}`;
+        const isBalanceZero = Number(balance) > 0 ? false : true;
+        const fullBalance = getFullDisplayBalance(new BigNumber(balance), decimals, 8);
+        return {
+          balance: balance,
+          isBalanceZero: isBalanceZero,
+          fullBalance: fullBalance,
+        };
+      })();
+    }
+    return {
+      balance: ibASTRTokenBalance,
+      isBalanceZero: ibASTRTokenIsBalanceZero,
+      fullBalance: ibASTRTokenFullBalance,
+    };
+  }, [ibASTRTokenBalance, ibASTRTokenIsBalanceZero, ibASTRTokenFullBalance, account, decimals]);
   const contract = useDAppStackingContract();
   const contractMain = useDAppStackingMainContract();
   const pool: IDappPoolDataInterface = {

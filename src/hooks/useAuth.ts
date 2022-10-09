@@ -70,7 +70,6 @@ const useAuth = () => {
     if (chainId) {
       dispatch(clearAllTransactions({ chainId }));
     }
-    console.log(1111);
   }, [deactivate, dispatch, chainId]);
 
   return { login, logout };

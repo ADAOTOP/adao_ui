@@ -24,7 +24,11 @@ import multicall from './multicall/reducer';
 import staking from './staking';
 import polkadotApi from './polkadotApi';
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'staking'];
-
+if (window.localStorage.getItem(`redux_localstorage_simple_lists`)) {
+  for (let i = 0; i < PERSISTED_KEYS.length; i++) {
+    window.localStorage.removeItem(`redux_localstorage_simple_${PERSISTED_KEYS[i]}`);
+  }
+}
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
@@ -51,8 +55,8 @@ const store = configureStore({
     voting: votingReducer,
     lottery: lotteryReducer,
   },
-  middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
-  preloadedState: load({ states: PERSISTED_KEYS }),
+  middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS, namespace: 'v1' })],
+  preloadedState: load({ states: PERSISTED_KEYS, namespace: 'v1' }),
 });
 
 store.dispatch(updateVersion());
