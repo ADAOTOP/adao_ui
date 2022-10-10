@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ButtonMenu, ButtonMenuItem, Flex } from '@my/ui';
 import Balance from './StakeTableBalance';
 import BigNumber from 'bignumber.js';
@@ -44,7 +44,7 @@ const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol,
           variant="subtle"
           marginBottom="10px"
         >
-          <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" to="/dappstake/stake" as={Link}>
+          <ButtonMenuItem isActive={activeIndex === 0} id="Stake-nav-link" href="/dappstake/stake" as="a">
             Stake
           </ButtonMenuItem>
           {/* <ButtonMenuItem
@@ -52,12 +52,12 @@ const DappstakeSubNav: FC<IProps> = ({ balance, decimals, isBalanceZero, symbol,
           height="44px"
           width="112px"
           id="Unstake-nav-link"
-          to="/dappstake/unstake"
-          as={Link}
+          href="/dappstake/unstake"
+          as="a"
         >
           Unstake
         </ButtonMenuItem> */}
-          <ButtonMenuItem isActive={activeIndex === 1} id="Unstake-nav-link" to="/dappstake/unbind" as={Link}>
+          <ButtonMenuItem isActive={activeIndex === 1} id="Unstake-nav-link" href="/dappstake/unbind" as="a">
             Unbind
           </ButtonMenuItem>
         </ButtonMenu>
